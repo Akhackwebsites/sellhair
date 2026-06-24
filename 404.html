@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 <title>404 — Lost? Good. | SellHair.in</title>
 <meta name="robots" content="noindex">
 <link rel="icon" type="image/jpeg" href="https://www.sellhair.in/sellhair.jpg">
@@ -79,6 +79,7 @@ body {
   border: none; cursor: pointer; text-decoration: none;
   transition: background 0.2s;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  white-space: nowrap;
 }
 .nav-btn:hover { background: #222; }
 
@@ -363,10 +364,118 @@ footer {
 .footer-logo span { color: var(--gold); }
 .footer-sub { font-size: 0.65rem; color: var(--stone-600); text-align: center; }
 
-/* ── MOBILE TWEAKS ── */
+/* ── MOBILE TWEAKS ──────────────────────────────────────────────────────────
+   This is the section that actually fixes the "too zoomed in" issue.
+   The old version only shrank the 404 number and left everything else
+   (nav, main padding, gaps, card padding, font sizes) at desktop scale,
+   which is what made the whole page feel oversized on phones.
+------------------------------------------------------------------------- */
 @media (max-width: 640px) {
-  .big-404 { font-size: clamp(5rem, 22vw, 7rem); }
-  .cta-row { gap: 8px; }
+  .nav {
+    top: 10px;
+    padding: 10px 16px;
+    width: 92%;
+  }
+  .nav-logo { font-size: 1.05rem; }
+  .nav-btn { font-size: 0.6rem; padding: 9px 16px; }
+
+  main {
+    padding: 90px 18px 56px;
+  }
+
+  .page-wrap {
+    gap: 40px;
+  }
+
+  .error-tag {
+    font-size: 0.6rem;
+    padding: 4px 12px;
+    margin-bottom: 18px;
+  }
+
+  .big-404 {
+    font-size: clamp(3.6rem, 18vw, 5.5rem);
+    line-height: 0.9;
+  }
+  .big-404::after {
+    height: 3px;
+  }
+
+  .headline {
+    font-size: clamp(1.3rem, 6vw, 1.7rem);
+    margin-top: 14px;
+  }
+
+  .sub {
+    font-size: 0.875rem;
+    line-height: 1.65;
+    margin-top: 14px;
+    max-width: 100%;
+  }
+
+  .cta-row {
+    margin-top: 24px;
+    gap: 8px;
+    width: 100%;
+  }
+  .btn-black, .btn-ghost {
+    width: 100%;
+    justify-content: center;
+    padding: 13px 20px;
+    font-size: 0.75rem;
+  }
+
+  .micro-note {
+    font-size: 0.55rem;
+    margin-top: 14px;
+    flex-wrap: wrap;
+  }
+
+  .right {
+    gap: 10px;
+    margin-top: 8px;
+  }
+  .section-eyebrow { font-size: 0.55rem; }
+
+  .haircut-card {
+    padding: 14px 16px;
+    gap: 12px;
+    border-radius: 14px;
+  }
+  .card-icon {
+    width: 42px; height: 42px;
+    font-size: 1.15rem;
+    border-radius: 11px;
+  }
+  .card-title { font-size: 0.8125rem; }
+  .card-sub { font-size: 0.625rem; }
+  .card-payout { font-size: 0.7rem; }
+  .card-arrow { width: 15px; height: 15px; }
+
+  .regret-banner {
+    padding: 14px 16px;
+    gap: 10px;
+  }
+  .regret-stat { font-size: 1.5rem; }
+  .regret-label { font-size: 0.65rem; }
+
+  .strip-item {
+    padding: 0 18px;
+    font-size: 0.6rem;
+  }
+
+  footer {
+    padding: 24px 18px;
+  }
+  .footer-logo { font-size: 1rem; }
+  .footer-sub { font-size: 0.6rem; }
+}
+
+/* Extra-small phones (e.g. iPhone SE, older Android ~360px) */
+@media (max-width: 380px) {
+  .big-404 { font-size: clamp(3rem, 17vw, 4.5rem); }
+  .headline { font-size: clamp(1.15rem, 5.8vw, 1.45rem); }
+  main { padding: 80px 14px 48px; }
 }
 
 /* ── REDUCED MOTION ── */
