@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>404 — Lost? Good. | SellHair.in</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/jpeg" href="https://www.sellhair.in/sellhair.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --gold: #c5a059;
+  --gold-light: #dfc085;
+  --stone-50: #fafaf9;
+  --stone-100: #f5f5f4;
+  --stone-200: #e7e5e4;
+  --stone-400: #a8a29e;
+  --stone-500: #78716c;
+  --stone-600: #57534e;
+  --stone-700: #44403c;
+  --stone-800: #292524;
+  --stone-900: #1c1917;
+  --stone-950: #0c0a09;
+  --bg: #f8f6f3;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--stone-900);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── BLOBS ── */
+.blob {
+  position: fixed; border-radius: 50%;
+  filter: blur(80px); pointer-events: none; z-index: 0;
+}
+.b1 { top: -100px; right: -100px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(197,160,89,0.18), transparent); }
+.b2 { bottom: 0; left: -150px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(223,192,133,0.12), transparent); }
+.b3 { top: 40%; right: -50px; width: 350px; height: 350px; background: radial-gradient(circle, rgba(197,160,89,0.08), transparent); }
+
+/* ── NAV ── */
+.nav {
+  position: fixed; top: 16px; left: 50%; transform: translateX(-50%);
+  z-index: 40; width: 94%; max-width: 1100px;
+  background: rgba(255,255,255,0.55);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.65);
+  border-radius: 9999px; padding: 12px 22px;
+  display: flex; align-items: center; justify-content: space-between;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+}
+.nav-logo {
+  font-family: var(--font-display); font-weight: 900;
+  font-size: 1.25rem; letter-spacing: -0.025em;
+  color: var(--stone-900); text-decoration: none;
+}
+.nav-logo span { color: var(--gold); }
+.nav-btn {
+  background: #000; color: #fff;
+  font-weight: 800; font-size: 0.65rem;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  padding: 10px 20px; border-radius: 9999px;
+  border: none; cursor: pointer; text-decoration: none;
+  transition: background 0.2s;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+.nav-btn:hover { background: #222; }
+
+/* ── MAIN ── */
+main {
+  flex: 1; display: flex; align-items: center; justify-content: center;
+  padding: 120px 24px 80px;
+  position: relative; z-index: 1;
+}
+
+.page-wrap {
+  max-width: 1100px; width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+@media (min-width: 960px) {
+  .page-wrap { grid-template-columns: 1fr 1fr; gap: 80px; }
+}
+
+/* ── LEFT COLUMN ── */
+.left { display: flex; flex-direction: column; gap: 0; }
+
+.error-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-mono); font-size: 0.65rem; font-weight: 600;
+  color: var(--stone-500); text-transform: uppercase; letter-spacing: 0.12em;
+  background: rgba(255,255,255,0.5); backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.7);
+  padding: 5px 14px; border-radius: 9999px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  width: fit-content; margin-bottom: 28px;
+}
+.blink {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--gold); display: inline-block;
+  animation: blink 1.4s ease-in-out infinite;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+.big-404 {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(6rem, 16vw, 11rem);
+  letter-spacing: -0.05em;
+  line-height: 0.88;
+  color: var(--stone-900);
+  position: relative;
+  display: inline-block;
+  /* Strikethrough — the "wrong turn" visual metaphor */
+}
+.big-404::after {
+  content: '';
+  position: absolute;
+  left: -4px; right: -4px;
+  top: 50%; transform: translateY(-50%);
+  height: 5px;
+  background: var(--gold);
+  border-radius: 2px;
+  opacity: 0.9;
+}
+
+.headline {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  color: var(--stone-900);
+  margin-top: 20px;
+}
+.headline em {
+  font-style: normal;
+  color: var(--stone-500);
+  text-decoration: underline wavy;
+  text-decoration-color: var(--gold);
+  text-underline-offset: 5px;
+}
+
+.sub {
+  color: var(--stone-500);
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.75;
+  margin-top: 20px;
+  max-width: 440px;
+}
+.sub strong { color: var(--stone-800); font-weight: 700; }
+
+.cta-row {
+  display: flex; flex-direction: column; gap: 10px;
+  margin-top: 36px;
+  align-items: flex-start;
+}
+@media (min-width: 480px) { .cta-row { flex-direction: row; align-items: center; } }
+
+.btn-black {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 15px 28px; background: #000; color: #fff;
+  font-weight: 800; font-size: 0.8125rem;
+  text-transform: uppercase; letter-spacing: 0.06em;
+  border-radius: 12px; border: none; cursor: pointer;
+  text-decoration: none; transition: all 0.2s;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+}
+.btn-black:hover { background: #1c1917; box-shadow: 0 12px 32px rgba(0,0,0,0.28); }
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 15px 24px;
+  background: rgba(255,255,255,0.45); backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.7);
+  color: var(--stone-700); font-weight: 700; font-size: 0.8125rem;
+  text-transform: uppercase; letter-spacing: 0.06em;
+  border-radius: 12px; cursor: pointer; text-decoration: none;
+  transition: all 0.2s; box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+.btn-ghost:hover { background: rgba(255,255,255,0.7); }
+
+.micro-note {
+  font-size: 0.6rem; color: var(--stone-400);
+  font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.1em; margin-top: 10px;
+  display: flex; align-items: center; gap: 6px;
+}
+.micro-note::before {
+  content: '🏠';
+  font-size: 0.75rem;
+}
+
+/* ── RIGHT COLUMN — THE CARDS ── */
+.right {
+  display: flex; flex-direction: column; gap: 14px;
+}
+
+.section-eyebrow {
+  font-family: var(--font-mono); font-size: 0.6rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.14em;
+  color: var(--stone-400); margin-bottom: 4px;
+}
+
+.haircut-card {
+  background: rgba(255,255,255,0.45);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.7);
+  border-radius: 18px; padding: 20px 22px;
+  display: flex; align-items: center; gap: 18px;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  transition: all 0.22s ease;
+  position: relative; overflow: hidden;
+  text-decoration: none; color: inherit;
+}
+.haircut-card::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, transparent 60%);
+  pointer-events: none;
+}
+.haircut-card:hover {
+  background: rgba(255,255,255,0.65);
+  border-color: rgba(255,255,255,0.9);
+  transform: translateY(-3px) scale(1.01);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+}
+.haircut-card.featured {
+  background: #0f0d0c;
+  border-color: rgba(197,160,89,0.35);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25), 0 0 0 1px rgba(197,160,89,0.1);
+}
+.haircut-card.featured:hover {
+  background: #1a1714;
+  border-color: rgba(197,160,89,0.5);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.35);
+}
+.haircut-card.featured::before {
+  background: linear-gradient(135deg, rgba(197,160,89,0.12) 0%, transparent 60%);
+}
+
+.card-icon {
+  width: 52px; height: 52px; border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem; flex-shrink: 0;
+  border: 1px solid rgba(255,255,255,0.4);
+  background: rgba(255,255,255,0.35);
+}
+.haircut-card.featured .card-icon {
+  background: rgba(197,160,89,0.12);
+  border-color: rgba(197,160,89,0.25);
+}
+
+.card-body { flex: 1; min-width: 0; }
+.card-title {
+  font-family: var(--font-display);
+  font-weight: 700; font-size: 0.9375rem;
+  color: var(--stone-900); letter-spacing: -0.01em;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.haircut-card.featured .card-title { color: #fff; }
+.card-sub {
+  font-size: 0.7rem; color: var(--stone-400);
+  font-weight: 500; margin-top: 3px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.haircut-card.featured .card-sub { color: var(--stone-500); }
+
+.card-payout {
+  font-family: var(--font-mono); font-weight: 800;
+  font-size: 0.8rem; color: #059669;
+  white-space: nowrap; flex-shrink: 0;
+}
+.haircut-card.featured .card-payout { color: var(--gold); }
+
+.card-arrow {
+  color: var(--stone-300); flex-shrink: 0;
+  transition: transform 0.2s;
+}
+.haircut-card:hover .card-arrow { transform: translateX(3px); }
+.haircut-card.featured .card-arrow { color: rgba(197,160,89,0.5); }
+
+/* ── REGRET BANNER ── */
+.regret-banner {
+  background: rgba(255,255,255,0.4);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.65);
+  border-radius: 16px;
+  padding: 18px 22px;
+  display: flex; align-items: center; gap: 14px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+  margin-top: 4px;
+}
+.regret-stat {
+  font-family: var(--font-display);
+  font-weight: 900; font-size: 1.9rem;
+  color: var(--stone-900); line-height: 1;
+  flex-shrink: 0;
+}
+.regret-label {
+  font-size: 0.7rem; color: var(--stone-500);
+  line-height: 1.55;
+}
+.regret-label strong { color: var(--stone-800); font-weight: 700; }
+
+/* ── MARQUEE STRIP ── */
+.strip {
+  width: 100%; background: #0a0908;
+  padding: 16px 0; overflow: hidden;
+  border-top: 1px solid #1c1917;
+  border-bottom: 1px solid #1c1917;
+  position: relative; z-index: 1;
+}
+.strip-track {
+  display: flex; gap: 0;
+  animation: marquee 28s linear infinite;
+  width: max-content;
+}
+@keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+.strip-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 0 28px; font-size: 0.7rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  color: #57534e; white-space: nowrap;
+}
+.strip-item span { color: #fff; }
+.strip-dot {
+  width: 4px; height: 4px; border-radius: 50%;
+  background: var(--gold); display: inline-block; flex-shrink: 0;
+}
+
+/* ── FOOTER ── */
+footer {
+  background: #000; color: var(--stone-600);
+  padding: 32px 24px;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 10px; position: relative; z-index: 1;
+}
+.footer-logo {
+  font-family: var(--font-display); font-weight: 900;
+  font-size: 1.1rem; letter-spacing: -0.02em; color: white;
+}
+.footer-logo span { color: var(--gold); }
+.footer-sub { font-size: 0.65rem; color: var(--stone-600); text-align: center; }
+
+/* ── MOBILE TWEAKS ── */
+@media (max-width: 640px) {
+  .big-404 { font-size: clamp(5rem, 22vw, 7rem); }
+  .cta-row { gap: 8px; }
+}
+
+/* ── REDUCED MOTION ── */
+@media (prefers-reduced-motion: reduce) {
+  .strip-track { animation: none; }
+  .haircut-card:hover { transform: none; }
+  .blink { animation: none; opacity: 1; }
+}
+</style>
+</head>
+<body>
+
+<div class="blob b1"></div>
+<div class="blob b2"></div>
+<div class="blob b3"></div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="/" class="nav-logo">SellHair<span>.in</span></a>
+  <a href="/" class="nav-btn">Back to Home</a>
+</nav>
+
+<!-- MARQUEE STRIP -->
+<div class="strip" style="margin-top:0;position:fixed;top:0;z-index:30;opacity:0;pointer-events:none" id="top-strip-placeholder"></div>
+
+<!-- MAIN -->
+<main>
+  <div class="page-wrap">
+
+    <!-- LEFT -->
+    <div class="left">
+
+      <div class="error-tag">
+        <span class="blink"></span>
+        Error 404 — Wrong turn
+      </div>
+
+      <div class="big-404" aria-label="404">404</div>
+
+      <h1 class="headline">
+        This page doesn't exist.<br>
+        But your <em>next look</em> does.
+      </h1>
+
+      <p class="sub">
+        You wandered off the map — which honestly takes a certain kind of courage.
+        The same courage it takes to say <strong>yes to the weird cut</strong>, the shaved side, the buzzcut you've been talking yourself out of for three years.
+        <br><br>
+        Hair grows back. <strong>Regret lingers forever.</strong> Come on.
+      </p>
+
+      <div class="cta-row">
+        <a href="/#calculator" class="btn-black">
+          See My Hair Value
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="/#gallery" class="btn-ghost">Browse Transformations</a>
+      </div>
+
+      <p class="micro-note">Free doorstep service &nbsp;·&nbsp; Zero fees &nbsp;·&nbsp; Instant UPI payout</p>
+
+    </div>
+
+    <!-- RIGHT -->
+    <div class="right">
+
+      <p class="section-eyebrow">While you're lost — maybe pick one of these?</p>
+
+      <!-- FEATURED CARD -->
+      <a href="/#gallery" class="haircut-card featured">
+        <div class="card-icon">🪒</div>
+        <div class="card-body">
+          <div class="card-title">The Full Head Shave</div>
+          <div class="card-sub">36"+ sold · Max payout · Peak chaos energy</div>
+        </div>
+        <div class="card-payout">₹75k–₹1.1L</div>
+        <svg class="card-arrow" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+
+      <a href="/#gallery" class="haircut-card">
+        <div class="card-icon">⚡</div>
+        <div class="card-body">
+          <div class="card-title">Buzz Cut</div>
+          <div class="card-sub">32" sold · Zero maintenance · Pure confidence</div>
+        </div>
+        <div class="card-payout">₹55k–₹85k</div>
+        <svg class="card-arrow" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+
+      <a href="/#gallery" class="haircut-card">
+        <div class="card-icon">🔥</div>
+        <div class="card-body">
+          <div class="card-title">Avant-Garde Mohawk</div>
+          <div class="card-sub">30" sold · Shaved temples · Actually legendary</div>
+        </div>
+        <div class="card-payout">₹45k–₹68k</div>
+        <svg class="card-arrow" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+
+      <a href="/#gallery" class="haircut-card">
+        <div class="card-icon">✂️</div>
+        <div class="card-body">
+          <div class="card-title">Viking Undercut</div>
+          <div class="card-sub">31" sold · Both sides shaved · Long top deck</div>
+        </div>
+        <div class="card-payout">₹48k–₹75k</div>
+        <svg class="card-arrow" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+
+      <!-- REGRET STAT BANNER -->
+      <div class="regret-banner">
+        <div class="regret-stat">91%</div>
+        <p class="regret-label">
+          of our clients said they'd <strong>do it all over again</strong> — the cut, the cash, the whole thing. The remaining 9% just wish they'd gone shorter.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<!-- MARQUEE STRIP -->
+<div class="strip">
+  <div class="strip-track" id="track">
+    <!-- items injected by JS for clean duplication -->
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">SellHair<span>.in</span></div>
+  <p class="footer-sub">India's First Doorstep Hair Exchange Service &nbsp;·&nbsp; Active in 60+ Cities</p>
+  <p class="footer-sub" style="margin-top:4px">© 2026 SellHair.in — All rights reserved.</p>
+</footer>
+
+<script>
+  // ── MARQUEE BUILD ──────────────────────────────────────────────────────────
+  const items = [
+    { label: 'Undercut', val: '₹28k – ₹48k' },
+    { label: 'Side Shave', val: '₹32k – ₹48k' },
+    { label: 'Buzz Cut', val: '₹55k – ₹85k' },
+    { label: 'Mohawk', val: '₹45k – ₹68k' },
+    { label: 'Full Head Shave', val: '₹75k – ₹1.1L' },
+    { label: 'Viking Undercut', val: '₹48k – ₹75k' },
+    { label: 'Pixie Cut', val: '₹18k – ₹24k' },
+    { label: 'Hidden Undercut', val: '₹24k – ₹35k' },
+    { label: 'Micro Bob + Shaved Nape', val: '₹20k – ₹28k' },
+    { label: 'Asymmetrical Shave', val: '₹18k – ₹26k' },
+  ];
+
+  function buildTrack(container, double) {
+    const all = double ? [...items, ...items] : items;
+    all.forEach(function(item) {
+      const el = document.createElement('span');
+      el.className = 'strip-item';
+      el.innerHTML = '<span>' + item.label + '</span><span class="strip-dot"></span>' + item.val + '<span class="strip-dot"></span>';
+      container.appendChild(el);
+    });
+  }
+
+  const track = document.getElementById('track');
+  buildTrack(track, true); // duplicate for seamless loop
+
+  // ── HAIRCUT CARD CLICK → OPEN BOOKING IF EXISTS ────────────────────────────
+  document.querySelectorAll('.haircut-card').forEach(function(card) {
+    card.addEventListener('click', function(e) {
+      if (typeof openBooking === 'function') {
+        e.preventDefault();
+        openBooking();
+      }
+      // otherwise let the <a href> navigate normally
+    });
+  });
+</script>
+
+</body>
+</html>
