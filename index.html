@@ -1831,17 +1831,26 @@
     };
 
     function populateCities() {
-      var state = document.getElementById('f-state').value;
-      var citySelect = document.getElementById('f-city');
-      citySelect.innerHTML = '<option value="">Select City</option>';
-      var cities = CITIES[state] || [];
-      cities.forEach(function(c) {
-        var opt = document.createElement('option');
-        opt.value = c;
-        opt.textContent = c;
-        citySelect.appendChild(opt);
-      });
-    }
+  var state = document.getElementById('f-state').value;
+  var citySelect = document.getElementById('f-city');
+
+  citySelect.innerHTML = '<option value="">Select City</option>';
+
+  var cities = CITIES[state] || [];
+
+  cities.forEach(function(c) {
+    var opt = document.createElement('option');
+    opt.value = c;
+    opt.textContent = c;
+    citySelect.appendChild(opt);
+  });
+
+  // Add Other City option
+  var otherOpt = document.createElement('option');
+  otherOpt.value = 'Other';
+  otherOpt.textContent = 'Other (Not Listed)';
+  citySelect.appendChild(otherOpt);
+}
 
     // ─── FORM VALIDATION HELPERS ─────────────────────────────────────────────
     function showFieldError(fieldId, errId) {
