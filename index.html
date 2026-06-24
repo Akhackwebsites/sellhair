@@ -7,7 +7,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/umd/lucide.min.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -41,14 +40,11 @@
       overflow-x: hidden;
       position: relative;
     }
-    /* Selection */
     ::selection { background: var(--stone-900); color: white; }
 
-    /* TYPOGRAPHY */
     .font-display { font-family: var(--font-display); }
     .font-mono { font-family: var(--font-mono); }
 
-    /* AMBIENT BG BLOBS */
     .blob {
       position: fixed;
       border-radius: 50%;
@@ -61,7 +57,6 @@
     .blob-3 { top: 2800px; right: -100px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(223,192,133,0.12), transparent); }
     .blob-4 { bottom: 800px; left: -200px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(197,160,89,0.1), transparent); }
 
-    /* NAV */
     .navbar {
       position: fixed;
       top: 16px;
@@ -98,7 +93,6 @@
       .hamburger { display: none; }
     }
 
-    /* MOBILE MENU */
     .mobile-overlay {
       position: fixed; inset: 0; z-index: 30;
       background: rgba(15,10,7,0.2);
@@ -128,17 +122,14 @@
     .mobile-cta { background: #000; color: #fff; font-weight: 900; padding: 16px; border-radius: 12px; text-align: center; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.08em; border: none; cursor: pointer; margin-top: 8px; }
     .mobile-cta-sub { text-align: center; font-size: 0.5rem; color: var(--stone-400); font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; margin-top: 4px; }
 
-    /* SECTIONS */
     section { position: relative; }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
     .container-md { max-width: 900px; margin: 0 auto; padding: 0 24px; }
     .container-sm { max-width: 700px; margin: 0 auto; padding: 0 24px; }
 
-    /* GLASS CARD */
     .glass { background: rgba(255,255,255,0.4); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.6); }
     .glass:hover { background: rgba(255,255,255,0.6); border-color: rgba(255,255,255,0.8); }
 
-    /* BADGE */
     .badge {
       display: inline-flex; align-items: center; gap: 6px;
       padding: 4px 12px;
@@ -150,7 +141,6 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     }
 
-    /* HERO */
     #hero {
       padding-top: 128px; padding-bottom: 80px;
       padding-left: 24px; padding-right: 24px;
@@ -197,7 +187,6 @@
     .btn-secondary:hover { background: rgba(255,255,255,0.6); }
     .cta-sub { font-size: 0.6rem; color: var(--stone-400); margin-top: 6px; text-transform: uppercase; font-weight: 700; letter-spacing: 0.1em; text-align: center; }
 
-    /* STATS GRID */
     .stats-grid {
       margin-top: 64px; width: 100%;
       display: grid; grid-template-columns: 1fr; gap: 0;
@@ -216,7 +205,6 @@
     .stat-value { font-family: var(--font-display); font-weight: 900; font-size: clamp(1.8rem, 4vw, 2.5rem); color: var(--stone-900); }
     .stat-desc { font-size: 0.75rem; color: var(--stone-500); margin-top: 4px; }
 
-    /* TRUST STRIP */
     .trust-strip {
       width: 100%; background: #0a0908; color: #d6d3d1;
       padding: 18px 24px;
@@ -230,7 +218,6 @@
     }
     .trust-dot { color: #44403c; }
 
-    /* SECTION HEADING */
     .section-heading { text-align: center; margin-bottom: 64px; }
     .section-heading h2 {
       font-family: var(--font-display); font-weight: 900;
@@ -240,7 +227,6 @@
     }
     .section-heading p { color: var(--stone-500); font-size: 0.875rem; margin-top: 12px; max-width: 500px; margin-left: auto; margin-right: auto; }
 
-    /* CALCULATOR SECTION */
     #calculator { padding: 96px 0; border-top: 1px solid rgba(255,255,255,0.4); border-bottom: 1px solid rgba(255,255,255,0.4); }
     .calc-wrapper {
       background: rgba(255,255,255,0.4); backdrop-filter: blur(12px);
@@ -303,7 +289,7 @@
     }
     .texture-btn:hover { background: rgba(255,255,255,0.6); }
     .texture-btn.active { border-color: #000; background: #000; color: white; font-weight: 700; }
-    /* RIGHT PANEL */
+
     .calc-result {
       background: #111; color: white; border-radius: 24px; padding: 28px 28px;
       border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 20px 60px rgba(0,0,0,0.3);
@@ -314,9 +300,9 @@
     .calc-result::after { content: ''; position: absolute; bottom: 0; left: 0; width: 160px; height: 160px; background: radial-gradient(circle, rgba(223,192,133,0.1), transparent); border-radius: 50%; pointer-events: none; }
     .result-inner { position: relative; z-index: 1; }
     .result-price {
-      font-family: var(--font-display); font-weight: 900; color: var(--gold);
+      font-family: var(--font-mono); font-weight: 900; color: var(--gold);
       font-size: clamp(1.6rem, 3vw, 2.2rem); letter-spacing: -0.02em; line-height: 1.1;
-      font-family: var(--font-mono); transition: all 0.3s;
+      transition: all 0.3s;
     }
     .rarity-bar { height: 8px; border-radius: 9999px; background: #1c1917; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); }
     .rarity-fill { height: 100%; border-radius: 9999px; background: linear-gradient(to right, #57534e, var(--gold)); transition: width 0.5s ease; }
@@ -333,7 +319,6 @@
     }
     .btn-white:hover { background: #f5f5f5; transform: scale(1.01); }
 
-    /* MARKET RATES */
     #market-rates { padding: 96px 0; background: #080605; color: white; overflow: hidden; }
     .rates-table { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 24px; overflow: hidden; }
     .rate-row { padding: 24px 32px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.1); transition: all 0.2s; }
@@ -345,7 +330,6 @@
     .rate-up { background: rgba(52,211,153,0.1); color: #34d399; }
     .rate-down { background: rgba(239,68,68,0.1); color: #f87171; }
 
-    /* PAYS SECTION */
     #pays { padding: 96px 0; }
     .pays-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
     @media (min-width: 640px) { .pays-grid { grid-template-columns: 1fr 1fr; } }
@@ -358,7 +342,6 @@
     }
     .pays-card:hover { background: rgba(255,255,255,0.6); border-color: rgba(255,255,255,0.8); transform: translateY(-2px); }
 
-    /* GALLERY */
     #gallery { padding: 96px 0; }
     .gallery-columns { columns: 1; gap: 24px; }
     @media (min-width: 640px) { .gallery-columns { columns: 2; } }
@@ -380,7 +363,6 @@
     .gallery-tag-tr { position: absolute; top: 12px; right: 12px; padding: 2px 8px; background: #10b981; color: white; font-family: var(--font-mono); font-size: 0.6rem; font-weight: 800; text-transform: uppercase; border-radius: 4px; }
     .gallery-body { padding: 16px; }
 
-    /* REVIEWS */
     #reviews { padding: 96px 0; border-top: 1px solid rgba(255,255,255,0.4); }
     .reviews-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
     @media (min-width: 768px) { .reviews-grid { grid-template-columns: 1fr 1fr; } }
@@ -396,7 +378,6 @@
     .stars { display: flex; }
     .star { width: 14px; height: 14px; fill: var(--gold); color: var(--gold); }
 
-    /* WALL OF COURAGE */
     #wall { padding: 96px 0; border-top: 1px solid rgba(255,255,255,0.4); border-bottom: 1px solid rgba(255,255,255,0.4); }
     .clubs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
     @media (min-width: 768px) { .clubs-grid { grid-template-columns: repeat(3, 1fr); } }
@@ -409,12 +390,10 @@
     }
     .club-card:hover { background: rgba(255,255,255,0.6); border-color: rgba(255,255,255,0.8); }
 
-    /* HALL OF FAME */
     #halloffame { padding: 96px 0; border-bottom: 1px solid rgba(255,255,255,0.4); }
     .hof-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
     @media (min-width: 640px) { .hof-grid { grid-template-columns: 1fr 1fr; } }
 
-    /* SERVICE COVERAGE */
     #service-coverage { padding: 96px 0; background: #111; color: white; overflow: hidden; }
     .coverage-cards { display: grid; grid-template-columns: 1fr; gap: 24px; }
     @media (min-width: 768px) { .coverage-cards { grid-template-columns: repeat(2, 1fr); } }
@@ -428,7 +407,6 @@
     .coverage-icon { width: 48px; height: 48px; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; font-size: 1.25rem; transition: transform 0.2s; }
     .coverage-card:hover .coverage-icon { transform: scale(1.1); }
 
-    /* CITY SEARCH */
     #city-coverage { padding: 96px 0; }
     .search-widget {
       max-width: 560px; margin: 0 auto 64px;
@@ -447,7 +425,7 @@
     .search-input {
       width: 100%; padding: 12px 16px 12px 44px;
       background: rgba(255,255,255,0.4); border: 1px solid rgba(255,255,255,0.8);
-      color: var(--stone-900); placeholder-color: var(--stone-400);
+      color: var(--stone-900);
       border-radius: 16px; outline: none; font-size: 0.875rem; font-family: var(--font-sans);
       transition: all 0.2s;
     }
@@ -463,7 +441,6 @@
     }
     @media (min-width: 768px) { .expanding-banner { flex-direction: row; align-items: center; justify-content: space-between; } }
 
-    /* LEADERBOARD */
     #leaderboard { padding: 96px 0; }
     .leaderboard-grid { display: grid; grid-template-columns: 1fr; gap: 32px; }
     @media (min-width: 1024px) { .leaderboard-grid { grid-template-columns: 7fr 5fr; } }
@@ -477,24 +454,20 @@
     .earner-card:hover { background: rgba(255,255,255,0.6); border-color: rgba(255,255,255,0.8); }
     .weekly-board { background: rgba(0,0,0,0.85); backdrop-filter: blur(24px); color: white; border-radius: 24px; padding: 24px 28px; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
 
-    /* VALUE FACTORS */
     #value-factors { padding: 96px 0; border-top: 1px solid rgba(255,255,255,0.4); border-bottom: 1px solid rgba(255,255,255,0.4); }
     .factors-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
     @media (min-width: 640px) { .factors-grid { grid-template-columns: 1fr 1fr; } }
     @media (min-width: 1024px) { .factors-grid { grid-template-columns: repeat(5, 1fr); } }
 
-    /* STATS INSIGHTS */
     #stats-insights { padding: 96px 0; }
     .insights-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
     @media (min-width: 768px) { .insights-grid { grid-template-columns: repeat(3, 1fr); } }
 
-    /* JOURNEY */
     #journey { padding: 96px 0; }
     .journey-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
     @media (min-width: 768px) { .journey-grid { grid-template-columns: repeat(3, 1fr); } }
     @media (min-width: 1024px) { .journey-grid { grid-template-columns: repeat(5, 1fr); } }
 
-    /* TRANSFORMATION PROMO */
     #transform-promo { padding: 96px 0; background: #0a0908; color: white; overflow: hidden; }
     .promo-styles { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 32px 0; }
     .promo-style-chip { padding: 8px 18px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 9999px; font-size: 0.75rem; font-weight: 600; color: rgba(255,255,255,0.8); transition: all 0.2s; cursor: pointer; }
@@ -503,12 +476,8 @@
     @media (min-width: 768px) { .promo-quotes { grid-template-columns: 1fr 1fr; } }
     .promo-quote-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 24px; }
 
-    /* FAQ */
     #faq { padding: 96px 0; border-top: 1px solid rgba(255,255,255,0.4); }
-    .faq-item {
-      background: rgba(255,255,255,0.2); backdrop-filter: blur(8px);
-      transition: background 0.2s;
-    }
+    .faq-item { background: rgba(255,255,255,0.2); backdrop-filter: blur(8px); transition: background 0.2s; }
     .faq-item:hover { background: rgba(255,255,255,0.4); }
     .faq-trigger {
       width: 100%; padding: 20px 24px;
@@ -521,12 +490,10 @@
     .faq-answer { padding: 0 24px 24px; color: var(--stone-500); font-size: 0.875rem; line-height: 1.7; display: none; }
     .faq-answer.visible { display: block; }
 
-    /* FINAL CTA */
     #final-cta { padding: 128px 0; background: #000; color: white; text-align: center; overflow: hidden; }
     #final-cta .glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 384px; height: 384px; background: radial-gradient(circle, rgba(197,160,89,0.15), transparent); border-radius: 50%; pointer-events: none; }
     .final-title { font-family: var(--font-display); font-weight: 900; font-size: clamp(2.5rem, 7vw, 4.5rem); letter-spacing: -0.03em; color: white; line-height: 1.05; }
 
-    /* FOOTER */
     footer { background: #000; color: var(--stone-400); padding: 64px 0; border-top: 1px solid rgba(255,255,255,0.1); }
     .footer-grid { display: grid; grid-template-columns: 1fr; gap: 32px; }
     @media (min-width: 768px) { .footer-grid { grid-template-columns: 4fr 8fr; } }
@@ -535,11 +502,10 @@
     .footer-link { color: var(--stone-500); text-decoration: none; transition: color 0.15s; font-size: 0.75rem; }
     .footer-link:hover { color: white; }
 
-    /* MODAL */
     .modal-overlay {
       position: fixed; inset: 0; z-index: 50;
       background: rgba(0,0,0,0.6); backdrop-filter: blur(12px);
-      display: flex; align-items: center; justify-content: center; padding: 16px;
+      align-items: center; justify-content: center; padding: 16px;
       display: none;
     }
     .modal-overlay.open { display: flex; }
@@ -572,6 +538,7 @@
       font-family: var(--font-sans); transition: all 0.2s;
     }
     .form-input:focus { border-color: #000; background: white; }
+    .form-input.error { border-color: #ef4444; background: rgba(254,226,226,0.4); }
     .form-select {
       width: 100%; padding: 10px 12px;
       background: rgba(255,255,255,0.4); border: 1px solid rgba(255,255,255,0.8);
@@ -580,16 +547,18 @@
       -webkit-appearance: none; appearance: none;
     }
     .form-select:focus { border-color: #000; background: white; }
+    .form-select.error { border-color: #ef4444; background: rgba(254,226,226,0.4); }
     .form-label { display: flex; align-items: center; gap: 6px; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--stone-500); margin-bottom: 6px; }
     .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .spinner { width: 20px; height: 20px; border: 2px solid white; border-top-color: transparent; border-radius: 50%; animation: spin 0.7s linear infinite; }
+    .field-error { font-size: 0.6rem; color: #ef4444; margin-top: 4px; font-weight: 600; display: none; }
+    .field-error.visible { display: block; }
+    .spinner { width: 20px; height: 20px; border: 2px solid white; border-top-color: transparent; border-radius: 50%; animation: spin 0.7s linear infinite; display: inline-block; }
     @keyframes spin { to { transform: rotate(360deg); } }
     .success-state { display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 48px 0; }
     .success-state.visible { display: flex; }
     .bounce-icon { animation: bounce 1s infinite; }
     @keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
 
-    /* MISC UTILITIES */
     .text-gold { color: var(--gold); }
     .text-emerald { color: #059669; }
     .bg-gold { background: var(--gold); }
@@ -732,7 +701,7 @@
                     <path d="M35,65 Q35,40 60,40 Q85,40 85,65 Q85,85 85,110 L95,140 Q95,160 60,160 Q25,160 25,140 L35,110 Z" fill="#f5f5f4" stroke="#e7e5e4" stroke-width="1.5"/>
                     <path d="M47,85 L47,105 M73,85 L73,105" stroke="#e5e5e0" stroke-width="1"/>
                     <path d="M60,62 Q60,90 60,110" fill="none" stroke="#1c1917" stroke-width="8" stroke-linecap="round"/>
-                    <path id="pony-ext" d="M60,105 Q60,130 60,175" fill="none" stroke="#1c1917" stroke-width="6" stroke-linecap="round" style="stroke-dasharray:100;stroke-dashoffset:55;transition:stroke-dashoffset 0.4s ease"/>
+                    <path id="pony-ext" d="M60,105 Q60,130 60,175" fill="none" stroke="#1c1917" stroke-width="6" stroke-linecap="round" style="stroke-dasharray:100;stroke-dashoffset:25;transition:stroke-dashoffset 0.4s ease"/>
                     <rect x="56" y="103" width="8" height="4" rx="1.5" fill="#d4af37"/>
                     <line x1="5" y1="115" x2="115" y2="115" id="guide-15" stroke="#e7e5e4" stroke-width="1" stroke-dasharray="3 3"/>
                     <line x1="5" y1="128" x2="115" y2="128" id="guide-18" stroke="#e7e5e4" stroke-width="1" stroke-dasharray="3 3"/>
@@ -852,7 +821,6 @@
           <!-- RIGHT: Results -->
           <div class="calc-result">
             <div class="result-inner">
-              <!-- Header -->
               <div style="display:flex;align-items:center;justify-content:space-between;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,0.1)">
                 <div>
                   <span style="display:inline-flex;align-items:center;gap:4px;padding:2px 10px;background:rgba(255,255,255,0.1);color:var(--gold);font-size:0.55rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;border-radius:9999px;border:1px solid rgba(255,255,255,0.05)">✦ Luxury Valuation</span>
@@ -865,13 +833,11 @@
                   </span>
                 </div>
               </div>
-              <!-- Price -->
               <div style="text-align:center;padding:20px 0;background:rgba(255,255,255,0.04);border-radius:16px;border:1px solid rgba(255,255,255,0.1);margin:16px 0;box-shadow:0 4px 20px rgba(0,0,0,0.2)">
                 <span style="font-size:0.6rem;color:var(--stone-400);font-weight:800;text-transform:uppercase;letter-spacing:0.12em;display:block;margin-bottom:4px">Estimated Market Value</span>
                 <div class="result-price" id="result-price">₹35,000 – ₹56,250</div>
                 <p style="font-size:0.55rem;color:var(--stone-500);margin-top:8px;font-family:var(--font-mono);text-transform:uppercase;letter-spacing:0.1em">Immediate Bank / UPI Payout</p>
               </div>
-              <!-- Rarity -->
               <div style="margin-bottom:16px">
                 <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
                   <span style="font-size:0.55rem;color:var(--stone-400);font-weight:700;text-transform:uppercase;letter-spacing:0.1em">Hair Rarity Grade</span>
@@ -882,7 +848,6 @@
                   <span>Common</span><span>Rare</span><span>Collector</span>
                 </div>
               </div>
-              <!-- Details -->
               <div class="detail-grid">
                 <div class="detail-cell">
                   <span class="detail-cell-label">Premium Bonus</span>
@@ -901,7 +866,6 @@
                   <span id="suitable-for" style="font-size:0.65rem;font-weight:700;color:#e7e5e4;line-height:1.3;display:block">Haute Couture Extensions</span>
                 </div>
               </div>
-              <!-- Insight -->
               <div class="insight-box" style="margin:16px 0">
                 <div style="display:flex;align-items:center;gap:6px;color:var(--gold);font-weight:700;margin-bottom:6px;font-size:0.55rem;text-transform:uppercase;letter-spacing:0.1em">
                   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
@@ -909,7 +873,6 @@
                 </div>
                 <p id="market-insight" style="color:#d6d3d1;font-size:0.7rem;line-height:1.6">"Your hair profile matches criteria for elite wig and hairpiece fabrication. You qualify for fully-funded free home service and top-tier rates."</p>
               </div>
-              <!-- CTA -->
               <button class="btn-white" id="calc-book-btn" onclick="openBooking()">
                 Book Doorstep Visit <span style="font-weight:300">· Free Appointment</span>
               </button>
@@ -1160,13 +1123,11 @@
         <span class="promo-style-chip">Viking Undercut</span>
         <span class="promo-style-chip">Full Buzz Cut</span>
       </div>
-      <!-- Big Quote -->
       <div style="text-align:center;padding:48px 24px;max-width:760px;margin:0 auto">
         <p style="font-family:var(--font-display);font-size:clamp(1.25rem,3vw,1.75rem);font-weight:700;color:white;line-height:1.4;letter-spacing:-0.01em">"Why simply cut your hair when you can <span style="color:var(--gold)">get paid for it</span> and leave with a completely new look?"</p>
         <div style="width:48px;height:2px;background:var(--gold);margin:24px auto"></div>
         <p style="color:var(--stone-400);font-size:0.875rem;line-height:1.7">Get rewarded for being bold. Your hair grows back. <span style="color:white;font-weight:600">The experience lasts forever.</span></p>
       </div>
-      <!-- Quote cards -->
       <div class="promo-quotes">
         <div class="promo-quote-card">
           <div style="font-size:2rem;color:var(--gold);font-family:var(--font-display);font-weight:900;line-height:0.8;margin-bottom:12px">"</div>
@@ -1183,7 +1144,6 @@
           </div>
         </div>
       </div>
-      <!-- CTA Banner -->
       <div style="margin-top:48px;text-align:center;padding:48px 24px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:24px">
         <p style="font-family:var(--font-display);font-size:clamp(1.1rem,2.5vw,1.5rem);font-weight:800;color:white;margin-bottom:8px">Transform your appearance, earn money, and experience something unforgettable.</p>
         <p style="color:var(--stone-400);font-size:0.875rem;margin-bottom:28px">Earn money from your hair and discover a style that may become your signature look.</p>
@@ -1362,13 +1322,12 @@
         <h2 style="margin-top:16px">Serving Major Cities Across India</h2>
         <p>We are actively expanding our network. Home visits are fully operational across all metro areas and tier-1 regions across India.</p>
       </div>
-      <!-- Search Widget -->
       <div class="search-widget">
         <div class="search-badge">✦ Live Checker</div>
         <h4 style="font-size:0.65rem;font-weight:700;color:var(--stone-500);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px">Check Home Service Availability</h4>
         <div class="search-input-wrap">
           <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          <input type="text" class="search-input" id="city-search-input" placeholder="Type your city (e.g. Mumbai, Kolkata, Pune...)" oninput="handleCitySearch(this.value)">
+          <input type="text" class="search-input" id="city-search-input" placeholder="Type your city (e.g. Mumbai, Kolkata, Pune...)" oninput="handleCitySearch(this.value)" autocomplete="off">
         </div>
         <div class="search-result" id="search-result">
           <div class="search-result-inner">
@@ -1378,7 +1337,6 @@
           </div>
         </div>
       </div>
-      <!-- Expanding Banner -->
       <div class="expanding-banner">
         <div style="flex:1">
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
@@ -1565,7 +1523,7 @@
   <!-- BOOKING MODAL -->
   <div class="modal-overlay" id="modal-overlay" onclick="closeBooking()">
     <div class="modal-box" onclick="event.stopPropagation()">
-      <button class="modal-close" onclick="closeBooking()" aria-label="Close">
+      <button class="modal-close" onclick="closeBooking()" aria-label="Close modal">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
       <!-- Sidebar -->
@@ -1590,33 +1548,41 @@
             <p style="font-size:0.75rem;color:var(--stone-500);margin-top:8px">No travel required. Get estimated <span id="modal-estimate" style="font-weight:600;color:var(--stone-900)">₹18,000 – ₹28,000</span> for your <span id="modal-length" style="font-weight:600;color:var(--stone-900)">18–24 Inches</span> ponytail.</p>
           </div>
           <div style="display:flex;flex-direction:column;gap:16px">
+            <!-- Name -->
             <div>
-              <label class="form-label">👤 Full Name <span style="color:red">*</span></label>
-              <input type="text" class="form-input" id="f-name" placeholder="Enter your full name" required>
+              <label class="form-label" for="f-name">👤 Full Name <span style="color:red">*</span></label>
+              <input type="text" class="form-input" id="f-name" placeholder="Enter your full name" autocomplete="name">
+              <div class="field-error" id="err-name">Please enter your full name.</div>
             </div>
+            <!-- Phone -->
             <div>
-              <label class="form-label">📱 WhatsApp Number <span style="color:red">*</span></label>
-              <input type="tel" class="form-input" id="f-phone" placeholder="Enter 10-digit mobile number" pattern="[0-9]{10}" required>
+              <label class="form-label" for="f-phone">📱 WhatsApp Number <span style="color:red">*</span></label>
+              <input type="tel" class="form-input" id="f-phone" placeholder="Enter 10-digit mobile number" maxlength="10" autocomplete="tel">
+              <div class="field-error" id="err-phone">Please enter a valid 10-digit mobile number.</div>
               <p style="font-size:0.6rem;color:var(--stone-400);margin-top:4px">We will send appointment updates via WhatsApp.</p>
             </div>
+            <!-- State & City -->
             <div class="form-grid">
               <div>
-                <label class="form-label">📍 State <span style="color:red">*</span></label>
-                <select class="form-select" id="f-state" onchange="populateCities()" required>
+                <label class="form-label" for="f-state">📍 State <span style="color:red">*</span></label>
+                <select class="form-select" id="f-state" onchange="populateCities()">
                   <option value="">Select State</option>
                   <option>West Bengal</option><option>Maharashtra</option><option>Delhi NCR</option><option>Karnataka</option><option>Gujarat</option><option>Tamil Nadu</option><option>Telangana</option><option>Kerala</option><option>Rajasthan</option><option>Madhya Pradesh</option><option>Uttar Pradesh</option><option>Punjab</option><option>Odisha</option><option>Bihar</option><option>Assam</option><option>Jharkhand</option><option>Andhra Pradesh</option><option>Haryana</option><option>Chhattisgarh</option><option>Other</option>
                 </select>
+                <div class="field-error" id="err-state">Please select your state.</div>
               </div>
               <div>
-                <label class="form-label">📍 City <span style="color:red">*</span></label>
-                <select class="form-select" id="f-city" required>
+                <label class="form-label" for="f-city">📍 City <span style="color:red">*</span></label>
+                <select class="form-select" id="f-city">
                   <option value="">Select City</option>
                 </select>
+                <div class="field-error" id="err-city">Please select your city.</div>
               </div>
             </div>
+            <!-- Length & Style -->
             <div class="form-grid">
               <div>
-                <label class="form-label">📏 Hair Length</label>
+                <label class="form-label" for="f-length">📏 Hair Length</label>
                 <select class="form-select" id="f-length">
                   <option value="15–18 Inches">15–18 Inches</option>
                   <option value="18–24 Inches" selected>18–24 Inches</option>
@@ -1625,13 +1591,16 @@
                 </select>
               </div>
               <div>
-                <label class="form-label">✂️ Desired Style</label>
+                <label class="form-label" for="f-style">✂️ Desired Style</label>
                 <select class="form-select" id="f-style">
                   <option>Undercut</option><option>Side Shave</option><option>Half Shave</option><option>Buzz Cut</option><option>Mohawk</option><option>Pixie</option><option>Hidden Undercut</option><option>Full Head Shave</option><option>Micro Bob + Shaved Nape</option><option>Viking Undercut</option><option>Asymmetrical Shave</option>
                 </select>
               </div>
             </div>
-            <button onclick="submitBooking()" id="submit-btn" style="width:100%;margin-top:8px;background:#000;color:white;font-weight:700;padding:14px 24px;border-radius:12px;border:1px solid rgba(255,255,255,0.1);font-size:0.875rem;cursor:pointer;transition:all 0.2s;box-shadow:0 4px 16px rgba(0,0,0,0.2);display:flex;align-items:center;justify-content:center;gap:8px" onmouseover="this.style.background='#222'" onmouseout="this.style.background='#000'">
+            <!-- Global form error -->
+            <div id="err-global" style="display:none;padding:10px 14px;background:rgba(254,226,226,0.6);border:1px solid rgba(239,68,68,0.3);border-radius:10px;font-size:0.75rem;color:#b91c1c;font-weight:600"></div>
+            <!-- Submit -->
+            <button onclick="submitBooking()" id="submit-btn" style="width:100%;margin-top:8px;background:#000;color:white;font-weight:700;padding:14px 24px;border-radius:12px;border:none;font-size:0.875rem;cursor:pointer;transition:all 0.2s;box-shadow:0 4px 16px rgba(0,0,0,0.2);display:flex;align-items:center;justify-content:center;gap:8px" onmouseover="if(!this.disabled)this.style.background='#222'" onmouseout="if(!this.disabled)this.style.background='#000'">
               Confirm Free Doorstep Booking
             </button>
             <div style="text-align:center"><span style="font-size:0.6rem;color:var(--stone-400)">🔒 Protected by SellHair.in Privacy Guard. We never share your phone number.</span></div>
@@ -1650,336 +1619,444 @@
             <div style="display:flex;justify-content:space-between;font-size:0.75rem"><span style="color:var(--stone-500)">Desired style:</span><span id="s-style" style="font-weight:600;color:var(--stone-900)"></span></div>
             <div style="display:flex;justify-content:space-between;font-size:0.75rem"><span style="color:var(--stone-500)">Est. Payout Value:</span><span id="s-payout" style="font-weight:700;color:#059669;font-family:var(--font-mono)"></span></div>
           </div>
-          <button onclick="closeBooking()" style="margin-top:32px;padding:10px 24px;background:#000;color:white;font-size:0.75rem;font-weight:700;border-radius:9999px;border:1px solid rgba(255,255,255,0.1);cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.2)" onmouseover="this.style.background='#222'" onmouseout="this.style.background='#000'">Close Window</button>
+          <button onclick="closeBooking()" style="margin-top:32px;padding:10px 24px;background:#000;color:white;font-size:0.75rem;font-weight:700;border-radius:9999px;border:none;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.2)" onmouseover="this.style.background='#222'" onmouseout="this.style.background='#000'">Close Window</button>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- ─── SUPABASE SDK (single load) ─────────────────────────────────────────── -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+
   <script>
-  // ─── STATE ───────────────────────────────────────────────────────────────────
-  let calcState = { length: 24, thickness: 'thick', quality: 'virgin', texture: 'straight' };
-  let bookingInitLength = '18–24 Inches';
-  let bookingInitEstimate = '₹18,000 – ₹28,000';
-  let animMin = 35000, animMax = 56250;
-  let rateVbh = 12200, rateCurly = 14500, rateGrey = 8800, rateColored = 5500;
+    // ─── SUPABASE CLIENT (single instance) ───────────────────────────────────
+    const SUPABASE_URL = 'https://mcjiclinjjndyokcgrdq.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_jVwhwwX6W7t_s0FFKSXMbA_vZvnX06l';
+    const sellhairDB = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
 
-  // ─── PRICING ─────────────────────────────────────────────────────────────────
-  const BASE = { 15:[12000,18000], 18:[18000,28000], 24:[28000,45000], 30:[45000,80000], 36:[80000,120000] };
-  const THICK = { thin:0.75, medium:1.0, thick:1.25, extra:1.55 };
-  const QUAL = { virgin:1.35, healthy:1.0, colored:0.65 };
-  const TEX = { straight:1.0, wavy:1.1, curly:1.25 };
+    // ─── STATE ────────────────────────────────────────────────────────────────
+    let calcState = { length: 24, thickness: 'thick', quality: 'virgin', texture: 'straight' };
+    let bookingInitLength = '18–24 Inches';
+    let bookingInitEstimate = '₹18,000 – ₹28,000';
+    let animMin = 35000, animMax = 56250;
+    let rateVbh = 12200, rateCurly = 14500, rateGrey = 8800, rateColored = 5500;
+    let isSubmitting = false;
 
-  function calcPrice() {
-    const [bMin, bMax] = BASE[calcState.length] || [12000,18000];
-    const m = THICK[calcState.thickness] * QUAL[calcState.quality] * TEX[calcState.texture];
-    return [Math.round(bMin*m/500)*500, Math.round(bMax*m/500)*500];
-  }
+    // ─── PRICING ──────────────────────────────────────────────────────────────
+    const BASE = { 15:[12000,18000], 18:[18000,28000], 24:[28000,45000], 30:[45000,80000], 36:[80000,120000] };
+    const THICK = { thin:0.75, medium:1.0, thick:1.25, extra:1.55 };
+    const QUAL = { virgin:1.35, healthy:1.0, colored:0.65 };
+    const TEX = { straight:1.0, wavy:1.1, curly:1.25 };
 
-  function getRarity() {
-    let score = 0;
-    if (calcState.length >= 30) score += 40; else if (calcState.length >= 24) score += 25; else score += 10;
-    if (calcState.thickness === 'extra') score += 30; else if (calcState.thickness === 'thick') score += 20; else score += 10;
-    if (calcState.quality === 'virgin') score += 30; else if (calcState.quality === 'healthy') score += 15; else score += 5;
-    let level = 'Common', color = 'color:var(--stone-400);background:var(--stone-900);border:1px solid var(--stone-800)', width = '20%';
-    if (score >= 90) { level='Collector Grade'; color='color:var(--gold);background:#000;border:1px solid rgba(197,160,89,0.4)'; width='100%'; }
-    else if (score >= 70) { level='Very Rare'; color='color:#fb7185;background:#000;border:1px solid rgba(251,113,133,0.3)'; width='80%'; }
-    else if (score >= 50) { level='Rare'; color='color:#a5b4fc;background:#000;border:1px solid rgba(165,180,252,0.3)'; width='60%'; }
-    else if (score >= 30) { level='Uncommon'; color='color:#7dd3fc;background:#000;border:1px solid rgba(125,211,252,0.3)'; width='40%'; }
-    return { level, color, width, score };
-  }
-
-  function updateCalculator() {
-    const [min, max] = calcPrice();
-    const rarity = getRarity();
-    // Animate price
-    animatePrice(min, max);
-    // Rarity
-    document.getElementById('rarity-badge').textContent = rarity.level;
-    document.getElementById('rarity-badge').style.cssText = 'font-size:0.6rem;font-weight:700;text-transform:uppercase;padding:2px 8px;border-radius:9999px;' + rarity.color;
-    document.getElementById('rarity-fill').style.width = rarity.width;
-    // Details
-    document.getElementById('premium-bonus').textContent = '+₹' + (Math.round(max*0.12/100)*100).toLocaleString('en-IN');
-    // VIP
-    const s = rarity.score;
-    document.getElementById('vip-percentile').textContent = s>=90?'Top 1.5% of Submissions':s>=75?'Top 6.2% of Submissions':s>=55?'Top 12% of Submissions':s>=35?'Top 28% of Submissions':'Top 45% of Submissions';
-    // Demand
-    const l = calcState.length, q = calcState.quality, t = calcState.thickness;
-    document.getElementById('demand-level').textContent = l>=30?'Extreme Demand':(l>=24&&q==='virgin')?'Exceptionally High':(t==='extra'||t==='thick')?'Very High':'Balanced Demand';
-    // Suitable
-    document.getElementById('suitable-for').textContent = (q==='virgin'&&l>=30)?'Luxury Parisian Wigmaking':(q==='virgin'&&l>=24)?'Haute Couture Hair Extensions':(t==='extra'||t==='thick')?'Premium Volume Wefts':'General Medical Wigs & Toppers';
-    // Insight
-    let insight = 'Your hair profile matches criteria for elite wig and hairpiece fabrication. You qualify for fully-funded free home service and top-tier rates.';
-    if (l>=30&&q==='virgin') insight = 'Long virgin black hair above 30 inches is currently in exceptionally high global demand. Your profile qualifies for maximum premium pricing.';
-    else if (t==='extra'||t==='thick') insight = 'Excellent thickness multiplier detected. High-volume ponytails allow for premium weft processing, resulting in an automatic cash bonus.';
-    else if (q==='colored') insight = 'Chemically treated hair is accepted! However, natural, unprocessed (virgin) hair receives an automatic +50% baseline valuation boost.';
-    document.getElementById('market-insight').textContent = '"' + insight + '"';
-    // Book button
-    document.getElementById('calc-book-btn').onclick = () => openBooking(`${calcState.length} Inches (${calcState.thickness})`, `₹${min.toLocaleString('en-IN')} – ₹${max.toLocaleString('en-IN')}`);
-  }
-
-  let priceAnimFrame;
-  function animatePrice(targetMin, targetMax) {
-    if (priceAnimFrame) cancelAnimationFrame(priceAnimFrame);
-    const startMin = animMin, startMax = animMax;
-    const duration = 400, startTime = performance.now();
-    function step(now) {
-      const t = Math.min((now - startTime)/duration, 1);
-      const e = 1 - Math.pow(1-t, 3);
-      animMin = Math.round(startMin + (targetMin-startMin)*e);
-      animMax = Math.round(startMax + (targetMax-startMax)*e);
-      document.getElementById('result-price').textContent = '₹' + animMin.toLocaleString('en-IN') + ' – ₹' + animMax.toLocaleString('en-IN');
-      if (t < 1) priceAnimFrame = requestAnimationFrame(step);
+    function calcPrice() {
+      const [bMin, bMax] = BASE[calcState.length] || [12000,18000];
+      const m = THICK[calcState.thickness] * QUAL[calcState.quality] * TEX[calcState.texture];
+      return [Math.round(bMin * m / 500) * 500, Math.round(bMax * m / 500) * 500];
     }
-    priceAnimFrame = requestAnimationFrame(step);
-  }
 
-  function setLength(val) {
-    calcState.length = val;
-    document.querySelectorAll('.length-btn').forEach(b => {
-      const isActive = parseInt(b.dataset.length) === val;
-      b.classList.toggle('active', isActive);
-      const dot = b.querySelector('.length-hint-dot');
-      if (dot) dot.style.background = isActive ? 'var(--gold)' : 'var(--stone-300)';
-      const range = b.querySelector('.length-range');
-      if (range) range.style.color = isActive ? 'rgba(255,255,255,0.6)' : 'var(--stone-400)';
-    });
-    document.getElementById('length-display').textContent = val + '" Ponytail Length';
-    // Update silhouette
-    const offsets = { 15:55, 18:43, 24:25, 30:10, 36:0 };
-    document.getElementById('pony-ext').style.strokeDashoffset = offsets[val] || 25;
-    const dotY = { 15:115, 18:128, 24:145, 30:160, 36:175 };
-    document.getElementById('pony-dot').setAttribute('cy', dotY[val] || 145);
-    [15,18,24,30,36].forEach(l => {
-      const g = document.getElementById('guide-'+l);
-      if (g) g.setAttribute('stroke', l===val ? '#a8a29e' : '#e7e5e4');
-    });
-    updateCalculator();
-  }
-
-  function setThickness(val) {
-    calcState.thickness = val;
-    document.querySelectorAll('.thickness-btn').forEach(b => b.classList.toggle('active', b.dataset.thick === val));
-    updateCalculator();
-  }
-
-  function setQuality(val) {
-    calcState.quality = val;
-    document.querySelectorAll('.quality-btn').forEach(b => b.classList.toggle('active', b.dataset.quality === val));
-    updateCalculator();
-  }
-
-  function setTexture(val) {
-    calcState.texture = val;
-    document.querySelectorAll('.texture-btn').forEach(b => b.classList.toggle('active', b.dataset.texture === val));
-    updateCalculator();
-  }
-
-  // ─── LIVE RATES ───────────────────────────────────────────────────────────────
-  setInterval(() => {
-    rateVbh += Math.floor(Math.random()*80-40);
-    rateCurly += Math.floor(Math.random()*100-50);
-    rateGrey += Math.floor(Math.random()*60-30);
-    rateColored += Math.floor(Math.random()*40-20);
-    document.getElementById('rate-vbh').textContent = '₹' + rateVbh.toLocaleString('en-IN');
-    document.getElementById('rate-curly').textContent = '₹' + rateCurly.toLocaleString('en-IN');
-    document.getElementById('rate-grey').textContent = '₹' + rateGrey.toLocaleString('en-IN');
-    document.getElementById('rate-colored').textContent = '₹' + rateColored.toLocaleString('en-IN');
-  }, 5000);
-
-  // ─── MOBILE MENU ─────────────────────────────────────────────────────────────
-  let menuOpen = false;
-  function toggleMobileMenu() {
-    menuOpen = !menuOpen;
-    document.getElementById('mobile-overlay').classList.toggle('open', menuOpen);
-    document.getElementById('icon-menu').style.display = menuOpen ? 'none' : 'block';
-    document.getElementById('icon-x').style.display = menuOpen ? 'block' : 'none';
-  }
-  function closeMobileMenu() {
-    menuOpen = false;
-    document.getElementById('mobile-overlay').classList.remove('open');
-    document.getElementById('icon-menu').style.display = 'block';
-    document.getElementById('icon-x').style.display = 'none';
-  }
-
-  // ─── CITY SEARCH ─────────────────────────────────────────────────────────────
-  function handleCitySearch(val) {
-    const result = document.getElementById('search-result');
-    result.classList.toggle('visible', val.trim().length > 0);
-  }
-
-  // ─── BOOKING MODAL ───────────────────────────────────────────────────────────
-  function openBooking(length, estimate) {
-    bookingInitLength = length || '18–24 Inches';
-    bookingInitEstimate = estimate || '₹18,000 – ₹28,000';
-    document.getElementById('modal-length').textContent = bookingInitLength;
-    document.getElementById('modal-estimate').textContent = bookingInitEstimate;
-    document.getElementById('f-length').value = bookingInitLength.includes('15') ? '15–18 Inches' : bookingInitLength.includes('24') && bookingInitLength.includes('30') ? '24–30 Inches' : bookingInitLength.includes('30') ? '30+ Inches' : '18–24 Inches';
-    document.getElementById('form-container').style.display = 'block';
-    document.getElementById('success-state').classList.remove('visible');
-    document.getElementById('modal-overlay').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeBooking() {
-    document.getElementById('modal-overlay').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  // ─── CITY DATA ───────────────────────────────────────────────────────────────
-  const CITIES = {
-    'West Bengal': ['Kolkata','Howrah','Durgapur','Asansol','Siliguri','Barrackpore','Kalyani','Kharagpur','Haldia','Burdwan'],
-    'Maharashtra': ['Mumbai','Pune','Nagpur','Thane','Nashik','Aurangabad','Solapur','Navi Mumbai'],
-    'Delhi NCR': ['New Delhi','Gurugram','Noida','Faridabad','Ghaziabad','Greater Noida'],
-    'Karnataka': ['Bengaluru','Mysuru','Mangaluru','Hubli','Belagavi'],
-    'Gujarat': ['Ahmedabad','Surat','Vadodara','Rajkot','Gandhinagar'],
-    'Tamil Nadu': ['Chennai','Coimbatore','Madurai','Trichy','Salem','Vellore'],
-    'Telangana': ['Hyderabad','Warangal','Nizamabad','Karimnagar'],
-    'Kerala': ['Kochi','Trivandrum','Kozhikode','Thrissur','Kannur'],
-    'Rajasthan': ['Jaipur','Jodhpur','Udaipur','Kota','Ajmer'],
-    'Madhya Pradesh': ['Indore','Bhopal','Gwalior','Jabalpur','Ujjain'],
-    'Uttar Pradesh': ['Lucknow','Kanpur','Varanasi','Agra','Allahabad','Meerut','Bareilly'],
-    'Punjab': ['Ludhiana','Amritsar','Chandigarh','Jalandhar','Patiala'],
-    'Odisha': ['Bhubaneswar','Cuttack','Rourkela','Puri'],
-    'Bihar': ['Patna','Gaya','Bhagalpur','Muzaffarpur'],
-    'Assam': ['Guwahati','Silchar','Dibrugarh'],
-    'Jharkhand': ['Ranchi','Jamshedpur','Dhanbad'],
-    'Andhra Pradesh': ['Visakhapatnam','Vijayawada','Guntur','Tirupati'],
-    'Haryana': ['Gurgaon','Faridabad','Rohtak','Ambala'],
-    'Chhattisgarh': ['Raipur','Bhilai','Bilaspur'],
-    'Other': ['My City (Confirm with team)'],
-  };
-
-  function populateCities() {
-    const state = document.getElementById('f-state').value;
-    const citySelect = document.getElementById('f-city');
-    citySelect.innerHTML = '<option value="">Select City</option>';
-    (CITIES[state] || []).forEach(c => {
-      const opt = document.createElement('option');
-      opt.value = c; opt.textContent = c;
-      citySelect.appendChild(opt);
-    });
-  }
-
-  function submitBooking() {
-    const name = document.getElementById('f-name').value.trim();
-    const phone = document.getElementById('f-phone').value.trim();
-    const state = document.getElementById('f-state').value;
-    const city = document.getElementById('f-city').value;
-    if (!name || !phone || !state || !city) {
-      alert('Please fill in all required fields.');
-      return;
+    function getRarity() {
+      let score = 0;
+      if (calcState.length >= 30) score += 40; else if (calcState.length >= 24) score += 25; else score += 10;
+      if (calcState.thickness === 'extra') score += 30; else if (calcState.thickness === 'thick') score += 20; else score += 10;
+      if (calcState.quality === 'virgin') score += 30; else if (calcState.quality === 'healthy') score += 15; else score += 5;
+      let level = 'Common', color = 'color:var(--stone-400);background:var(--stone-900);border:1px solid var(--stone-800)', width = '20%';
+      if (score >= 90) { level='Collector Grade'; color='color:var(--gold);background:#000;border:1px solid rgba(197,160,89,0.4)'; width='100%'; }
+      else if (score >= 70) { level='Very Rare'; color='color:#fb7185;background:#000;border:1px solid rgba(251,113,133,0.3)'; width='80%'; }
+      else if (score >= 50) { level='Rare'; color='color:#a5b4fc;background:#000;border:1px solid rgba(165,180,252,0.3)'; width='60%'; }
+      else if (score >= 30) { level='Uncommon'; color='color:#7dd3fc;background:#000;border:1px solid rgba(125,211,252,0.3)'; width='40%'; }
+      return { level, color, width, score };
     }
-    if (!/^\d{10}$/.test(phone)) {
-      alert('Please enter a valid 10-digit mobile number.');
-      return;
+
+    function updateCalculator() {
+      const [min, max] = calcPrice();
+      const rarity = getRarity();
+      animatePrice(min, max);
+      document.getElementById('rarity-badge').textContent = rarity.level;
+      document.getElementById('rarity-badge').style.cssText = 'font-size:0.6rem;font-weight:700;text-transform:uppercase;padding:2px 8px;border-radius:9999px;' + rarity.color;
+      document.getElementById('rarity-fill').style.width = rarity.width;
+      document.getElementById('premium-bonus').textContent = '+₹' + (Math.round(max * 0.12 / 100) * 100).toLocaleString('en-IN');
+      const s = rarity.score;
+      document.getElementById('vip-percentile').textContent = s>=90 ? 'Top 1.5% of Submissions' : s>=75 ? 'Top 6.2% of Submissions' : s>=55 ? 'Top 12% of Submissions' : s>=35 ? 'Top 28% of Submissions' : 'Top 45% of Submissions';
+      const l = calcState.length, q = calcState.quality, t = calcState.thickness;
+      document.getElementById('demand-level').textContent = l>=30 ? 'Extreme Demand' : (l>=24 && q==='virgin') ? 'Exceptionally High' : (t==='extra' || t==='thick') ? 'Very High' : 'Balanced Demand';
+      document.getElementById('suitable-for').textContent = (q==='virgin' && l>=30) ? 'Luxury Parisian Wigmaking' : (q==='virgin' && l>=24) ? 'Haute Couture Hair Extensions' : (t==='extra' || t==='thick') ? 'Premium Volume Wefts' : 'General Medical Wigs & Toppers';
+      let insight = 'Your hair profile matches criteria for elite wig and hairpiece fabrication. You qualify for fully-funded free home service and top-tier rates.';
+      if (l>=30 && q==='virgin') insight = 'Long virgin black hair above 30 inches is currently in exceptionally high global demand. Your profile qualifies for maximum premium pricing.';
+      else if (t==='extra' || t==='thick') insight = 'Excellent thickness multiplier detected. High-volume ponytails allow for premium weft processing, resulting in an automatic cash bonus.';
+      else if (q==='colored') insight = 'Chemically treated hair is accepted! However, natural, unprocessed (virgin) hair receives an automatic +50% baseline valuation boost.';
+      document.getElementById('market-insight').textContent = '"' + insight + '"';
+      document.getElementById('calc-book-btn').onclick = () => openBooking(calcState.length + ' Inches (' + calcState.thickness + ')', '₹' + min.toLocaleString('en-IN') + ' – ₹' + max.toLocaleString('en-IN'));
     }
-    const btn = document.getElementById('submit-btn');
-    btn.innerHTML = '<div class="spinner"></div>';
-    btn.disabled = true;
-    setTimeout(() => {
-      document.getElementById('s-name').textContent = name;
-      document.getElementById('s-city').textContent = city;
-      document.getElementById('s-loc').textContent = city + ', ' + state;
-      document.getElementById('s-length').textContent = document.getElementById('f-length').value;
-      document.getElementById('s-style').textContent = document.getElementById('f-style').value;
-      document.getElementById('s-payout').textContent = bookingInitEstimate;
-      document.getElementById('form-container').style.display = 'none';
-      document.getElementById('success-state').classList.add('visible');
-      btn.innerHTML = 'Confirm Free Doorstep Booking';
-      btn.disabled = false;
-    }, 1200);
-  }
 
-  // ─── FAQ ──────────────────────────────────────────────────────────────────────
-  const FAQS = [
-    { q: "Do I need to visit a salon?", a: "No. In most cities we offer free home visits. Our certified female specialists come directly to your location with all the sterile assessment tools and professional hair scissors. Your entire hair transformation can happen in the safety and privacy of your home." },
-    { q: "Is there a home service charge?", a: "No. Home assessments, home visits, and the expert haircuts are completely free. There are absolutely no hidden charges, assessment fees, or service booking fees. The final valuation quoted is the exact money transferred to you." },
-    { q: "Which cities do you serve?", a: "We currently serve major cities and metropolitan areas across West Bengal, Gujarat, Maharashtra, Delhi NCR, Karnataka, Telangana, Tamil Nadu, Kerala, Rajasthan, Madhya Pradesh, Uttar Pradesh, Punjab, Odisha, Bihar, Assam, and Jharkhand. We are expanding continuously to tier-2 and tier-3 towns." },
-    { q: "How is pricing determined?", a: "Pricing is calculated using four key elements: Length (minimum 15 inches), Thickness (measured by ponytail diameter), Quality (virgin unprocessed vs healthy vs colored), and Texture Pattern (curly and wavy hair command rarity premiums). Natural dark black virgin hair above 30 inches receives peak valuations, often exceeding ₹80,000 to ₹1,20,000." },
-    { q: "How do I receive the payout?", a: "Payment is made instantly on-the-spot prior to cutting a single strand of hair. Our stylist supervisor will execute a digital transfer via UPI, GPay, Paytm, or direct IMPS Bank Transfer. You only sit down for the haircut after verifying the funds are cleared in your bank account." },
-    { q: "Can I choose any haircut?", a: "Absolutely. You can choose any transformational hair style you want — from a stylish French micro bob to a daring undercut, side shave, pixie, or full head shave. Our partner female stylists are certified from top academies and will sculpt the precise look you desire." },
-  ];
+    let priceAnimFrame;
+    function animatePrice(targetMin, targetMax) {
+      if (priceAnimFrame) cancelAnimationFrame(priceAnimFrame);
+      const startMin = animMin, startMax = animMax;
+      const duration = 400, startTime = performance.now();
+      function step(now) {
+        const t = Math.min((now - startTime) / duration, 1);
+        const e = 1 - Math.pow(1 - t, 3);
+        animMin = Math.round(startMin + (targetMin - startMin) * e);
+        animMax = Math.round(startMax + (targetMax - startMax) * e);
+        document.getElementById('result-price').textContent = '₹' + animMin.toLocaleString('en-IN') + ' – ₹' + animMax.toLocaleString('en-IN');
+        if (t < 1) priceAnimFrame = requestAnimationFrame(step);
+      }
+      priceAnimFrame = requestAnimationFrame(step);
+    }
 
-  function buildFAQ() {
-    const acc = document.getElementById('faq-accordion');
-    FAQS.forEach((faq, i) => {
-      const div = document.createElement('div');
-      div.className = 'faq-item';
-      div.style.cssText = 'border-bottom:1px solid rgba(255,255,255,0.4)';
-      if (i === FAQS.length-1) div.style.borderBottom = 'none';
-      div.innerHTML = `
-        <button class="faq-trigger" onclick="toggleFaq(${i})">
-          <span style="padding-right:16px">${faq.q}</span>
-          <div class="faq-chevron${i===0?' open':''}" id="chev-${i}">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-          </div>
-        </button>
-        <div class="faq-answer${i===0?' visible':''}" id="faq-${i}">${faq.a}</div>
-      `;
-      acc.appendChild(div);
+    function setLength(val) {
+      calcState.length = val;
+      document.querySelectorAll('.length-btn').forEach(function(b) {
+        var isActive = parseInt(b.dataset.length) === val;
+        b.classList.toggle('active', isActive);
+        var dot = b.querySelector('.length-hint-dot');
+        if (dot) dot.style.background = isActive ? 'var(--gold)' : 'var(--stone-300)';
+        var range = b.querySelector('.length-range');
+        if (range) range.style.color = isActive ? 'rgba(255,255,255,0.6)' : 'var(--stone-400)';
+      });
+      document.getElementById('length-display').textContent = val + '" Ponytail Length';
+      var offsets = { 15:55, 18:43, 24:25, 30:10, 36:0 };
+      document.getElementById('pony-ext').style.strokeDashoffset = offsets[val] !== undefined ? offsets[val] : 25;
+      var dotY = { 15:115, 18:128, 24:145, 30:160, 36:175 };
+      document.getElementById('pony-dot').setAttribute('cy', dotY[val] || 145);
+      [15,18,24,30,36].forEach(function(l) {
+        var g = document.getElementById('guide-' + l);
+        if (g) g.setAttribute('stroke', l === val ? '#a8a29e' : '#e7e5e4');
+      });
+      updateCalculator();
+    }
+
+    function setThickness(val) {
+      calcState.thickness = val;
+      document.querySelectorAll('.thickness-btn').forEach(function(b) { b.classList.toggle('active', b.dataset.thick === val); });
+      updateCalculator();
+    }
+
+    function setQuality(val) {
+      calcState.quality = val;
+      document.querySelectorAll('.quality-btn').forEach(function(b) { b.classList.toggle('active', b.dataset.quality === val); });
+      updateCalculator();
+    }
+
+    function setTexture(val) {
+      calcState.texture = val;
+      document.querySelectorAll('.texture-btn').forEach(function(b) { b.classList.toggle('active', b.dataset.texture === val); });
+      updateCalculator();
+    }
+
+    // ─── LIVE RATES ───────────────────────────────────────────────────────────
+    setInterval(function() {
+      rateVbh += Math.floor(Math.random() * 80 - 40);
+      rateCurly += Math.floor(Math.random() * 100 - 50);
+      rateGrey += Math.floor(Math.random() * 60 - 30);
+      rateColored += Math.floor(Math.random() * 40 - 20);
+      document.getElementById('rate-vbh').textContent = '₹' + rateVbh.toLocaleString('en-IN');
+      document.getElementById('rate-curly').textContent = '₹' + rateCurly.toLocaleString('en-IN');
+      document.getElementById('rate-grey').textContent = '₹' + rateGrey.toLocaleString('en-IN');
+      document.getElementById('rate-colored').textContent = '₹' + rateColored.toLocaleString('en-IN');
+    }, 5000);
+
+    // ─── MOBILE MENU ──────────────────────────────────────────────────────────
+    var menuOpen = false;
+    function toggleMobileMenu() {
+      menuOpen = !menuOpen;
+      document.getElementById('mobile-overlay').classList.toggle('open', menuOpen);
+      document.getElementById('icon-menu').style.display = menuOpen ? 'none' : 'block';
+      document.getElementById('icon-x').style.display = menuOpen ? 'block' : 'none';
+    }
+    function closeMobileMenu() {
+      menuOpen = false;
+      document.getElementById('mobile-overlay').classList.remove('open');
+      document.getElementById('icon-menu').style.display = 'block';
+      document.getElementById('icon-x').style.display = 'none';
+    }
+
+    // ─── CITY SEARCH ──────────────────────────────────────────────────────────
+    function handleCitySearch(val) {
+      var result = document.getElementById('search-result');
+      result.classList.toggle('visible', val.trim().length > 0);
+    }
+
+    // ─── BOOKING MODAL ────────────────────────────────────────────────────────
+    function openBooking(length, estimate) {
+      bookingInitLength = length || '18–24 Inches';
+      bookingInitEstimate = estimate || '₹18,000 – ₹28,000';
+      document.getElementById('modal-length').textContent = bookingInitLength;
+      document.getElementById('modal-estimate').textContent = bookingInitEstimate;
+      // Pre-select length in dropdown
+      var lengthSelect = document.getElementById('f-length');
+      if (bookingInitLength.includes('15')) lengthSelect.value = '15–18 Inches';
+      else if (bookingInitLength.includes('24') && bookingInitLength.includes('30')) lengthSelect.value = '24–30 Inches';
+      else if (bookingInitLength.includes('30')) lengthSelect.value = '30+ Inches';
+      else lengthSelect.value = '18–24 Inches';
+      // Reset form UI
+      clearFieldErrors();
+      document.getElementById('err-global').style.display = 'none';
+      document.getElementById('form-container').style.display = 'block';
+      document.getElementById('success-state').classList.remove('visible');
+      document.getElementById('modal-overlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeBooking() {
+      document.getElementById('modal-overlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // ─── CITY DATA ────────────────────────────────────────────────────────────
+    var CITIES = {
+      'West Bengal': ['Kolkata','Howrah','Durgapur','Asansol','Siliguri','Barrackpore','Kalyani','Kharagpur','Haldia','Burdwan'],
+      'Maharashtra': ['Mumbai','Pune','Nagpur','Thane','Nashik','Aurangabad','Solapur','Navi Mumbai'],
+      'Delhi NCR': ['New Delhi','Gurugram','Noida','Faridabad','Ghaziabad','Greater Noida'],
+      'Karnataka': ['Bengaluru','Mysuru','Mangaluru','Hubli','Belagavi'],
+      'Gujarat': ['Ahmedabad','Surat','Vadodara','Rajkot','Gandhinagar'],
+      'Tamil Nadu': ['Chennai','Coimbatore','Madurai','Trichy','Salem','Vellore'],
+      'Telangana': ['Hyderabad','Warangal','Nizamabad','Karimnagar'],
+      'Kerala': ['Kochi','Trivandrum','Kozhikode','Thrissur','Kannur'],
+      'Rajasthan': ['Jaipur','Jodhpur','Udaipur','Kota','Ajmer'],
+      'Madhya Pradesh': ['Indore','Bhopal','Gwalior','Jabalpur','Ujjain'],
+      'Uttar Pradesh': ['Lucknow','Kanpur','Varanasi','Agra','Allahabad','Meerut','Bareilly'],
+      'Punjab': ['Ludhiana','Amritsar','Chandigarh','Jalandhar','Patiala'],
+      'Odisha': ['Bhubaneswar','Cuttack','Rourkela','Puri'],
+      'Bihar': ['Patna','Gaya','Bhagalpur','Muzaffarpur'],
+      'Assam': ['Guwahati','Silchar','Dibrugarh'],
+      'Jharkhand': ['Ranchi','Jamshedpur','Dhanbad'],
+      'Andhra Pradesh': ['Visakhapatnam','Vijayawada','Guntur','Tirupati'],
+      'Haryana': ['Gurgaon','Faridabad','Rohtak','Ambala'],
+      'Chhattisgarh': ['Raipur','Bhilai','Bilaspur'],
+      'Other': ['My City (Confirm with team)']
+    };
+
+    function populateCities() {
+      var state = document.getElementById('f-state').value;
+      var citySelect = document.getElementById('f-city');
+      citySelect.innerHTML = '<option value="">Select City</option>';
+      var cities = CITIES[state] || [];
+      cities.forEach(function(c) {
+        var opt = document.createElement('option');
+        opt.value = c;
+        opt.textContent = c;
+        citySelect.appendChild(opt);
+      });
+    }
+
+    // ─── FORM VALIDATION HELPERS ─────────────────────────────────────────────
+    function showFieldError(fieldId, errId) {
+      var field = document.getElementById(fieldId);
+      var err = document.getElementById(errId);
+      if (field) field.classList.add('error');
+      if (err) err.classList.add('visible');
+    }
+
+    function clearFieldError(fieldId, errId) {
+      var field = document.getElementById(fieldId);
+      var err = document.getElementById(errId);
+      if (field) field.classList.remove('error');
+      if (err) err.classList.remove('visible');
+    }
+
+    function clearFieldErrors() {
+      ['f-name','f-phone','f-state','f-city'].forEach(function(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.remove('error');
+      });
+      ['err-name','err-phone','err-state','err-city'].forEach(function(id) {
+        var el = document.getElementById(id);
+        if (el) el.classList.remove('visible');
+      });
+    }
+
+    function validateForm() {
+      clearFieldErrors();
+      var name = document.getElementById('f-name').value.trim();
+      var phone = document.getElementById('f-phone').value.trim();
+      var state = document.getElementById('f-state').value;
+      var city = document.getElementById('f-city').value;
+      var valid = true;
+
+      if (!name) { showFieldError('f-name', 'err-name'); valid = false; }
+      if (!phone || !/^\d{10}$/.test(phone)) { showFieldError('f-phone', 'err-phone'); valid = false; }
+      if (!state) { showFieldError('f-state', 'err-state'); valid = false; }
+      if (!city) { showFieldError('f-city', 'err-city'); valid = false; }
+
+      return valid;
+    }
+
+    // ─── SUBMIT BOOKING ───────────────────────────────────────────────────────
+    async function submitBooking() {
+      if (isSubmitting) return;
+
+      if (!validateForm()) return;
+
+      var name = document.getElementById('f-name').value.trim();
+      var phone = document.getElementById('f-phone').value.trim();
+      var state = document.getElementById('f-state').value;
+      var city = document.getElementById('f-city').value;
+      var hair_length = document.getElementById('f-length').value;
+      var desired_style = document.getElementById('f-style').value;
+
+      var btn = document.getElementById('submit-btn');
+      var errGlobal = document.getElementById('err-global');
+      errGlobal.style.display = 'none';
+
+      // Lock button
+      isSubmitting = true;
+      btn.disabled = true;
+      btn.innerHTML = '<span class="spinner"></span>&nbsp;Confirming Booking…';
+      btn.style.opacity = '0.7';
+      btn.style.cursor = 'not-allowed';
+
+      try {
+        var result = await sellhairDB
+          .from('bookings')
+          .insert([{
+            name: name,
+            whatsapp: phone,
+            state: state,
+            city: city,
+            hair_length: hair_length,
+            desired_style: desired_style
+          }]);
+
+        if (result.error) {
+          throw result.error;
+        }
+
+        // Success — show success state
+        document.getElementById('s-name').textContent = name;
+        document.getElementById('s-city').textContent = city;
+        document.getElementById('s-loc').textContent = city + ', ' + state;
+        document.getElementById('s-length').textContent = hair_length;
+        document.getElementById('s-style').textContent = desired_style;
+        document.getElementById('s-payout').textContent = bookingInitEstimate;
+
+        document.getElementById('form-container').style.display = 'none';
+        document.getElementById('success-state').classList.add('visible');
+
+        // Reset form fields for future use
+        document.getElementById('f-name').value = '';
+        document.getElementById('f-phone').value = '';
+        document.getElementById('f-state').value = '';
+        document.getElementById('f-city').innerHTML = '<option value="">Select City</option>';
+        document.getElementById('f-length').value = '18–24 Inches';
+
+        console.log('[SellHair.in] Booking saved successfully for:', name, city);
+
+} catch (err) {
+  console.error('[SellHair.in] Supabase insert error:', err);
+
+  alert(JSON.stringify(err));
+
+  errGlobal.textContent =
+    'Something went wrong while saving your booking. Please try again.';
+  errGlobal.style.display = 'block';
+
+} finally {
+  // Always unlock button
+  isSubmitting = false;
+  btn.disabled = false;
+  btn.innerHTML = 'Confirm Free Doorstep Booking';
+  btn.style.opacity = '1';
+  btn.style.cursor = 'pointer';
+}
+    }
+
+    // ─── FAQ ──────────────────────────────────────────────────────────────────
+    var FAQS = [
+      { q: "Do I need to visit a salon?", a: "No. In most cities we offer free home visits. Our certified female specialists come directly to your location with all the sterile assessment tools and professional hair scissors. Your entire hair transformation can happen in the safety and privacy of your home." },
+      { q: "Is there a home service charge?", a: "No. Home assessments, home visits, and the expert haircuts are completely free. There are absolutely no hidden charges, assessment fees, or service booking fees. The final valuation quoted is the exact money transferred to you." },
+      { q: "Which cities do you serve?", a: "We currently serve major cities and metropolitan areas across West Bengal, Gujarat, Maharashtra, Delhi NCR, Karnataka, Telangana, Tamil Nadu, Kerala, Rajasthan, Madhya Pradesh, Uttar Pradesh, Punjab, Odisha, Bihar, Assam, and Jharkhand. We are expanding continuously to tier-2 and tier-3 towns." },
+      { q: "How is pricing determined?", a: "Pricing is calculated using four key elements: Length (minimum 15 inches), Thickness (measured by ponytail diameter), Quality (virgin unprocessed vs healthy vs colored), and Texture Pattern (curly and wavy hair command rarity premiums). Natural dark black virgin hair above 30 inches receives peak valuations, often exceeding ₹80,000 to ₹1,20,000." },
+      { q: "How do I receive the payout?", a: "Payment is made instantly on-the-spot prior to cutting a single strand of hair. Our stylist supervisor will execute a digital transfer via UPI, GPay, Paytm, or direct IMPS Bank Transfer. You only sit down for the haircut after verifying the funds are cleared in your bank account." },
+      { q: "Can I choose any haircut?", a: "Absolutely. You can choose any transformational hair style you want — from a stylish French micro bob to a daring undercut, side shave, pixie, or full head shave. Our partner female stylists are certified from top academies and will sculpt the precise look you desire." }
+    ];
+
+    function buildFAQ() {
+      var acc = document.getElementById('faq-accordion');
+      FAQS.forEach(function(faq, i) {
+        var div = document.createElement('div');
+        div.className = 'faq-item';
+        div.style.borderBottom = i === FAQS.length - 1 ? 'none' : '1px solid rgba(255,255,255,0.4)';
+        div.innerHTML =
+          '<button class="faq-trigger" onclick="toggleFaq(' + i + ')" aria-expanded="' + (i===0?'true':'false') + '">' +
+            '<span style="padding-right:16px">' + faq.q + '</span>' +
+            '<div class="faq-chevron' + (i===0?' open':'') + '" id="chev-' + i + '">' +
+              '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' +
+            '</div>' +
+          '</button>' +
+          '<div class="faq-answer' + (i===0?' visible':'') + '" id="faq-' + i + '">' + faq.a + '</div>';
+        acc.appendChild(div);
+      });
+    }
+
+    function toggleFaq(idx) {
+      var answer = document.getElementById('faq-' + idx);
+      var chev = document.getElementById('chev-' + idx);
+      var btn = chev && chev.closest('.faq-trigger');
+      var isOpen = answer.classList.contains('visible');
+      answer.classList.toggle('visible');
+      chev.classList.toggle('open');
+      if (btn) btn.setAttribute('aria-expanded', String(!isOpen));
+    }
+
+    // ─── REVIEWS ──────────────────────────────────────────────────────────────
+    var REVIEWS = [
+      { name:"Priya Sharma", city:"Mumbai", lengthSold:"29 inches", payout:"₹58,000", style:"Side Shave", rating:5, quote:"I got a side shave after selling 29 inches. The payout completely covered my new high-end laptop! The professional female stylist came to my apartment, handled the entire assessment, paid me instantly via UPI, and gave me an absolute masterpiece of a style. Highly recommend!" },
+      { name:"Nisha Kapoor", city:"Delhi", lengthSold:"34 inches", payout:"₹72,000", style:"Full Head Shave", rating:5, quote:"I had hair below my waist my entire life. I decided to walk out with a buzzcut and ₹72,000 in my account. The home service was seamless — no home visit fees, complete privacy, and the most professional haircut. I feel lighter and so empowered!" },
+      { name:"Ankita Das", city:"Kolkata", lengthSold:"31 inches", payout:"₹63,000", style:"Pixie Cut", rating:5, quote:"Sold 31 inches of my thick black virgin hair right from my living room. The payout funded my solo Goa dream trip! Going from waist-length hair to an asymmetrical pixie was a bit scary, but the stylist was incredible and made me feel like a queen." },
+      { name:"Shreya Sen", city:"Kolkata", lengthSold:"22 inches", payout:"₹24,500", style:"Micro Bob + Shaved Nape", rating:5, quote:"My micro bob with shaved nape completely changed how I look! The team was super respectful, did a detailed length assessment on my couch, and I received the UPI transfer right before the haircut even began." },
+      { name:"Meera Deshmukh", city:"Pune", lengthSold:"35 inches", payout:"₹84,000", style:"Buzz Cut", rating:5, quote:"Sold 35 inches of virgin hair. Walked out with a sleek buzz cut and ₹84,000. No travel required, no hidden charges. It's truly India's first genuine doorstep hair exchange service." },
+      { name:"Deepika Patel", city:"Ahmedabad", lengthSold:"20 inches", payout:"₹19,000", style:"Hidden Undercut", rating:5, quote:"I finally got the hidden undercut I wanted since my college days. My hair still looks long when loose, but I have this awesome shaved layout underneath and got ₹19,000 for it! Completely free home service." },
+      { name:"Divya Iyer", city:"Chennai", lengthSold:"28 inches", payout:"₹45,000", style:"Viking Undercut", rating:5, quote:"I went from traditional long hair to a viking undercut and absolutely love it. The payout was huge (₹45,000!) and the female stylist was incredibly skilled with the clippers." },
+      { name:"Harshita Nair", city:"Kochi", lengthSold:"25 inches", payout:"₹34,000", style:"Mohawk", rating:5, quote:"Decided to try a daring mohawk and sell my 25-inch ponytail. The team arrived on time, was extremely polite, and paid me the agreed price of ₹34,000 instantly. Phenomenal service!" },
+      { name:"Kriti Jaiswal", city:"Lucknow", lengthSold:"21 inches", payout:"₹21,000", style:"Asymmetrical Shave", rating:5, quote:"Highly professional service. I sold 21 inches of colored hair and received ₹21,000. The asymmetrical shave is super stylish and perfect for summers." },
+      { name:"Tanvi Joshi", city:"Jaipur", lengthSold:"30 inches", payout:"₹48,000", style:"Micro Bob", rating:5, quote:"I was hesitant at first, but their professional team made it so comfortable. They assessed my hair quality, offered ₹48,000, and gave me an amazing micro bob. No travel, no stress!" },
+      { name:"Rimi Banerjee", city:"Howrah", lengthSold:"23 inches", payout:"₹26,000", style:"Hidden Undercut", rating:5, quote:"The hidden undercut is perfect because I can choose when to show it off. Sold 23 inches of hair and got ₹26,000 instantly. Unmatched convenience!" },
+      { name:"Shalini Saxena", city:"Noida", lengthSold:"32 inches", payout:"₹65,000", style:"Buzz Cut", rating:5, quote:"A perfect 10/10 experience! Sold 32 inches for ₹65,000. The haircut is crisp and sharp, and they cleaned up the workspace completely before leaving." }
+    ];
+
+    function buildReviews() {
+      var grid = document.getElementById('reviews-grid');
+      REVIEWS.forEach(function(r) {
+        var initials = r.name.split(' ').map(function(w){ return w[0]; }).join('');
+        var stars = '';
+        for (var i = 0; i < r.rating; i++) {
+          stars += '<svg class="star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>';
+        }
+        var card = document.createElement('div');
+        card.className = 'review-card';
+        card.innerHTML =
+          '<div style="display:flex;flex-direction:column;gap:16px">' +
+            '<div style="display:flex;align-items:center;justify-content:space-between">' +
+              '<div style="display:flex;align-items:center;gap:12px">' +
+                '<div class="review-avatar">' + initials + '</div>' +
+                '<div><h4 style="font-weight:700;color:var(--stone-900);font-size:0.875rem">' + r.name + '</h4><span style="font-size:0.6rem;color:var(--stone-400)">📍 ' + r.city + '</span></div>' +
+              '</div>' +
+              '<div class="stars">' + stars + '</div>' +
+            '</div>' +
+            '<div style="display:flex;flex-wrap:wrap;gap:6px;padding-top:4px">' +
+              '<span style="padding:2px 8px;background:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.8);color:var(--stone-600);font-family:var(--font-mono);font-size:0.6rem;font-weight:700;border-radius:4px">Sold ' + r.lengthSold + '</span>' +
+              '<span class="tag-black">' + r.style + '</span>' +
+            '</div>' +
+            '<p style="color:var(--stone-600);font-size:0.75rem;line-height:1.6;font-style:italic;padding-top:4px">"' + r.quote + '"</p>' +
+          '</div>' +
+          '<div style="margin-top:24px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.4);display:flex;align-items:center;justify-content:space-between">' +
+            '<div><span style="font-size:0.6rem;color:var(--stone-400);font-weight:700;text-transform:uppercase;letter-spacing:0.1em;display:block">Payout Earned</span><span style="font-family:var(--font-mono);font-weight:900;color:#059669;font-size:0.875rem">' + r.payout + '</span></div>' +
+            '<span style="font-size:0.65rem;color:var(--stone-400);font-weight:600">⚡ Paid Instantly via UPI</span>' +
+          '</div>';
+        grid.appendChild(card);
+      });
+    }
+
+    // ─── INIT ─────────────────────────────────────────────────────────────────
+    document.addEventListener('DOMContentLoaded', function() {
+      updateCalculator();
+      buildFAQ();
+      buildReviews();
     });
-  }
-
-  function toggleFaq(idx) {
-    const answer = document.getElementById('faq-' + idx);
-    const chev = document.getElementById('chev-' + idx);
-    answer.classList.toggle('visible');
-    chev.classList.toggle('open');
-  }
-
-  // ─── REVIEWS ─────────────────────────────────────────────────────────────────
-  const REVIEWS = [
-    { name:"Priya Sharma", city:"Mumbai", lengthSold:"29 inches", payout:"₹58,000", style:"Side Shave", rating:5, quote:"I got a side shave after selling 29 inches. The payout completely covered my new high-end laptop! The professional female stylist came to my apartment, handled the entire assessment, paid me instantly via UPI, and gave me an absolute masterpiece of a style. Highly recommend!" },
-    { name:"Nisha Kapoor", city:"Delhi", lengthSold:"34 inches", payout:"₹72,000", style:"Full Head Shave", rating:5, quote:"I had hair below my waist my entire life. I decided to walk out with a buzzcut and ₹72,000 in my account. The home service was seamless — no home visit fees, complete privacy, and the most professional haircut. I feel lighter and so empowered!" },
-    { name:"Ankita Das", city:"Kolkata", lengthSold:"31 inches", payout:"₹63,000", style:"Pixie Cut", rating:5, quote:"Sold 31 inches of my thick black virgin hair right from my living room. The payout funded my solo Goa dream trip! Going from waist-length hair to an asymmetrical pixie was a bit scary, but the stylist was incredible and made me feel like a queen." },
-    { name:"Shreya Sen", city:"Kolkata", lengthSold:"22 inches", payout:"₹24,500", style:"Micro Bob + Shaved Nape", rating:5, quote:"My micro bob with shaved nape completely changed how I look! The team was super respectful, did a detailed length assessment on my couch, and I received the UPI transfer right before the haircut even began." },
-    { name:"Meera Deshmukh", city:"Pune", lengthSold:"35 inches", payout:"₹84,000", style:"Buzz Cut", rating:5, quote:"Sold 35 inches of virgin hair. Walked out with a sleek buzz cut and ₹84,000. No travel required, no hidden charges. It's truly India's first genuine doorstep hair exchange service." },
-    { name:"Deepika Patel", city:"Ahmedabad", lengthSold:"20 inches", payout:"₹19,000", style:"Hidden Undercut", rating:5, quote:"I finally got the hidden undercut I wanted since my college days. My hair still looks long when loose, but I have this awesome shaved layout underneath and got ₹19,000 for it! Completely free home service." },
-    { name:"Divya Iyer", city:"Chennai", lengthSold:"28 inches", payout:"₹45,000", style:"Viking Undercut", rating:5, quote:"I went from traditional long hair to a viking undercut and absolutely love it. The payout was huge (₹45,000!) and the female stylist was incredibly skilled with the clippers." },
-    { name:"Harshita Nair", city:"Kochi", lengthSold:"25 inches", payout:"₹34,000", style:"Mohawk", rating:5, quote:"Decided to try a daring mohawk and sell my 25-inch ponytail. The team arrived on time, was extremely polite, and paid me the agreed price of ₹34,000 instantly. Phenomenal service!" },
-    { name:"Kriti Jaiswal", city:"Lucknow", lengthSold:"21 inches", payout:"₹21,000", style:"Asymmetrical Shave", rating:5, quote:"Highly professional service. I sold 21 inches of colored hair and received ₹21,000. The asymmetrical shave is super stylish and perfect for summers." },
-    { name:"Tanvi Joshi", city:"Jaipur", lengthSold:"30 inches", payout:"₹48,000", style:"Micro Bob", rating:5, quote:"I was hesitant at first, but their professional team made it so comfortable. They assessed my hair quality, offered ₹48,000, and gave me an amazing micro bob. No travel, no stress!" },
-    { name:"Rimi Banerjee", city:"Howrah", lengthSold:"23 inches", payout:"₹26,000", style:"Hidden Undercut", rating:5, quote:"The hidden undercut is perfect because I can choose when to show it off. Sold 23 inches of hair and got ₹26,000 instantly. Unmatched convenience!" },
-    { name:"Shalini Saxena", city:"Noida", lengthSold:"32 inches", payout:"₹65,000", style:"Buzz Cut", rating:5, quote:"A perfect 10/10 experience! Sold 32 inches for ₹65,000. The haircut is crisp and sharp, and they cleaned up the workspace completely before leaving." },
-  ];
-
-  function buildReviews() {
-    const grid = document.getElementById('reviews-grid');
-    REVIEWS.forEach(r => {
-      const initials = r.name.split(' ').map(w=>w[0]).join('');
-      const stars = Array(r.rating).fill('<svg class="star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>').join('');
-      const card = document.createElement('div');
-      card.className = 'review-card';
-      card.innerHTML = `
-        <div style="display:flex;flex-direction:column;gap:16px">
-          <div style="display:flex;align-items:center;justify-content:space-between">
-            <div style="display:flex;align-items:center;gap:12px">
-              <div class="review-avatar">${initials}</div>
-              <div><h4 style="font-weight:700;color:var(--stone-900);font-size:0.875rem">${r.name}</h4><span style="font-size:0.6rem;color:var(--stone-400)">📍 ${r.city}</span></div>
-            </div>
-            <div class="stars">${stars}</div>
-          </div>
-          <div style="display:flex;flex-wrap:wrap;gap:6px;padding-top:4px">
-            <span style="padding:2px 8px;background:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.8);color:var(--stone-600);font-family:var(--font-mono);font-size:0.6rem;font-weight:700;border-radius:4px">Sold ${r.lengthSold}</span>
-            <span class="tag-black">${r.style}</span>
-          </div>
-          <p style="color:var(--stone-600);font-size:0.75rem;line-height:1.6;font-style:italic;padding-top:4px">"${r.quote}"</p>
-        </div>
-        <div style="margin-top:24px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.4);display:flex;align-items:center;justify-content:space-between">
-          <div><span style="font-size:0.6rem;color:var(--stone-400);font-weight:700;text-transform:uppercase;letter-spacing:0.1em;display:block">Payout Earned</span><span style="font-family:var(--font-mono);font-weight:900;color:#059669;font-size:0.875rem">${r.payout}</span></div>
-          <span style="font-size:0.65rem;color:var(--stone-400);font-weight:600">⚡ Paid Instantly via UPI</span>
-        </div>
-      `;
-      grid.appendChild(card);
-    });
-  }
-
-  // ─── INIT ────────────────────────────────────────────────────────────────────
-  document.addEventListener('DOMContentLoaded', () => {
-    updateCalculator();
-    buildFAQ();
-    buildReviews();
-  });
   </script>
 </body>
 </html>
