@@ -1,0 +1,1985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SellHair.in — India's First Doorstep Hair Exchange Service</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/umd/lucide.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+      --font-display: 'Space Grotesk', sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+      --gold: #c5a059;
+      --gold-hover: #b08d4b;
+      --gold-light: #dfc085;
+      --stone-50: #fafaf9;
+      --stone-100: #f5f5f4;
+      --stone-200: #e7e5e4;
+      --stone-300: #d6d3d1;
+      --stone-400: #a8a29e;
+      --stone-500: #78716c;
+      --stone-600: #57534e;
+      --stone-700: #44403c;
+      --stone-800: #292524;
+      --stone-900: #1c1917;
+      --stone-950: #0c0a09;
+      --emerald-400: #34d399;
+      --emerald-500: #10b981;
+      --emerald-600: #059669;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      background: #f8f9fa;
+      color: var(--stone-900);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      position: relative;
+    }
+    /* Selection */
+    ::selection { background: var(--stone-900); color: white; }
+
+    /* TYPOGRAPHY */
+    .font-display { font-family: var(--font-display); }
+    .font-mono { font-family: var(--font-mono); }
+
+    /* AMBIENT BG BLOBS */
+    .blob {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: -1;
+    }
+    .blob-1 { top: 0; right: 0; width: 600px; height: 600px; background: radial-gradient(circle, rgba(223,192,133,0.15), transparent); }
+    .blob-2 { top: 1200px; left: -200px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(197,160,89,0.1), transparent); }
+    .blob-3 { top: 2800px; right: -100px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(223,192,133,0.12), transparent); }
+    .blob-4 { bottom: 800px; left: -200px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(197,160,89,0.1), transparent); }
+
+    /* NAV */
+    .navbar {
+      position: fixed;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 40;
+      width: 94%;
+      max-width: 1100px;
+      background: rgba(255,255,255,0.6);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.6);
+      border-radius: 9999px;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+    }
+    .nav-logo { font-family: var(--font-display); font-weight: 900; font-size: 1.25rem; letter-spacing: -0.025em; color: var(--stone-900); text-decoration: none; }
+    .nav-logo span { color: var(--gold); }
+    .nav-links { display: none; gap: 4px; }
+    .nav-links a { font-size: 0.7rem; font-weight: 700; color: var(--stone-600); padding: 6px 12px; border-radius: 9999px; text-decoration: none; transition: all 0.2s; }
+    .nav-links a:hover { color: var(--stone-900); background: rgba(255,255,255,0.4); }
+    .nav-cta { display: none; text-align: right; }
+    .btn-black { background: #000; color: #fff; font-weight: 800; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.08em; padding: 10px 20px; border-radius: 9999px; border: none; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+    .btn-black:hover { background: #222; }
+    .nav-sub { font-size: 0.5rem; color: var(--stone-400); margin-top: 2px; text-transform: uppercase; letter-spacing: 0.12em; font-weight: 700; }
+    .hamburger { display: flex; background: none; border: none; cursor: pointer; padding: 8px; border-radius: 9999px; color: var(--stone-600); transition: all 0.2s; align-items: center; justify-content: center; }
+    .hamburger:hover { background: rgba(255,255,255,0.4); color: var(--stone-900); }
+    @media (min-width: 768px) {
+      .nav-links { display: flex; }
+      .nav-cta { display: block; }
+      .hamburger { display: none; }
+    }
+
+    /* MOBILE MENU */
+    .mobile-overlay {
+      position: fixed; inset: 0; z-index: 30;
+      background: rgba(15,10,7,0.2);
+      backdrop-filter: blur(12px);
+      display: none;
+    }
+    .mobile-overlay.open { display: block; }
+    .mobile-menu {
+      position: absolute;
+      top: 80px; left: 16px; right: 16px;
+      background: rgba(255,255,255,0.75);
+      backdrop-filter: blur(24px);
+      border: 1px solid rgba(255,255,255,0.6);
+      border-radius: 24px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+    }
+    .mobile-menu a {
+      padding: 10px 16px; font-weight: 700; color: var(--stone-700);
+      text-decoration: none; border-radius: 12px; transition: all 0.15s;
+      font-size: 0.875rem;
+    }
+    .mobile-menu a:hover { background: rgba(255,255,255,0.4); }
+    .mobile-cta { background: #000; color: #fff; font-weight: 900; padding: 16px; border-radius: 12px; text-align: center; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.08em; border: none; cursor: pointer; margin-top: 8px; }
+    .mobile-cta-sub { text-align: center; font-size: 0.5rem; color: var(--stone-400); font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; margin-top: 4px; }
+
+    /* SECTIONS */
+    section { position: relative; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .container-md { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+    .container-sm { max-width: 700px; margin: 0 auto; padding: 0 24px; }
+
+    /* GLASS CARD */
+    .glass { background: rgba(255,255,255,0.4); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.6); }
+    .glass:hover { background: rgba(255,255,255,0.6); border-color: rgba(255,255,255,0.8); }
+
+    /* BADGE */
+    .badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+      background: rgba(255,255,255,0.4); backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.6);
+      color: var(--stone-600);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+
+    /* HERO */
+    #hero {
+      padding-top: 128px; padding-bottom: 80px;
+      padding-left: 24px; padding-right: 24px;
+      max-width: 1200px; margin: 0 auto;
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center;
+    }
+    .hero-title {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(2.5rem, 8vw, 5.5rem);
+      letter-spacing: -0.03em;
+      line-height: 0.95;
+      color: var(--stone-900);
+      max-width: 800px;
+      margin-top: 20px;
+    }
+    .hero-title .accent { color: var(--stone-500); text-decoration: underline wavy; text-decoration-color: var(--gold); text-underline-offset: 6px; }
+    .hero-desc { color: var(--stone-500); font-size: 1.1rem; font-weight: 300; line-height: 1.7; max-width: 520px; margin-top: 24px; }
+    .pulse-dot { width: 8px; height: 8px; border-radius: 50%; background: #10b981; display: inline-block; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.7; transform: scale(1.3); } }
+    @keyframes ping { 0% { transform: scale(1); opacity: 1; } 75%,100% { transform: scale(2); opacity: 0; } }
+    .animate-ping { animation: ping 1.5s cubic-bezier(0,0,0.2,1) infinite; }
+    .hero-cta-group { margin-top: 32px; display: flex; flex-direction: column; gap: 12px; align-items: center; }
+    @media (min-width: 640px) { .hero-cta-group { flex-direction: row; } }
+    .btn-primary {
+      padding: 16px 32px; background: #000; color: #fff;
+      font-weight: 900; font-size: 0.875rem; text-transform: uppercase;
+      letter-spacing: 0.06em; border-radius: 12px; border: none; cursor: pointer;
+      transition: all 0.2s; box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-primary:hover { background: #222; box-shadow: 0 12px 32px rgba(0,0,0,0.25); }
+    .btn-secondary {
+      padding: 16px 32px;
+      background: rgba(255,255,255,0.4); backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.6);
+      color: var(--stone-800); font-weight: 700; font-size: 0.875rem;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      border-radius: 12px; cursor: pointer; transition: all 0.2s;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06); text-decoration: none;
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.6); }
+    .cta-sub { font-size: 0.6rem; color: var(--stone-400); margin-top: 6px; text-transform: uppercase; font-weight: 700; letter-spacing: 0.1em; text-align: center; }
+
+    /* STATS GRID */
+    .stats-grid {
+      margin-top: 64px; width: 100%;
+      display: grid; grid-template-columns: 1fr; gap: 0;
+      border: 1px solid rgba(255,255,255,0.6);
+      background: rgba(255,255,255,0.4); backdrop-filter: blur(24px);
+      border-radius: 24px; padding: 24px 32px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+    }
+    @media (min-width: 768px) { .stats-grid { grid-template-columns: 1fr 1fr 1fr; } }
+    .stat-item { text-align: center; padding: 16px; }
+    .stat-item + .stat-item { border-top: 1px solid rgba(255,255,255,0.4); }
+    @media (min-width: 768px) {
+      .stat-item + .stat-item { border-top: none; border-left: 1px solid rgba(255,255,255,0.4); }
+    }
+    .stat-label { font-size: 0.6rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; color: var(--stone-400); display: block; margin-bottom: 4px; }
+    .stat-value { font-family: var(--font-display); font-weight: 900; font-size: clamp(1.8rem, 4vw, 2.5rem); color: var(--stone-900); }
+    .stat-desc { font-size: 0.75rem; color: var(--stone-500); margin-top: 4px; }
+
+    /* TRUST STRIP */
+    .trust-strip {
+      width: 100%; background: #0a0908; color: #d6d3d1;
+      padding: 18px 24px;
+      border-top: 1px solid #292524; border-bottom: 1px solid #292524;
+    }
+    .trust-inner {
+      max-width: 900px; margin: 0 auto;
+      display: flex; flex-wrap: wrap; align-items: center;
+      justify-content: center; gap: 8px 24px;
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.02em;
+    }
+    .trust-dot { color: #44403c; }
+
+    /* SECTION HEADING */
+    .section-heading { text-align: center; margin-bottom: 64px; }
+    .section-heading h2 {
+      font-family: var(--font-display); font-weight: 900;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      letter-spacing: -0.02em; color: var(--stone-900);
+      line-height: 1.05;
+    }
+    .section-heading p { color: var(--stone-500); font-size: 0.875rem; margin-top: 12px; max-width: 500px; margin-left: auto; margin-right: auto; }
+
+    /* CALCULATOR SECTION */
+    #calculator { padding: 96px 0; border-top: 1px solid rgba(255,255,255,0.4); border-bottom: 1px solid rgba(255,255,255,0.4); }
+    .calc-wrapper {
+      background: rgba(255,255,255,0.4); backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.6); border-radius: 24px;
+      padding: 32px 32px; box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+      overflow: hidden; position: relative;
+    }
+    .calc-wrapper::before { content: ''; position: absolute; top: 0; right: 0; width: 256px; height: 256px; background: radial-gradient(circle, rgba(223,192,133,0.1), transparent); border-radius: 50%; pointer-events: none; }
+    .calc-grid { display: grid; grid-template-columns: 1fr; gap: 32px; }
+    @media (min-width: 1024px) { .calc-grid { grid-template-columns: 7fr 5fr; } }
+    .calc-label { display: block; font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; color: var(--stone-500); margin-bottom: 12px; }
+    .length-grid { display: grid; grid-template-columns: 1fr; gap: 24px; background: rgba(255,255,255,0.5); border: 1px solid rgba(255,255,255,0.6); border-radius: 16px; padding: 20px; box-shadow: 0 4px 16px rgba(0,0,0,0.04); }
+    @media (min-width: 640px) { .length-grid { grid-template-columns: 5fr 7fr; } }
+    .silhouette-panel {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      background: rgba(255,255,255,0.6); backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.8); border-radius: 12px;
+      padding: 16px; height: 288px; position: relative;
+    }
+    .silhouette-label { position: absolute; top: 8px; left: 8px; font-size: 0.55rem; font-weight: 700; color: var(--stone-400); text-transform: uppercase; letter-spacing: 0.1em; font-family: var(--font-mono); }
+    .length-btn {
+      width: 100%; display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 16px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.8);
+      background: rgba(255,255,255,0.4); color: var(--stone-700);
+      cursor: pointer; transition: all 0.15s; font-size: 0.75rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .length-btn:hover { background: rgba(255,255,255,0.6); }
+    .length-btn.active { border-color: #000; background: #000; color: #fff; font-weight: 700; transform: scale(1.01); }
+    .length-hint-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-right: 8px; }
+    .length-btn .length-range { font-family: var(--font-mono); font-size: 0.65rem; }
+    .thickness-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    @media (min-width: 640px) { .thickness-grid { grid-template-columns: repeat(4, 1fr); } }
+    .thickness-btn {
+      padding: 16px 8px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.8);
+      background: rgba(255,255,255,0.4); text-align: center;
+      cursor: pointer; transition: all 0.15s; display: flex; flex-direction: column; align-items: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .thickness-btn:hover { background: rgba(255,255,255,0.6); }
+    .thickness-btn.active { border-color: #000; background: rgba(0,0,0,0.04); box-shadow: 0 0 0 2px rgba(0,0,0,0.1); }
+    .quality-texture-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
+    @media (min-width: 640px) { .quality-texture-grid { grid-template-columns: 1fr 1fr; } }
+    .quality-btn {
+      width: 100%; display: flex; align-items: flex-start; gap: 12px; padding: 12px; border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.8); background: rgba(255,255,255,0.4);
+      text-align: left; cursor: pointer; transition: all 0.15s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .quality-btn:hover { background: rgba(255,255,255,0.6); }
+    .quality-btn.active { border-color: #000; background: rgba(0,0,0,0.04); font-weight: 600; }
+    .radio-outer { width: 16px; height: 16px; border-radius: 50%; border: 1px solid var(--stone-300); background: white; margin-top: 2px; flex-shrink: 0; }
+    .quality-btn.active .radio-outer { border: 4px solid #000; }
+    .texture-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .texture-btn {
+      padding: 12px 8px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.8);
+      background: rgba(255,255,255,0.4); text-align: center; cursor: pointer;
+      transition: all 0.15s; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 80px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .texture-btn:hover { background: rgba(255,255,255,0.6); }
+    .texture-btn.active { border-color: #000; background: #000; color: white; font-weight: 700; }
+    /* RIGHT PANEL */
+    .calc-result {
+      background: #111; color: white; border-radius: 24px; padding: 28px 28px;
+      border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      position: relative; overflow: hidden;
+    }
+    @media (min-width: 1024px) { .calc-result { position: sticky; top: 112px; } }
+    .calc-result::before { content: ''; position: absolute; top: 0; right: 0; width: 192px; height: 192px; background: radial-gradient(circle, rgba(197,160,89,0.15), transparent); border-radius: 50%; pointer-events: none; }
+    .calc-result::after { content: ''; position: absolute; bottom: 0; left: 0; width: 160px; height: 160px; background: radial-gradient(circle, rgba(223,192,133,0.1), transparent); border-radius: 50%; pointer-events: none; }
+    .result-inner { position: relative; z-index: 1; }
+    .result-price {
+      font-family: var(--font-display); font-weight: 900; color: var(--gold);
+      font-size: clamp(1.6rem, 3vw, 2.2rem); letter-spacing: -0.02em; line-height: 1.1;
+      font-family: var(--font-mono); transition: all 0.3s;
+    }
+    .rarity-bar { height: 8px; border-radius: 9999px; background: #1c1917; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); }
+    .rarity-fill { height: 100%; border-radius: 9999px; background: linear-gradient(to right, #57534e, var(--gold)); transition: width 0.5s ease; }
+    .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 8px; }
+    .detail-cell { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; padding: 12px; }
+    .detail-cell-label { font-size: 0.55rem; color: #78716c; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; display: block; margin-bottom: 4px; }
+    .insight-box { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.15); border-radius: 16px; padding: 16px; }
+    .btn-white {
+      width: 100%; background: white; color: #000; font-weight: 900; font-size: 0.7rem;
+      text-transform: uppercase; letter-spacing: 0.06em; padding: 16px 24px;
+      border-radius: 12px; border: 1px solid rgba(255,255,255,0.4); cursor: pointer;
+      transition: all 0.2s; box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+    }
+    .btn-white:hover { background: #f5f5f5; transform: scale(1.01); }
+
+    /* MARKET RATES */
+    #market-rates { padding: 96px 0; background: #080605; color: white; overflow: hidden; }
+    .rates-table { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 24px; overflow: hidden; }
+    .rate-row { padding: 24px 32px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.1); transition: all 0.2s; }
+    .rate-row:last-child { border-bottom: none; }
+    .rate-row:hover { background: rgba(255,255,255,0.03); }
+    .rate-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-right: 12px; }
+    .rate-value { font-family: var(--font-mono); font-weight: 900; font-size: 1.1rem; }
+    .rate-badge { padding: 2px 8px; border-radius: 4px; font-size: 0.65rem; font-weight: 700; }
+    .rate-up { background: rgba(52,211,153,0.1); color: #34d399; }
+    .rate-down { background: rgba(239,68,68,0.1); color: #f87171; }
+
+    /* PAYS SECTION */
+    #pays { padding: 96px 0; }
+    .pays-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+    @media (min-width: 640px) { .pays-grid { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 1024px) { .pays-grid { grid-template-columns: repeat(4, 1fr); } }
+    .pays-card {
+      background: rgba(255,255,255,0.4); backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.6); border-radius: 16px; padding: 24px;
+      display: flex; flex-direction: column; justify-content: space-between;
+      transition: all 0.2s; box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
+    .pays-card:hover { background: rgba(255,255,255,0.6); border-color: rgba(255,255,255,0.8); transform: translateY(-2px); }
+
+    /* GALLERY */
+    #gallery { padding: 96px 0; }
+    .gallery-columns { columns: 1; gap: 24px; }
+    @media (min-width: 640px) { .gallery-columns { columns: 2; } }
+    @media (min-width: 768px) { .gallery-columns { columns: 3; } }
+    @media (min-width: 1024px) { .gallery-columns { columns: 4; } }
+    .gallery-item {
+      break-inside: avoid; margin-bottom: 24px;
+      background: rgba(255,255,255,0.4); backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.6); border-radius: 16px; overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08); transition: all 0.3s; cursor: pointer;
+    }
+    .gallery-item:hover { box-shadow: 0 20px 60px rgba(0,0,0,0.15); border-color: rgba(255,255,255,0.8); }
+    .gallery-item img { width: 100%; aspect-ratio: 4/5; object-fit: cover; display: block; transition: transform 0.5s; }
+    .gallery-item:hover img { transform: scale(1.05); }
+    .gallery-img-wrap { position: relative; overflow: hidden; }
+    .gallery-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(12,10,9,0.8), transparent); opacity: 0.6; transition: opacity 0.3s; }
+    .gallery-item:hover .gallery-overlay { opacity: 0.75; }
+    .gallery-tag-tl { position: absolute; top: 12px; left: 12px; padding: 4px 10px; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px); color: var(--gold); font-family: var(--font-mono); font-size: 0.6rem; font-weight: 700; border-radius: 6px; border: 1px solid rgba(255,255,255,0.1); }
+    .gallery-tag-tr { position: absolute; top: 12px; right: 12px; padding: 2px 8px; background: #10b981; color: white; font-family: var(--font-mono); font-size: 0.6rem; font-weight: 800; text-transform: uppercase; border-radius: 4px; }
+    .gallery-body { padding: 16px; }
+
+    /* REVIEWS */
+    #reviews { padding: 96px 0; border-top: 1px solid rgba(255,255,255,0.4); }
+    .reviews-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
+    @media (min-width: 768px) { .reviews-grid { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 1024px) { .reviews-grid { grid-template-columns: 1fr 1fr 1fr; } }
+    .review-card {
+      background: rgba(255,255,255,0.4); backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.6); border-radius: 24px; padding: 24px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.07); transition: all 0.2s;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .review-card:hover { background: rgba(255,255,255,0.6); box-shadow: 0 20px 60px rgba(0,0,0,0.12); }
+    .review-avatar { width: 40px; height: 40px; background: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.8); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.75rem; font-family: var(--font-mono); color: var(--stone-700); box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+    .stars { display: flex; }
+    .star { width: 14px; height: 14px; fill: var(--gold); color: var(--gold); }
+
+    /* WALL OF COURAGE */
+    #wall { padding: 96px 0; border-top: 1px solid rgba(255,255,255,0.4); border-bottom: 1px solid rgba(255,255,255,0.4); }
+    .clubs-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    @media (min-width: 768px) { .clubs-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (min-width: 1024px) { .clubs-grid { grid-template-columns: repeat(6, 1fr); } }
+    .club-card {
+      background: rgba(255,255,255,0.4); backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.6); border-radius: 16px; padding: 20px;
+      text-align: center; display: flex; flex-direction: column; justify-content: space-between;
+      transition: all 0.2s; box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    }
+    .club-card:hover { background: rgba(255,255,255,0.6); border-color: rgba(255,255,255,0.8); }
+
+    /* HALL OF FAME */
+    #halloffame { padding: 96px 0; border-bottom: 1px solid rgba(255,255,255,0.4); }
+    .hof-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+    @media (min-width: 640px) { .hof-grid { grid-template-columns: 1fr 1fr; } }
+
+    /* SERVICE COVERAGE */
+    #service-coverage { padding: 96px 0; background: #111; color: white; overflow: hidden; }
+    .coverage-cards { display: grid; grid-template-columns: 1fr; gap: 24px; }
+    @media (min-width: 768px) { .coverage-cards { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .coverage-cards { grid-template-columns: repeat(4, 1fr); } }
+    .coverage-card {
+      background: rgba(255,255,255,0.04); backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.1); padding: 32px; border-radius: 24px;
+      transition: all 0.2s; box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    }
+    .coverage-card:hover { border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.08); transform: translateY(-4px); }
+    .coverage-icon { width: 48px; height: 48px; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; font-size: 1.25rem; transition: transform 0.2s; }
+    .coverage-card:hover .coverage-icon { transform: scale(1.1); }
+
+    /* CITY SEARCH */
+    #city-coverage { padding: 96px 0; }
+    .search-widget {
+      max-width: 560px; margin: 0 auto 64px;
+      background: rgba(255,255,255,0.5); backdrop-filter: blur(24px);
+      border: 1px solid rgba(255,255,255,0.6); border-radius: 24px; padding: 24px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.1); position: relative;
+    }
+    .search-badge {
+      position: absolute; top: -12px; right: 24px;
+      background: #000; color: white; font-family: var(--font-mono); font-size: 0.55rem;
+      font-weight: 900; text-transform: uppercase; letter-spacing: 0.12em;
+      padding: 4px 10px; border-radius: 9999px;
+      display: flex; align-items: center; gap: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    .search-input-wrap { position: relative; }
+    .search-input {
+      width: 100%; padding: 12px 16px 12px 44px;
+      background: rgba(255,255,255,0.4); border: 1px solid rgba(255,255,255,0.8);
+      color: var(--stone-900); placeholder-color: var(--stone-400);
+      border-radius: 16px; outline: none; font-size: 0.875rem; font-family: var(--font-sans);
+      transition: all 0.2s;
+    }
+    .search-input:focus { border-color: #000; background: white; }
+    .search-icon { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--stone-400); pointer-events: none; }
+    .search-result { margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.4); display: none; }
+    .search-result.visible { display: block; }
+    .search-result-inner { background: rgba(236,253,245,0.5); border: 1px solid rgba(167,243,208,0.5); border-radius: 16px; padding: 16px; text-align: center; }
+    .expanding-banner {
+      background: rgba(255,255,255,0.5); backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.6); border-radius: 24px; padding: 24px 32px;
+      display: flex; flex-direction: column; gap: 24px; box-shadow: 0 16px 48px rgba(0,0,0,0.08);
+    }
+    @media (min-width: 768px) { .expanding-banner { flex-direction: row; align-items: center; justify-content: space-between; } }
+
+    /* LEADERBOARD */
+    #leaderboard { padding: 96px 0; }
+    .leaderboard-grid { display: grid; grid-template-columns: 1fr; gap: 32px; }
+    @media (min-width: 1024px) { .leaderboard-grid { grid-template-columns: 7fr 5fr; } }
+    .earner-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+    @media (min-width: 640px) { .earner-grid { grid-template-columns: 1fr 1fr; } }
+    .earner-card {
+      background: rgba(255,255,255,0.4); backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.6); border-radius: 16px; padding: 20px;
+      transition: all 0.2s; position: relative; box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+    }
+    .earner-card:hover { background: rgba(255,255,255,0.6); border-color: rgba(255,255,255,0.8); }
+    .weekly-board { background: rgba(0,0,0,0.85); backdrop-filter: blur(24px); color: white; border-radius: 24px; padding: 24px 28px; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+
+    /* VALUE FACTORS */
+    #value-factors { padding: 96px 0; border-top: 1px solid rgba(255,255,255,0.4); border-bottom: 1px solid rgba(255,255,255,0.4); }
+    .factors-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+    @media (min-width: 640px) { .factors-grid { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 1024px) { .factors-grid { grid-template-columns: repeat(5, 1fr); } }
+
+    /* STATS INSIGHTS */
+    #stats-insights { padding: 96px 0; }
+    .insights-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
+    @media (min-width: 768px) { .insights-grid { grid-template-columns: repeat(3, 1fr); } }
+
+    /* JOURNEY */
+    #journey { padding: 96px 0; }
+    .journey-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
+    @media (min-width: 768px) { .journey-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (min-width: 1024px) { .journey-grid { grid-template-columns: repeat(5, 1fr); } }
+
+    /* TRANSFORMATION PROMO */
+    #transform-promo { padding: 96px 0; background: #0a0908; color: white; overflow: hidden; }
+    .promo-styles { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 32px 0; }
+    .promo-style-chip { padding: 8px 18px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 9999px; font-size: 0.75rem; font-weight: 600; color: rgba(255,255,255,0.8); transition: all 0.2s; cursor: pointer; }
+    .promo-style-chip:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.25); }
+    .promo-quotes { display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 48px; }
+    @media (min-width: 768px) { .promo-quotes { grid-template-columns: 1fr 1fr; } }
+    .promo-quote-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 24px; }
+
+    /* FAQ */
+    #faq { padding: 96px 0; border-top: 1px solid rgba(255,255,255,0.4); }
+    .faq-item {
+      background: rgba(255,255,255,0.2); backdrop-filter: blur(8px);
+      transition: background 0.2s;
+    }
+    .faq-item:hover { background: rgba(255,255,255,0.4); }
+    .faq-trigger {
+      width: 100%; padding: 20px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      text-align: left; font-weight: 700; color: var(--stone-900);
+      font-size: 0.875rem; background: none; border: none; cursor: pointer; outline: none;
+    }
+    .faq-chevron { padding: 4px; background: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.8); border-radius: 50%; transition: transform 0.3s; flex-shrink: 0; }
+    .faq-chevron.open { transform: rotate(180deg); }
+    .faq-answer { padding: 0 24px 24px; color: var(--stone-500); font-size: 0.875rem; line-height: 1.7; display: none; }
+    .faq-answer.visible { display: block; }
+
+    /* FINAL CTA */
+    #final-cta { padding: 128px 0; background: #000; color: white; text-align: center; overflow: hidden; }
+    #final-cta .glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 384px; height: 384px; background: radial-gradient(circle, rgba(197,160,89,0.15), transparent); border-radius: 50%; pointer-events: none; }
+    .final-title { font-family: var(--font-display); font-weight: 900; font-size: clamp(2.5rem, 7vw, 4.5rem); letter-spacing: -0.03em; color: white; line-height: 1.05; }
+
+    /* FOOTER */
+    footer { background: #000; color: var(--stone-400); padding: 64px 0; border-top: 1px solid rgba(255,255,255,0.1); }
+    .footer-grid { display: grid; grid-template-columns: 1fr; gap: 32px; }
+    @media (min-width: 768px) { .footer-grid { grid-template-columns: 4fr 8fr; } }
+    .footer-links-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    @media (min-width: 640px) { .footer-links-grid { grid-template-columns: 1fr 1fr 1fr; } }
+    .footer-link { color: var(--stone-500); text-decoration: none; transition: color 0.15s; font-size: 0.75rem; }
+    .footer-link:hover { color: white; }
+
+    /* MODAL */
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 50;
+      background: rgba(0,0,0,0.6); backdrop-filter: blur(12px);
+      display: flex; align-items: center; justify-content: center; padding: 16px;
+      display: none;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-box {
+      width: 100%; max-width: 700px; background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(24px); border: 1px solid rgba(255,255,255,0.6);
+      border-radius: 24px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,0.25);
+      display: flex; flex-direction: column; max-height: 90vh; position: relative;
+    }
+    @media (min-width: 768px) { .modal-box { flex-direction: row; } }
+    .modal-close {
+      position: absolute; top: 16px; right: 16px; z-index: 10;
+      background: rgba(255,255,255,0.4); border: 1px solid rgba(255,255,255,0.4);
+      color: var(--stone-400); padding: 8px; border-radius: 50%; cursor: pointer;
+      transition: all 0.15s; box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .modal-close:hover { color: var(--stone-900); background: rgba(255,255,255,0.6); }
+    .modal-sidebar {
+      display: none; width: 40%; background: #000; padding: 32px;
+      color: white; flex-direction: column; justify-content: space-between;
+      border-right: 1px solid rgba(255,255,255,0.1); position: relative; overflow: hidden;
+    }
+    @media (min-width: 768px) { .modal-sidebar { display: flex; } }
+    .modal-sidebar::before { content: ''; position: absolute; top: 0; right: 0; width: 192px; height: 192px; background: radial-gradient(circle, rgba(197,160,89,0.15), transparent); border-radius: 50%; pointer-events: none; }
+    .modal-body { flex: 1; padding: 28px 28px; overflow-y: auto; }
+    .form-input {
+      width: 100%; padding: 10px 16px;
+      background: rgba(255,255,255,0.4); border: 1px solid rgba(255,255,255,0.8);
+      color: var(--stone-900); border-radius: 12px; outline: none; font-size: 0.875rem;
+      font-family: var(--font-sans); transition: all 0.2s;
+    }
+    .form-input:focus { border-color: #000; background: white; }
+    .form-select {
+      width: 100%; padding: 10px 12px;
+      background: rgba(255,255,255,0.4); border: 1px solid rgba(255,255,255,0.8);
+      color: var(--stone-900); border-radius: 12px; outline: none; font-size: 0.875rem;
+      font-family: var(--font-sans); transition: all 0.2s; cursor: pointer;
+      -webkit-appearance: none; appearance: none;
+    }
+    .form-select:focus { border-color: #000; background: white; }
+    .form-label { display: flex; align-items: center; gap: 6px; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--stone-500); margin-bottom: 6px; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .spinner { width: 20px; height: 20px; border: 2px solid white; border-top-color: transparent; border-radius: 50%; animation: spin 0.7s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .success-state { display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 48px 0; }
+    .success-state.visible { display: flex; }
+    .bounce-icon { animation: bounce 1s infinite; }
+    @keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+
+    /* MISC UTILITIES */
+    .text-gold { color: var(--gold); }
+    .text-emerald { color: #059669; }
+    .bg-gold { background: var(--gold); }
+    .divider-white { border: none; border-top: 1px solid rgba(255,255,255,0.4); margin: 0; }
+    .tag-black { display: inline-block; padding: 2px 8px; background: #000; color: white; font-size: 0.55rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; border-radius: 4px; }
+    .tag-emerald { display: inline-block; padding: 2px 8px; background: #10b981; color: white; font-size: 0.6rem; font-weight: 700; border-radius: 9999px; }
+    .tag-gold { display: inline-block; padding: 2px 10px; background: var(--gold); color: white; font-size: 0.6rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; border-radius: 9999px; }
+    .tiny { font-size: 0.55rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; }
+    .section-py { padding-top: 96px; padding-bottom: 96px; }
+  </style>
+</head>
+<body>
+  <!-- Ambient blobs -->
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+  <div class="blob blob-4"></div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="#" class="nav-logo">SellHair<span>.in</span></a>
+    <div class="nav-links">
+      <a href="#service-coverage">How It Works</a>
+      <a href="#calculator">Value Calculator</a>
+      <a href="#market-rates">Hair Rates</a>
+      <a href="#gallery">Transformations</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#faq">FAQs</a>
+    </div>
+    <div class="nav-cta">
+      <button class="btn-black" onclick="openBooking()">Check Hair Value</button>
+      <div class="nav-sub">Free Home Service</div>
+    </div>
+    <button class="hamburger" onclick="toggleMobileMenu()" aria-label="Toggle menu" id="hamburger-btn">
+      <svg id="icon-menu" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      <svg id="icon-x" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-overlay" id="mobile-overlay" onclick="closeMobileMenu()">
+    <div class="mobile-menu" onclick="event.stopPropagation()">
+      <a href="#service-coverage" onclick="closeMobileMenu()">How It Works</a>
+      <a href="#calculator" onclick="closeMobileMenu()">Hair Calculator</a>
+      <a href="#market-rates" onclick="closeMobileMenu()">Hair Buying Rates</a>
+      <a href="#gallery" onclick="closeMobileMenu()">Transformations</a>
+      <a href="#reviews" onclick="closeMobileMenu()">Client Reviews</a>
+      <a href="#faq" onclick="closeMobileMenu()">FAQs</a>
+      <button class="mobile-cta" onclick="closeMobileMenu(); openBooking()">Check My Hair Value</button>
+      <div class="mobile-cta-sub">🏠 Free Doorstep Visit Available</div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="badge">
+      <span class="pulse-dot"></span>
+      🏠 Free Doorstep Hair Assessment &amp; Exchange
+    </div>
+    <h1 class="hero-title font-display">
+      Turn Your Hair<br>Into Cash.<br>
+      <span class="accent">Reinvent Yourself.</span>
+    </h1>
+    <p class="hero-desc">
+      Sell your long ponytail right from your living room, secure a massive instant payout, and choose the bold designer haircut you've always wanted.
+    </p>
+    <div class="hero-cta-group">
+      <div style="text-align:center">
+        <button class="btn-primary" onclick="openBooking()">
+          Calculate Hair Value
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+        <div class="cta-sub">🏠 Free Home Service Available</div>
+      </div>
+      <div style="text-align:center">
+        <a href="#gallery" class="btn-secondary">View Bold Gallery</a>
+        <div class="cta-sub">No Travel Required</div>
+      </div>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-item">
+        <span class="stat-label">Direct Doorstep Payments</span>
+        <div class="stat-value font-display">₹1,48,72,300+</div>
+        <div class="stat-desc">Paid to Indian women this year</div>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">Submissions Verified</span>
+        <div class="stat-value font-display">8,430+</div>
+        <div class="stat-desc">Ponytails purchased securely</div>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">Hair Transformations</span>
+        <div class="stat-value font-display">3,190+</div>
+        <div class="stat-desc">Free salon-grade haircuts completed</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST STRIP -->
+  <div class="trust-strip">
+    <div class="trust-inner">
+      <span style="color:white">🏠 Free Home Service</span>
+      <span class="trust-dot">•</span>
+      <span style="color:white">💸 No Visit Charges</span>
+      <span class="trust-dot">•</span>
+      <span style="color:white">⚡ Instant Payment</span>
+      <span class="trust-dot">•</span>
+      <span style="color:white">✂️ Professional Haircuts</span>
+      <span class="trust-dot">•</span>
+      <span style="color:white">📍 Major Cities Covered</span>
+    </div>
+  </div>
+
+  <!-- HAIR VALUE CALCULATOR -->
+  <section id="calculator">
+    <div class="container">
+      <div class="section-heading">
+        <span class="badge" style="color:var(--gold)">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Premium Appraiser Tool
+        </span>
+        <h2 style="margin-top:16px">Hair Valuation Engine</h2>
+        <p>We operate with structural luxury market pricing. Adjust your parameters below to see your ponytail's authentic valuation range.</p>
+      </div>
+      <div class="calc-wrapper">
+        <div class="calc-grid">
+          <!-- LEFT: Controls -->
+          <div style="display:flex;flex-direction:column;gap:32px">
+            <!-- Hair Length -->
+            <div>
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+                <span class="calc-label" style="margin-bottom:0">1. Select Hair Length</span>
+                <span style="font-size:0.65rem;color:var(--stone-400);font-family:var(--font-mono)">Click to select length</span>
+              </div>
+              <div class="length-grid">
+                <!-- Silhouette -->
+                <div class="silhouette-panel">
+                  <span class="silhouette-label">Visual Model</span>
+                  <svg id="silhouette-svg" viewBox="0 0 120 180" style="width:100%;height:100%;max-width:140px;overflow:visible">
+                    <path d="M35,65 Q35,40 60,40 Q85,40 85,65 Q85,85 85,110 L95,140 Q95,160 60,160 Q25,160 25,140 L35,110 Z" fill="#f5f5f4" stroke="#e7e5e4" stroke-width="1.5"/>
+                    <path d="M47,85 L47,105 M73,85 L73,105" stroke="#e5e5e0" stroke-width="1"/>
+                    <path d="M60,62 Q60,90 60,110" fill="none" stroke="#1c1917" stroke-width="8" stroke-linecap="round"/>
+                    <path id="pony-ext" d="M60,105 Q60,130 60,175" fill="none" stroke="#1c1917" stroke-width="6" stroke-linecap="round" style="stroke-dasharray:100;stroke-dashoffset:55;transition:stroke-dashoffset 0.4s ease"/>
+                    <rect x="56" y="103" width="8" height="4" rx="1.5" fill="#d4af37"/>
+                    <line x1="5" y1="115" x2="115" y2="115" id="guide-15" stroke="#e7e5e4" stroke-width="1" stroke-dasharray="3 3"/>
+                    <line x1="5" y1="128" x2="115" y2="128" id="guide-18" stroke="#e7e5e4" stroke-width="1" stroke-dasharray="3 3"/>
+                    <line x1="5" y1="145" x2="115" y2="145" id="guide-24" stroke="#a8a29e" stroke-width="1" stroke-dasharray="3 3"/>
+                    <line x1="5" y1="160" x2="115" y2="160" id="guide-30" stroke="#e7e5e4" stroke-width="1" stroke-dasharray="3 3"/>
+                    <line x1="5" y1="175" x2="115" y2="175" id="guide-36" stroke="#e7e5e4" stroke-width="1" stroke-dasharray="3 3"/>
+                    <circle id="pony-dot" cx="60" cy="145" r="4" fill="#d4af37" class="animate-ping"/>
+                  </svg>
+                  <div style="text-align:center;margin-top:4px">
+                    <span id="length-display" class="font-mono" style="font-size:0.75rem;font-weight:800;background:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.4);padding:2px 8px;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.06)">24" Ponytail Length</span>
+                  </div>
+                </div>
+                <!-- Length Buttons -->
+                <div style="display:flex;flex-direction:column;justify-content:space-between">
+                  <div style="display:flex;flex-direction:column;gap:8px">
+                    <button class="length-btn" data-length="15" onclick="setLength(15)"><div style="display:flex;align-items:center;gap:8px"><span class="length-hint-dot" style="background:var(--stone-300)"></span><span style="font-size:0.75rem;font-weight:600">15 Inches</span></div><span class="length-range" style="color:var(--stone-400)">15-18" Range</span></button>
+                    <button class="length-btn" data-length="18" onclick="setLength(18)"><div style="display:flex;align-items:center;gap:8px"><span class="length-hint-dot" style="background:var(--stone-300)"></span><span style="font-size:0.75rem;font-weight:600">18 Inches</span></div><span class="length-range" style="color:var(--stone-400)">18-24" Range</span></button>
+                    <button class="length-btn active" data-length="24" onclick="setLength(24)"><div style="display:flex;align-items:center;gap:8px"><span class="length-hint-dot" style="background:var(--gold)"></span><span style="font-size:0.75rem;font-weight:600">24 Inches</span></div><span class="length-range" style="color:rgba(255,255,255,0.6)">24-30" Range</span></button>
+                    <button class="length-btn" data-length="30" onclick="setLength(30)"><div style="display:flex;align-items:center;gap:8px"><span class="length-hint-dot" style="background:var(--stone-300)"></span><span style="font-size:0.75rem;font-weight:600">30 Inches</span></div><span class="length-range" style="color:var(--stone-400)">30-36" Range</span></button>
+                    <button class="length-btn" data-length="36" onclick="setLength(36)"><div style="display:flex;align-items:center;gap:8px"><span class="length-hint-dot" style="background:var(--stone-300)"></span><span style="font-size:0.75rem;font-weight:600">36 Inches +</span></div><span class="length-range" style="color:var(--stone-400)">36"+ Collector</span></button>
+                  </div>
+                  <div style="font-size:0.65rem;color:var(--stone-400);display:flex;align-items:flex-start;gap:4px;padding:4px">
+                    <span>ℹ</span><span>Minimum acceptable length for selling is 15 inches. Measurement starts from the nape tie level.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Thickness -->
+            <div>
+              <span class="calc-label">2. Select Ponytail Thickness</span>
+              <div class="thickness-grid">
+                <button class="thickness-btn" data-thick="thin" onclick="setThickness('thin')">
+                  <div style="width:48px;height:48px;background:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.8);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:12px;overflow:hidden">
+                    <svg viewBox="0 0 40 40" style="width:32px;height:32px"><circle cx="20" cy="20" r="4" fill="#1c1917" opacity="0.85"/><circle cx="20" cy="20" r="16" fill="none" stroke="#d6d3d1" stroke-width="1" stroke-dasharray="2 2"/></svg>
+                  </div>
+                  <h4 style="font-size:0.7rem;font-weight:700;color:var(--stone-900);margin-bottom:2px">Thin</h4>
+                  <span style="font-size:0.6rem;color:var(--stone-400)">Under 2.5" thick</span>
+                  <span style="margin-top:8px;font-size:0.55rem;font-weight:700;padding:2px 6px;background:rgba(255,255,255,0.6);color:var(--stone-600);border-radius:4px;border:1px solid rgba(255,255,255,0.4)">0.75x</span>
+                </button>
+                <button class="thickness-btn" data-thick="medium" onclick="setThickness('medium')">
+                  <div style="width:48px;height:48px;background:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.8);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:12px;overflow:hidden">
+                    <svg viewBox="0 0 40 40" style="width:32px;height:32px"><circle cx="20" cy="20" r="7" fill="#1c1917" opacity="0.85"/><circle cx="20" cy="20" r="16" fill="none" stroke="#d6d3d1" stroke-width="1" stroke-dasharray="2 2"/></svg>
+                  </div>
+                  <h4 style="font-size:0.7rem;font-weight:700;color:var(--stone-900);margin-bottom:2px">Medium</h4>
+                  <span style="font-size:0.6rem;color:var(--stone-400)">2.5" – 3.5" thick</span>
+                  <span style="margin-top:8px;font-size:0.55rem;font-weight:700;padding:2px 6px;background:rgba(255,255,255,0.6);color:var(--stone-600);border-radius:4px;border:1px solid rgba(255,255,255,0.4)">1.00x</span>
+                </button>
+                <button class="thickness-btn active" data-thick="thick" onclick="setThickness('thick')">
+                  <div style="width:48px;height:48px;background:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.8);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:12px;overflow:hidden">
+                    <svg viewBox="0 0 40 40" style="width:32px;height:32px"><circle cx="20" cy="20" r="11" fill="#1c1917"/><circle cx="20" cy="20" r="16" fill="none" stroke="#d6d3d1" stroke-width="1" stroke-dasharray="2 2"/></svg>
+                  </div>
+                  <h4 style="font-size:0.7rem;font-weight:700;color:var(--stone-900);margin-bottom:2px">Thick</h4>
+                  <span style="font-size:0.6rem;color:var(--stone-400)">3.5" – 4.5" thick</span>
+                  <span style="margin-top:8px;font-size:0.55rem;font-weight:700;padding:2px 6px;background:rgba(255,255,255,0.6);color:var(--stone-600);border-radius:4px;border:1px solid rgba(255,255,255,0.4)">1.25x</span>
+                </button>
+                <button class="thickness-btn" data-thick="extra" onclick="setThickness('extra')">
+                  <div style="width:48px;height:48px;background:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.8);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:12px;overflow:hidden">
+                    <svg viewBox="0 0 40 40" style="width:32px;height:32px"><circle cx="20" cy="20" r="14" fill="#1c1917"/><circle cx="20" cy="20" r="16" fill="none" stroke="#d6d3d1" stroke-width="1" stroke-dasharray="2 2"/></svg>
+                  </div>
+                  <h4 style="font-size:0.7rem;font-weight:700;color:var(--stone-900);margin-bottom:2px">Extra Thick</h4>
+                  <span style="font-size:0.6rem;color:var(--stone-400)">4.5"+ circumference</span>
+                  <span style="margin-top:8px;font-size:0.55rem;font-weight:700;padding:2px 6px;background:rgba(255,255,255,0.6);color:var(--stone-600);border-radius:4px;border:1px solid rgba(255,255,255,0.4)">1.55x</span>
+                </button>
+              </div>
+            </div>
+            <!-- Quality + Texture -->
+            <div class="quality-texture-grid">
+              <div>
+                <span class="calc-label">3. Hair Quality Score</span>
+                <div style="display:flex;flex-direction:column;gap:8px">
+                  <button class="quality-btn active" data-quality="virgin" onclick="setQuality('virgin')">
+                    <div class="radio-outer"></div>
+                    <div>
+                      <div style="display:flex;align-items:center;justify-content:space-between"><h4 style="font-size:0.75rem;font-weight:700;color:var(--stone-900)">Virgin Hair</h4><div class="stars" style="gap:1px"><svg class="star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div></div>
+                      <p style="font-size:0.65rem;color:var(--stone-400);margin-top:2px">Never colored, bleached, or processed.</p>
+                    </div>
+                  </button>
+                  <button class="quality-btn" data-quality="healthy" onclick="setQuality('healthy')">
+                    <div class="radio-outer"></div>
+                    <div>
+                      <div style="display:flex;align-items:center;justify-content:space-between"><h4 style="font-size:0.75rem;font-weight:700;color:var(--stone-900)">Healthy Hair</h4><div class="stars" style="gap:1px"><svg class="star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div></div>
+                      <p style="font-size:0.65rem;color:var(--stone-400);margin-top:2px">Gently treated, split-end free, shiny.</p>
+                    </div>
+                  </button>
+                  <button class="quality-btn" data-quality="colored" onclick="setQuality('colored')">
+                    <div class="radio-outer"></div>
+                    <div>
+                      <div style="display:flex;align-items:center;justify-content:space-between"><h4 style="font-size:0.75rem;font-weight:700;color:var(--stone-900)">Colored Hair</h4><div class="stars" style="gap:1px"><svg class="star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div></div>
+                      <p style="font-size:0.65rem;color:var(--stone-400);margin-top:2px">Dyed, highlighted, or permed.</p>
+                    </div>
+                  </button>
+                </div>
+              </div>
+              <div>
+                <span class="calc-label">4. Hair Texture Pattern</span>
+                <div class="texture-grid">
+                  <button class="texture-btn active" data-texture="straight" onclick="setTexture('straight')">
+                    <span style="font-size:1.1rem;font-weight:800;font-family:var(--font-mono);color:var(--stone-500);line-height:1">│</span>
+                    <span style="font-size:0.65rem;font-weight:700;margin-top:4px">Straight</span>
+                  </button>
+                  <button class="texture-btn" data-texture="wavy" onclick="setTexture('wavy')">
+                    <span style="font-size:1rem;line-height:1">〰</span>
+                    <span style="font-size:0.65rem;font-weight:700;margin-top:4px">Wavy</span>
+                  </button>
+                  <button class="texture-btn" data-texture="curly" onclick="setTexture('curly')">
+                    <span style="font-size:0.875rem;line-height:1">🌀</span>
+                    <span style="font-size:0.65rem;font-weight:700;margin-top:4px">Curly</span>
+                  </button>
+                </div>
+                <div style="margin-top:12px;padding:12px;background:rgba(255,255,255,0.4);border:1px solid rgba(255,255,255,0.6);border-radius:12px">
+                  <p style="font-size:0.6rem;color:var(--stone-500);line-height:1.6">💡 <strong style="color:var(--stone-700)">Texture Premium:</strong> Wavy and curly structures command a <span style="font-weight:600;color:#059669">+10% to +25% payout bonus</span> due to high manufacturing rarity.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT: Results -->
+          <div class="calc-result">
+            <div class="result-inner">
+              <!-- Header -->
+              <div style="display:flex;align-items:center;justify-content:space-between;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,0.1)">
+                <div>
+                  <span style="display:inline-flex;align-items:center;gap:4px;padding:2px 10px;background:rgba(255,255,255,0.1);color:var(--gold);font-size:0.55rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;border-radius:9999px;border:1px solid rgba(255,255,255,0.05)">✦ Luxury Valuation</span>
+                  <h3 class="font-display" style="font-size:1.1rem;font-weight:700;margin-top:4px;color:white;letter-spacing:-0.01em">Appraisal Outcome</h3>
+                </div>
+                <div style="text-align:right">
+                  <span style="font-size:0.55rem;color:var(--stone-500);text-transform:uppercase;font-family:var(--font-mono);letter-spacing:0.1em;display:block">Status</span>
+                  <span style="font-size:0.7rem;color:#34d399;font-weight:700;display:flex;align-items:center;gap:4px;justify-content:flex-end">
+                    <span class="pulse-dot" style="background:#34d399;width:6px;height:6px"></span> Live Rate
+                  </span>
+                </div>
+              </div>
+              <!-- Price -->
+              <div style="text-align:center;padding:20px 0;background:rgba(255,255,255,0.04);border-radius:16px;border:1px solid rgba(255,255,255,0.1);margin:16px 0;box-shadow:0 4px 20px rgba(0,0,0,0.2)">
+                <span style="font-size:0.6rem;color:var(--stone-400);font-weight:800;text-transform:uppercase;letter-spacing:0.12em;display:block;margin-bottom:4px">Estimated Market Value</span>
+                <div class="result-price" id="result-price">₹35,000 – ₹56,250</div>
+                <p style="font-size:0.55rem;color:var(--stone-500);margin-top:8px;font-family:var(--font-mono);text-transform:uppercase;letter-spacing:0.1em">Immediate Bank / UPI Payout</p>
+              </div>
+              <!-- Rarity -->
+              <div style="margin-bottom:16px">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+                  <span style="font-size:0.55rem;color:var(--stone-400);font-weight:700;text-transform:uppercase;letter-spacing:0.1em">Hair Rarity Grade</span>
+                  <span id="rarity-badge" style="font-size:0.6rem;font-weight:700;text-transform:uppercase;padding:2px 8px;border-radius:9999px;color:var(--gold);background:#000;border:1px solid rgba(197,160,89,0.4)">Rare</span>
+                </div>
+                <div class="rarity-bar"><div class="rarity-fill" id="rarity-fill" style="width:60%"></div></div>
+                <div style="display:flex;justify-content:space-between;font-size:0.55rem;color:var(--stone-500);font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin-top:4px">
+                  <span>Common</span><span>Rare</span><span>Collector</span>
+                </div>
+              </div>
+              <!-- Details -->
+              <div class="detail-grid">
+                <div class="detail-cell">
+                  <span class="detail-cell-label">Premium Bonus</span>
+                  <span id="premium-bonus" style="font-size:0.875rem;font-weight:700;color:#34d399;font-family:var(--font-mono)">+₹6,750</span>
+                </div>
+                <div class="detail-cell">
+                  <span class="detail-cell-label">VIP Category</span>
+                  <span id="vip-percentile" style="font-size:0.7rem;font-weight:700;color:#e7e5e4">Top 12% of Submissions</span>
+                </div>
+                <div class="detail-cell">
+                  <span class="detail-cell-label">Demand Level</span>
+                  <span id="demand-level" style="font-size:0.75rem;font-weight:700;color:var(--gold)">Exceptionally High</span>
+                </div>
+                <div class="detail-cell">
+                  <span class="detail-cell-label">Most Suitable For</span>
+                  <span id="suitable-for" style="font-size:0.65rem;font-weight:700;color:#e7e5e4;line-height:1.3;display:block">Haute Couture Extensions</span>
+                </div>
+              </div>
+              <!-- Insight -->
+              <div class="insight-box" style="margin:16px 0">
+                <div style="display:flex;align-items:center;gap:6px;color:var(--gold);font-weight:700;margin-bottom:6px;font-size:0.55rem;text-transform:uppercase;letter-spacing:0.1em">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                  Market Appraiser Insight
+                </div>
+                <p id="market-insight" style="color:#d6d3d1;font-size:0.7rem;line-height:1.6">"Your hair profile matches criteria for elite wig and hairpiece fabrication. You qualify for fully-funded free home service and top-tier rates."</p>
+              </div>
+              <!-- CTA -->
+              <button class="btn-white" id="calc-book-btn" onclick="openBooking()">
+                Book Doorstep Visit <span style="font-weight:300">· Free Appointment</span>
+              </button>
+              <div style="text-align:center;margin-top:12px">
+                <p style="font-size:0.6rem;color:var(--stone-400);display:flex;align-items:center;justify-content:center;gap:4px">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                  Free Home Service Available • No Visit Fee
+                </p>
+                <p style="font-size:0.55rem;color:var(--stone-500);margin-top:4px">Valuation confirmed in-person prior to cutting. Zero booking fees.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEADERBOARD -->
+  <section id="leaderboard" class="section-py" style="background:transparent">
+    <div class="container">
+      <div class="section-heading">
+        <span class="badge">🏆 Leading Appraisals</span>
+        <h2 style="margin-top:16px">Highest Payouts This Month</h2>
+        <p>Transparent transactions. Here are some of the elite-tier long-hair appraisals we have executed at our clients' doorsteps.</p>
+      </div>
+      <div class="leaderboard-grid">
+        <div>
+          <h3 style="font-size:0.65rem;font-weight:800;color:var(--stone-400);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:12px;display:flex;align-items:center;gap:6px">🔥 Top Earners Spotlight</h3>
+          <div class="earner-grid">
+            <div class="earner-card">
+              <span style="position:absolute;top:16px;right:16px;font-family:var(--font-display);font-weight:900;font-size:1.8rem;color:var(--stone-300)">#1</span>
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px">
+                <div style="width:32px;height:32px;background:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:700;font-family:var(--font-mono)">NK</div>
+                <div><h4 style="font-size:0.875rem;font-weight:700;color:var(--stone-900)">Nisha Kapoor</h4><span style="font-size:0.6rem;color:var(--stone-400)">📍 Delhi</span></div>
+              </div>
+              <div style="background:rgba(255,255,255,0.6);backdrop-filter:blur(8px);padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,0.6);font-size:0.75rem">
+                <div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="color:var(--stone-400)">Length Sold:</span><span style="font-weight:600;color:var(--stone-900)">34 Inches</span></div>
+                <div style="display:flex;justify-content:space-between"><span style="color:var(--stone-400)">Style Chosen:</span><span style="font-weight:600;color:var(--stone-900)">Full Head Shave</span></div>
+              </div>
+              <div style="margin-top:16px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.4);display:flex;align-items:center;justify-content:space-between">
+                <span style="font-size:0.6rem;color:#059669;font-weight:800;text-transform:uppercase;letter-spacing:0.08em">Paid Instantly:</span>
+                <span style="font-family:var(--font-mono);font-weight:900;color:#059669;font-size:0.875rem">₹72,000</span>
+              </div>
+            </div>
+            <div class="earner-card">
+              <span style="position:absolute;top:16px;right:16px;font-family:var(--font-display);font-weight:900;font-size:1.8rem;color:var(--stone-300)">#2</span>
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px">
+                <div style="width:32px;height:32px;background:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:700;font-family:var(--font-mono)">AD</div>
+                <div><h4 style="font-size:0.875rem;font-weight:700;color:var(--stone-900)">Ankita Das</h4><span style="font-size:0.6rem;color:var(--stone-400)">📍 Kolkata</span></div>
+              </div>
+              <div style="background:rgba(255,255,255,0.6);backdrop-filter:blur(8px);padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,0.6);font-size:0.75rem">
+                <div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="color:var(--stone-400)">Length Sold:</span><span style="font-weight:600;color:var(--stone-900)">31 Inches</span></div>
+                <div style="display:flex;justify-content:space-between"><span style="color:var(--stone-400)">Style Chosen:</span><span style="font-weight:600;color:var(--stone-900)">Pixie Cut</span></div>
+              </div>
+              <div style="margin-top:16px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.4);display:flex;align-items:center;justify-content:space-between">
+                <span style="font-size:0.6rem;color:#059669;font-weight:800;text-transform:uppercase;letter-spacing:0.08em">Paid Instantly:</span>
+                <span style="font-family:var(--font-mono);font-weight:900;color:#059669;font-size:0.875rem">₹63,000</span>
+              </div>
+            </div>
+            <div class="earner-card">
+              <span style="position:absolute;top:16px;right:16px;font-family:var(--font-display);font-weight:900;font-size:1.8rem;color:var(--stone-300)">#3</span>
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px">
+                <div style="width:32px;height:32px;background:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:700;font-family:var(--font-mono)">MD</div>
+                <div><h4 style="font-size:0.875rem;font-weight:700;color:var(--stone-900)">Meera Deshmukh</h4><span style="font-size:0.6rem;color:var(--stone-400)">📍 Pune</span></div>
+              </div>
+              <div style="background:rgba(255,255,255,0.6);backdrop-filter:blur(8px);padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,0.6);font-size:0.75rem">
+                <div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="color:var(--stone-400)">Length Sold:</span><span style="font-weight:600;color:var(--stone-900)">35 Inches</span></div>
+                <div style="display:flex;justify-content:space-between"><span style="color:var(--stone-400)">Style Chosen:</span><span style="font-weight:600;color:var(--stone-900)">Buzz Cut</span></div>
+              </div>
+              <div style="margin-top:16px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.4);display:flex;align-items:center;justify-content:space-between">
+                <span style="font-size:0.6rem;color:#059669;font-weight:800;text-transform:uppercase;letter-spacing:0.08em">Paid Instantly:</span>
+                <span style="font-family:var(--font-mono);font-weight:900;color:#059669;font-size:0.875rem">₹84,000</span>
+              </div>
+            </div>
+            <div class="earner-card">
+              <span style="position:absolute;top:16px;right:16px;font-family:var(--font-display);font-weight:900;font-size:1.8rem;color:var(--stone-300)">#4</span>
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px">
+                <div style="width:32px;height:32px;background:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:700;font-family:var(--font-mono)">SS</div>
+                <div><h4 style="font-size:0.875rem;font-weight:700;color:var(--stone-900)">Sadhana Sharma</h4><span style="font-size:0.6rem;color:var(--stone-400)">📍 Varanasi</span></div>
+              </div>
+              <div style="background:rgba(255,255,255,0.6);backdrop-filter:blur(8px);padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,0.6);font-size:0.75rem">
+                <div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="color:var(--stone-400)">Length Sold:</span><span style="font-weight:600;color:var(--stone-900)">30 Inches</span></div>
+                <div style="display:flex;justify-content:space-between"><span style="color:var(--stone-400)">Style Chosen:</span><span style="font-weight:600;color:var(--stone-900)">Viking Undercut</span></div>
+              </div>
+              <div style="margin-top:16px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.4);display:flex;align-items:center;justify-content:space-between">
+                <span style="font-size:0.6rem;color:#059669;font-weight:800;text-transform:uppercase;letter-spacing:0.08em">Paid Instantly:</span>
+                <span style="font-family:var(--font-mono);font-weight:900;color:#059669;font-size:0.875rem">₹51,000</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="weekly-board">
+          <h3 style="font-size:0.65rem;font-weight:800;color:var(--stone-400);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px;display:flex;align-items:center;gap:6px">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+            Weekly Payout Board
+          </h3>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:12px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.05);border-radius:12px">
+              <div style="display:flex;align-items:center;gap:12px"><span style="font-family:var(--font-mono);color:var(--stone-500);font-weight:800;font-size:0.75rem">01</span><div><h4 style="font-size:0.75rem;font-weight:700;color:white">Rimi Banerjee</h4><p style="font-size:0.6rem;color:var(--stone-400)">📍 Howrah · 23" · Hidden Undercut</p></div></div>
+              <div style="text-align:right"><div style="font-family:var(--font-mono);color:#34d399;font-weight:900;font-size:0.75rem">₹26,000</div><span style="font-size:0.55rem;color:var(--stone-500);text-transform:uppercase;letter-spacing:0.1em;font-weight:700">UPI Sent</span></div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:12px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.05);border-radius:12px">
+              <div style="display:flex;align-items:center;gap:12px"><span style="font-family:var(--font-mono);color:var(--stone-500);font-weight:800;font-size:0.75rem">02</span><div><h4 style="font-size:0.75rem;font-weight:700;color:white">Pritha Sen</h4><p style="font-size:0.6rem;color:var(--stone-400)">📍 Barrackpore · 28" · Half Shave</p></div></div>
+              <div style="text-align:right"><div style="font-family:var(--font-mono);color:#34d399;font-weight:900;font-size:0.75rem">₹43,500</div><span style="font-size:0.55rem;color:var(--stone-500);text-transform:uppercase;letter-spacing:0.1em;font-weight:700">UPI Sent</span></div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:12px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.05);border-radius:12px">
+              <div style="display:flex;align-items:center;gap:12px"><span style="font-family:var(--font-mono);color:var(--stone-500);font-weight:800;font-size:0.75rem">03</span><div><h4 style="font-size:0.75rem;font-weight:700;color:white">Tanya Sen</h4><p style="font-size:0.6rem;color:var(--stone-400)">📍 Durgapur · 33" · Full Head Shave</p></div></div>
+              <div style="text-align:right"><div style="font-family:var(--font-mono);color:#34d399;font-weight:900;font-size:0.75rem">₹69,000</div><span style="font-size:0.55rem;color:var(--stone-500);text-transform:uppercase;letter-spacing:0.1em;font-weight:700">UPI Sent</span></div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:12px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.05);border-radius:12px">
+              <div style="display:flex;align-items:center;gap:12px"><span style="font-family:var(--font-mono);color:var(--stone-500);font-weight:800;font-size:0.75rem">04</span><div><h4 style="font-size:0.75rem;font-weight:700;color:white">Priya Sharma</h4><p style="font-size:0.6rem;color:var(--stone-400)">📍 Mumbai · 29" · Side Shave</p></div></div>
+              <div style="text-align:right"><div style="font-family:var(--font-mono);color:#34d399;font-weight:900;font-size:0.75rem">₹58,000</div><span style="font-size:0.55rem;color:var(--stone-500);text-transform:uppercase;letter-spacing:0.1em;font-weight:700">UPI Sent</span></div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:12px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.05);border-radius:12px">
+              <div style="display:flex;align-items:center;gap:12px"><span style="font-family:var(--font-mono);color:var(--stone-500);font-weight:800;font-size:0.75rem">05</span><div><h4 style="font-size:0.75rem;font-weight:700;color:white">Shalini Saxena</h4><p style="font-size:0.6rem;color:var(--stone-400)">📍 Noida · 32" · Buzz Cut</p></div></div>
+              <div style="text-align:right"><div style="font-family:var(--font-mono);color:#34d399;font-weight:900;font-size:0.75rem">₹65,000</div><span style="font-size:0.55rem;color:var(--stone-500);text-transform:uppercase;letter-spacing:0.1em;font-weight:700">UPI Sent</span></div>
+            </div>
+          </div>
+          <div style="margin-top:24px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.1);text-align:center">
+            <button onclick="openBooking()" style="width:100%;background:rgba(255,255,255,0.1);color:white;font-weight:700;padding:12px 16px;border-radius:12px;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.08em;border:none;cursor:pointer;transition:all 0.2s" onmouseover="this.style.background='rgba(255,255,255,0.15)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">Appraise My Ponytail</button>
+            <span style="font-size:0.55rem;color:var(--stone-500);margin-top:8px;display:block;text-transform:uppercase;letter-spacing:0.1em">Home payouts based on live daily exchange ratios</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARKET RATES -->
+  <section id="market-rates">
+    <div class="container-md" style="position:relative;z-index:1">
+      <div class="section-heading" style="color:white">
+        <span style="display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:9999px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.1);font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#34d399;margin-bottom:16px">
+          <span class="animate-ping" style="width:6px;height:6px;background:#34d399;border-radius:50%;display:inline-block"></span>
+          Live Exchange Rates
+        </span>
+        <h2 style="color:white">Daily Buying Rates</h2>
+        <p style="color:var(--stone-400)">Our rates are updated hourly based on active export demand from premium wig factories in Europe and East Asia.</p>
+      </div>
+      <div class="rates-table">
+        <div class="rate-row">
+          <div style="display:flex;align-items:center;gap:12px">
+            <span class="rate-dot" style="background:#f59e0b"></span>
+            <div><h4 style="font-weight:700;color:white;font-size:0.9375rem">Virgin Black Hair</h4><p style="font-size:0.6rem;color:var(--stone-500);margin-top:2px">Unprocessed, pure Indian temple quality</p></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px">
+            <div style="text-align:right">
+              <div class="rate-value"><span id="rate-vbh">₹12,200</span><span style="font-size:0.75rem;font-weight:400;color:var(--stone-400)">/100g</span></div>
+              <span style="font-size:0.55rem;color:var(--stone-400);display:block;font-family:var(--font-mono)">Based on 3.5" bundle thickness</span>
+            </div>
+            <span class="rate-badge rate-up">▲ 2.8%</span>
+          </div>
+        </div>
+        <div class="rate-row">
+          <div style="display:flex;align-items:center;gap:12px">
+            <span class="rate-dot" style="background:#a78bfa"></span>
+            <div><h4 style="font-weight:700;color:white;font-size:0.9375rem">Curly / Wavy Premium Hair</h4><p style="font-size:0.6rem;color:var(--stone-500);margin-top:2px">Natural, high-grade textured spirals</p></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px">
+            <div style="text-align:right">
+              <div class="rate-value"><span id="rate-curly">₹14,500</span><span style="font-size:0.75rem;font-weight:400;color:var(--stone-400)">/100g</span></div>
+              <span style="font-size:0.55rem;color:var(--stone-400);display:block;font-family:var(--font-mono)">Extreme international deficit</span>
+            </div>
+            <span class="rate-badge rate-up">▲ 4.5%</span>
+          </div>
+        </div>
+        <div class="rate-row">
+          <div style="display:flex;align-items:center;gap:12px">
+            <span class="rate-dot" style="background:var(--stone-400)"></span>
+            <div><h4 style="font-weight:700;color:white;font-size:0.9375rem">Grey Natural Hair</h4><p style="font-size:0.6rem;color:var(--stone-500);margin-top:2px">Pure silver/grey uncolored weaves</p></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px">
+            <div style="text-align:right">
+              <div class="rate-value"><span id="rate-grey">₹8,800</span><span style="font-size:0.75rem;font-weight:400;color:var(--stone-400)">/100g</span></div>
+              <span style="font-size:0.55rem;color:var(--stone-400);display:block;font-family:var(--font-mono)">Sourced from mature donors</span>
+            </div>
+            <span class="rate-badge rate-down">▼ 1.1%</span>
+          </div>
+        </div>
+        <div class="rate-row" style="border-bottom:none">
+          <div style="display:flex;align-items:center;gap:12px">
+            <span class="rate-dot" style="background:#fb7185"></span>
+            <div><h4 style="font-weight:700;color:white;font-size:0.9375rem">Colored / Chemically Treated</h4><p style="font-size:0.6rem;color:var(--stone-500);margin-top:2px">Permed, dyed, or lightly treated ponytails</p></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px">
+            <div style="text-align:right">
+              <div class="rate-value"><span id="rate-colored">₹5,500</span><span style="font-size:0.75rem;font-weight:400;color:var(--stone-400)">/100g</span></div>
+              <span style="font-size:0.55rem;color:var(--stone-400);display:block;font-family:var(--font-mono)">Accepted globally with sorting discount</span>
+            </div>
+            <span class="rate-badge rate-up">▲ 1.4%</span>
+          </div>
+        </div>
+      </div>
+      <p style="text-align:center;font-size:0.6rem;color:var(--stone-500);text-transform:uppercase;font-weight:700;letter-spacing:0.1em;margin-top:24px">Rates are updated hourly · Final weight measured digitally on premium scales in your presence</p>
+    </div>
+  </section>
+
+  <!-- WHAT IT PAYS FOR -->
+  <section id="pays" style="padding:96px 0">
+    <div class="container">
+      <div class="section-heading">
+        <span class="badge">🎁 Generous Worth</span>
+        <h2 style="margin-top:16px">What Your Hair Can Pay For</h2>
+        <p>Your ponytail is a valuable asset. Here's a realistic comparison of what our updated premium rates can instantly finance.</p>
+      </div>
+      <div class="pays-grid">
+        <div class="pays-card">
+          <div><span style="font-size:2rem;display:block;margin-bottom:16px">📱</span><span style="font-size:0.55rem;font-weight:800;text-transform:uppercase;letter-spacing:0.12em;color:var(--stone-400);display:block;margin-bottom:4px">15 – 18 Inches</span><h4 style="font-weight:700;color:var(--stone-900);font-size:1rem;margin-bottom:4px">Premium Smartphone</h4><p style="color:var(--stone-500);font-size:0.75rem">Cover a modern high-end device or accessories easily.</p></div>
+          <div style="margin-top:24px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.4);display:flex;justify-content:space-between;align-items:center"><span style="font-size:0.55rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--stone-400)">Est. Payout</span><span style="font-family:var(--font-mono);font-weight:800;color:var(--stone-900)">₹12k – ₹18k</span></div>
+        </div>
+        <div class="pays-card">
+          <div><span style="font-size:2rem;display:block;margin-bottom:16px">🌴</span><span style="font-size:0.55rem;font-weight:800;text-transform:uppercase;letter-spacing:0.12em;color:var(--stone-400);display:block;margin-bottom:4px">18 – 24 Inches</span><h4 style="font-weight:700;color:var(--stone-900);font-size:1rem;margin-bottom:4px">Luxury Weekend Getaway</h4><p style="color:var(--stone-500);font-size:0.75rem">Fully finance a premium weekend vacation stay including travel.</p></div>
+          <div style="margin-top:24px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.4);display:flex;justify-content:space-between;align-items:center"><span style="font-size:0.55rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--stone-400)">Est. Payout</span><span style="font-family:var(--font-mono);font-weight:800;color:var(--stone-900)">₹18k – ₹28k</span></div>
+        </div>
+        <div class="pays-card">
+          <div><span style="font-size:2rem;display:block;margin-bottom:16px">💻</span><span style="font-size:0.55rem;font-weight:800;text-transform:uppercase;letter-spacing:0.12em;color:var(--stone-400);display:block;margin-bottom:4px">24 – 30 Inches</span><h4 style="font-weight:700;color:var(--stone-900);font-size:1rem;margin-bottom:4px">Elite Laptop Upgrade</h4><p style="color:var(--stone-500);font-size:0.75rem">Purchase or upgrade a professional-grade notebook or tablet.</p></div>
+          <div style="margin-top:24px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.4);display:flex;justify-content:space-between;align-items:center"><span style="font-size:0.55rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--stone-400)">Est. Payout</span><span style="font-family:var(--font-mono);font-weight:800;color:var(--stone-900)">₹28k – ₹45k</span></div>
+        </div>
+        <div class="pays-card">
+          <div><span style="font-size:2rem;display:block;margin-bottom:16px">✈️</span><span style="font-size:0.55rem;font-weight:800;text-transform:uppercase;letter-spacing:0.12em;color:var(--stone-400);display:block;margin-bottom:4px">30+ Inches</span><h4 style="font-weight:700;color:var(--stone-900);font-size:1rem;margin-bottom:4px">International Flight</h4><p style="color:var(--stone-500);font-size:0.75rem">Fund an international getaway ticket or premium investment assets.</p></div>
+          <div style="margin-top:24px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.4);display:flex;justify-content:space-between;align-items:center"><span style="font-size:0.55rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--stone-400)">Est. Payout</span><span style="font-family:var(--font-mono);font-weight:800;color:#059669">₹45k – ₹80k+</span></div>
+        </div>
+      </div>
+      <div style="margin-top:32px;text-align:center;padding:16px;background:rgba(255,255,255,0.4);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.6);border-radius:16px;max-width:600px;margin-left:auto;margin-right:auto;box-shadow:0 4px 16px rgba(0,0,0,0.06)">
+        <span style="font-size:0.75rem;color:var(--stone-700)">🔥 <strong style="color:var(--stone-900)">Very Thick Virgin Hair Above 36 Inches:</strong> Special appraisals often fetch payouts <strong style="color:#059669">exceeding ₹1,00,000+</strong> on the spot!</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRANSFORMATION PROMO -->
+  <section id="transform-promo">
+    <div class="container" style="position:relative;z-index:1">
+      <div class="section-heading" style="color:white">
+        <span style="display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:9999px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.08);font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--gold);margin-bottom:16px">✦ Your Identity, Reinvented</span>
+        <h2 style="color:white;font-size:clamp(2rem,5vw,3.5rem)">Turn Your Hair Into Cash<br>And A New Identity.</h2>
+        <p style="color:var(--stone-400);max-width:600px">Earn money while experiencing a bold new transformation. Many of our clients choose exciting styles they never imagined — and end up loving them for years.</p>
+      </div>
+      <div class="promo-styles">
+        <span class="promo-style-chip">Clean Side Shave</span>
+        <span class="promo-style-chip">Hidden Undercut</span>
+        <span class="promo-style-chip">Undercut Bob</span>
+        <span class="promo-style-chip">Dramatic Undercut</span>
+        <span class="promo-style-chip">Sidecut</span>
+        <span class="promo-style-chip">Mohawk</span>
+        <span class="promo-style-chip">Half-Head Shave</span>
+        <span class="promo-style-chip">Nape Shave</span>
+        <span class="promo-style-chip">Disconnected Cut</span>
+        <span class="promo-style-chip">Artistic Shave Design</span>
+        <span class="promo-style-chip">Viking Undercut</span>
+        <span class="promo-style-chip">Full Buzz Cut</span>
+      </div>
+      <!-- Big Quote -->
+      <div style="text-align:center;padding:48px 24px;max-width:760px;margin:0 auto">
+        <p style="font-family:var(--font-display);font-size:clamp(1.25rem,3vw,1.75rem);font-weight:700;color:white;line-height:1.4;letter-spacing:-0.01em">"Why simply cut your hair when you can <span style="color:var(--gold)">get paid for it</span> and leave with a completely new look?"</p>
+        <div style="width:48px;height:2px;background:var(--gold);margin:24px auto"></div>
+        <p style="color:var(--stone-400);font-size:0.875rem;line-height:1.7">Get rewarded for being bold. Your hair grows back. <span style="color:white;font-weight:600">The experience lasts forever.</span></p>
+      </div>
+      <!-- Quote cards -->
+      <div class="promo-quotes">
+        <div class="promo-quote-card">
+          <div style="font-size:2rem;color:var(--gold);font-family:var(--font-display);font-weight:900;line-height:0.8;margin-bottom:12px">"</div>
+          <p style="color:rgba(255,255,255,0.75);font-size:0.875rem;line-height:1.7;font-style:italic">Many of our clients initially sell their hair for the payout, but end up falling in love with their new look. Several repeat clients tell us they never went back to a traditional hairstyle after trying an undercut or side shave.</p>
+          <div style="margin-top:16px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.08)">
+            <span style="font-size:0.6rem;color:var(--stone-400);font-weight:700;text-transform:uppercase;letter-spacing:0.1em">Client Behavior Research · 3,000+ Sessions</span>
+          </div>
+        </div>
+        <div class="promo-quote-card">
+          <div style="font-size:2rem;color:var(--gold);font-family:var(--font-display);font-weight:900;line-height:0.8;margin-bottom:12px">"</div>
+          <p style="color:rgba(255,255,255,0.75);font-size:0.875rem;line-height:1.7;font-style:italic">Transformational haircuts often become a lifestyle choice rather than a one-time experience. Many clients keep their undercuts or side shaves for years because of the comfort, confidence, lower maintenance, and unique appearance.</p>
+          <div style="margin-top:16px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.08)">
+            <span style="font-size:0.6rem;color:var(--stone-400);font-weight:700;text-transform:uppercase;letter-spacing:0.1em">Long-Term Style Adoption Study · SellHair.in</span>
+          </div>
+        </div>
+      </div>
+      <!-- CTA Banner -->
+      <div style="margin-top:48px;text-align:center;padding:48px 24px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:24px">
+        <p style="font-family:var(--font-display);font-size:clamp(1.1rem,2.5vw,1.5rem);font-weight:800;color:white;margin-bottom:8px">Transform your appearance, earn money, and experience something unforgettable.</p>
+        <p style="color:var(--stone-400);font-size:0.875rem;margin-bottom:28px">Earn money from your hair and discover a style that may become your signature look.</p>
+        <button onclick="openBooking()" class="btn-white" style="display:inline-flex;width:auto;padding:16px 40px">Book Free Doorstep Transformation</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery" style="padding:96px 0;background:transparent">
+    <div class="container">
+      <div class="section-heading">
+        <span class="badge">✂️ Transformation Portfolio</span>
+        <h2 style="margin-top:16px">Extreme Transformations</h2>
+        <p>Every master haircut was funded entirely by a ponytail sold on-the-spot. Browse real styles chosen by our daring clients.</p>
+      </div>
+      <div class="gallery-columns">
+        <div class="gallery-item" onclick="openBooking('25 Inches','₹28,000 - ₹38,000')">
+          <div class="gallery-img-wrap"><img src="https://barbarianstyle.net/wp-content/uploads/2020/03/Undercut-Hairstyle-Bun-1024x1024.jpg" alt="The Classic Undercut" loading="lazy" referrerpolicy="no-referrer"><div class="gallery-overlay"></div><span class="gallery-tag-tl">Length Sold: 25 Inches</span><span class="gallery-tag-tr">Active Rate</span></div>
+          <div class="gallery-body"><span class="tag-black">Undercut</span><h4 class="font-display" style="font-weight:900;color:var(--stone-900);font-size:1rem;margin-top:6px;letter-spacing:-0.01em">The Classic Undercut</h4><p style="color:var(--stone-500);font-size:0.7rem;line-height:1.5;margin-top:4px">A bold clean nape undercut that adds instant modern sophistication while preserving hair on top.</p><div style="padding-top:8px;border-top:1px solid rgba(255,255,255,0.4);display:flex;align-items:center;justify-content:space-between;margin-top:8px;font-size:0.7rem;font-weight:700"><span style="color:var(--stone-400)">Client Payout:</span><span style="color:#059669;font-family:var(--font-mono)">₹28,000 - ₹38,000</span></div></div>
+        </div>
+        <div class="gallery-item" onclick="openBooking('18 Inches','₹18,000 - ₹24,000')">
+          <div class="gallery-img-wrap"><img src="https://content.latest-hairstyles.com/wp-content/uploads/pixie-half-shaved.jpg" alt="Side-Shaved Pixie" loading="lazy" referrerpolicy="no-referrer"><div class="gallery-overlay"></div><span class="gallery-tag-tl">Length Sold: 18 Inches</span><span class="gallery-tag-tr">Active Rate</span></div>
+          <div class="gallery-body"><span class="tag-black">Pixie</span><h4 class="font-display" style="font-weight:900;color:var(--stone-900);font-size:1rem;margin-top:6px;letter-spacing:-0.01em">Side-Shaved Pixie</h4><p style="color:var(--stone-500);font-size:0.7rem;line-height:1.5;margin-top:4px">A textured Pixie cut with one side clean-shaved. Highly expressive and fashion-forward.</p><div style="padding-top:8px;border-top:1px solid rgba(255,255,255,0.4);display:flex;align-items:center;justify-content:space-between;margin-top:8px;font-size:0.7rem;font-weight:700"><span style="color:var(--stone-400)">Client Payout:</span><span style="color:#059669;font-family:var(--font-mono)">₹18,000 - ₹24,000</span></div></div>
+        </div>
+        <div class="gallery-item" onclick="openBooking('28 Inches','₹32,000 - ₹48,000')">
+          <div class="gallery-img-wrap"><img src="https://i.pinimg.com/originals/75/5e/73/755e73e34272246a220f16a1723e5f39.jpg" alt="The Premium Side Shave" loading="lazy" referrerpolicy="no-referrer"><div class="gallery-overlay"></div><span class="gallery-tag-tl">Length Sold: 28 Inches</span><span class="gallery-tag-tr">Active Rate</span></div>
+          <div class="gallery-body"><span class="tag-black">Side Shave</span><h4 class="font-display" style="font-weight:900;color:var(--stone-900);font-size:1rem;margin-top:6px;letter-spacing:-0.01em">The Premium Side Shave</h4><p style="color:var(--stone-500);font-size:0.7rem;line-height:1.5;margin-top:4px">Dramatic side shave parting that sweeps long hair to one side, highlighting high-fashion contrast.</p><div style="padding-top:8px;border-top:1px solid rgba(255,255,255,0.4);display:flex;align-items:center;justify-content:space-between;margin-top:8px;font-size:0.7rem;font-weight:700"><span style="color:var(--stone-400)">Client Payout:</span><span style="color:#059669;font-family:var(--font-mono)">₹32,000 - ₹48,000</span></div></div>
+        </div>
+        <div class="gallery-item" onclick="openBooking('22 Inches','₹24,000 - ₹35,000')">
+          <div class="gallery-img-wrap"><img src="https://i.pinimg.com/736x/b8/06/31/b80631bd3731976cc2f1dcdf5a798bf0.jpg" alt="Intricate Hidden Undercut" loading="lazy" referrerpolicy="no-referrer"><div class="gallery-overlay"></div><span class="gallery-tag-tl">Length Sold: 22 Inches</span><span class="gallery-tag-tr">Active Rate</span></div>
+          <div class="gallery-body"><span class="tag-black">Hidden Undercut</span><h4 class="font-display" style="font-weight:900;color:var(--stone-900);font-size:1rem;margin-top:6px;letter-spacing:-0.01em">Intricate Hidden Undercut</h4><p style="color:var(--stone-500);font-size:0.7rem;line-height:1.5;margin-top:4px">Perfect for a surprise effect — completely hidden under long hair, visible only when tied up.</p><div style="padding-top:8px;border-top:1px solid rgba(255,255,255,0.4);display:flex;align-items:center;justify-content:space-between;margin-top:8px;font-size:0.7rem;font-weight:700"><span style="color:var(--stone-400)">Client Payout:</span><span style="color:#059669;font-family:var(--font-mono)">₹24,000 - ₹35,000</span></div></div>
+        </div>
+        <div class="gallery-item" onclick="openBooking('20 Inches','₹20,000 - ₹28,000')">
+          <div class="gallery-img-wrap"><img src="https://tse1.explicit.bing.net/th/id/OIP.TTNOu2CXLZDCCbUPl3GizAHaJH?r=0&w=832&h=1024&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Micro Bob Shaved Nape" loading="lazy" referrerpolicy="no-referrer"><div class="gallery-overlay"></div><span class="gallery-tag-tl">Length Sold: 20 Inches</span><span class="gallery-tag-tr">Active Rate</span></div>
+          <div class="gallery-body"><span class="tag-black">Micro Bob + Shaved Nape</span><h4 class="font-display" style="font-weight:900;color:var(--stone-900);font-size:1rem;margin-top:6px;letter-spacing:-0.01em">Micro Bob + Shaved Nape</h4><p style="color:var(--stone-500);font-size:0.7rem;line-height:1.5;margin-top:4px">An ultra-chic French-style micro bob featuring a clean shaved nape for exquisite geometry.</p><div style="padding-top:8px;border-top:1px solid rgba(255,255,255,0.4);display:flex;align-items:center;justify-content:space-between;margin-top:8px;font-size:0.7rem;font-weight:700"><span style="color:var(--stone-400)">Client Payout:</span><span style="color:#059669;font-family:var(--font-mono)">₹20,000 - ₹28,000</span></div></div>
+        </div>
+        <div class="gallery-item" onclick="openBooking('32 Inches','₹55,000 - ₹85,000')">
+          <div class="gallery-img-wrap"><img src="https://i.pinimg.com/736x/6d/52/8d/6d528dd6961ac2ce84b47ee6a50a0f04.jpg" alt="The Absolute Buzz Cut" loading="lazy" referrerpolicy="no-referrer"><div class="gallery-overlay"></div><span class="gallery-tag-tl">Length Sold: 32 Inches</span><span class="gallery-tag-tr">Active Rate</span></div>
+          <div class="gallery-body"><span class="tag-black">Buzz Cut</span><h4 class="font-display" style="font-weight:900;color:var(--stone-900);font-size:1rem;margin-top:6px;letter-spacing:-0.01em">The Absolute Buzz Cut</h4><p style="color:var(--stone-500);font-size:0.7rem;line-height:1.5;margin-top:4px">A minimalist, striking buzz cut that beautifully accentuates cheekbones and facial structure.</p><div style="padding-top:8px;border-top:1px solid rgba(255,255,255,0.4);display:flex;align-items:center;justify-content:space-between;margin-top:8px;font-size:0.7rem;font-weight:700"><span style="color:var(--stone-400)">Client Payout:</span><span style="color:#059669;font-family:var(--font-mono)">₹55,000 - ₹85,000</span></div></div>
+        </div>
+        <div class="gallery-item" onclick="openBooking('36 Inches','₹75,000 - ₹1,10,000')">
+          <div class="gallery-img-wrap"><img src="https://tse1.mm.bing.net/th/id/OIP.hgBJAakdUHkQiY1pon5qFQHaNK?r=0&w=1080&h=1920&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Full Head Shave" loading="lazy" referrerpolicy="no-referrer"><div class="gallery-overlay"></div><span class="gallery-tag-tl">Length Sold: 36 Inches</span><span class="gallery-tag-tr">Active Rate</span></div>
+          <div class="gallery-body"><span class="tag-black">Full Head Shave</span><h4 class="font-display" style="font-weight:900;color:var(--stone-900);font-size:1rem;margin-top:6px;letter-spacing:-0.01em">Full Head Shave</h4><p style="color:var(--stone-500);font-size:0.7rem;line-height:1.5;margin-top:4px">The ultimate transformation. A smooth, luxurious scalp shave that yields maximum payout for long hair.</p><div style="padding-top:8px;border-top:1px solid rgba(255,255,255,0.4);display:flex;align-items:center;justify-content:space-between;margin-top:8px;font-size:0.7rem;font-weight:700"><span style="color:var(--stone-400)">Client Payout:</span><span style="color:#059669;font-family:var(--font-mono)">₹75,000 - ₹1,10,000</span></div></div>
+        </div>
+        <div class="gallery-item" onclick="openBooking('30 Inches','₹45,000 - ₹68,000')">
+          <div class="gallery-img-wrap"><img src="https://tse1.mm.bing.net/th/id/OIP.9dPXzu3TQBJAi0yOwjXQdgHaHp?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Avant-Garde Mohawk" loading="lazy" referrerpolicy="no-referrer"><div class="gallery-overlay"></div><span class="gallery-tag-tl">Length Sold: 30 Inches</span><span class="gallery-tag-tr">Active Rate</span></div>
+          <div class="gallery-body"><span class="tag-black">Mohawk</span><h4 class="font-display" style="font-weight:900;color:var(--stone-900);font-size:1rem;margin-top:6px;letter-spacing:-0.01em">Avant-Garde Mohawk</h4><p style="color:var(--stone-500);font-size:0.7rem;line-height:1.5;margin-top:4px">Bold shaved temples with a dramatic, styled long ridge down the center. Fearless self-expression.</p><div style="padding-top:8px;border-top:1px solid rgba(255,255,255,0.4);display:flex;align-items:center;justify-content:space-between;margin-top:8px;font-size:0.7rem;font-weight:700"><span style="color:var(--stone-400)">Client Payout:</span><span style="color:#059669;font-family:var(--font-mono)">₹45,000 - ₹68,000</span></div></div>
+        </div>
+        <div class="gallery-item" onclick="openBooking('18 Inches','₹18,000 - ₹26,000')">
+          <div class="gallery-img-wrap"><img src="https://intrendhairstyle.com/wp-content/uploads/2023/10/Asymmetrical-Bangs-Shave-1-768x768.jpg" alt="Asymmetrical Shave" loading="lazy" referrerpolicy="no-referrer"><div class="gallery-overlay"></div><span class="gallery-tag-tl">Length Sold: 18 Inches</span><span class="gallery-tag-tr">Active Rate</span></div>
+          <div class="gallery-body"><span class="tag-black">Asymmetrical Shave</span><h4 class="font-display" style="font-weight:900;color:var(--stone-900);font-size:1rem;margin-top:6px;letter-spacing:-0.01em">Asymmetrical Shave</h4><p style="color:var(--stone-500);font-size:0.7rem;line-height:1.5;margin-top:4px">A tailored angular fringe paired with a clean side-shaved temple for high-fashion balance.</p><div style="padding-top:8px;border-top:1px solid rgba(255,255,255,0.4);display:flex;align-items:center;justify-content:space-between;margin-top:8px;font-size:0.7rem;font-weight:700"><span style="color:var(--stone-400)">Client Payout:</span><span style="color:#059669;font-family:var(--font-mono)">₹18,000 - ₹26,000</span></div></div>
+        </div>
+        <div class="gallery-item" onclick="openBooking('31 Inches','₹48,000 - ₹75,000')">
+          <div class="gallery-img-wrap"><img src="https://tse3.mm.bing.net/th/id/OIP.jIYjgoIaH4zZJLp-TjU8uwHaJQ?r=0&w=819&h=1024&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Viking Undercut" loading="lazy" referrerpolicy="no-referrer"><div class="gallery-overlay"></div><span class="gallery-tag-tl">Length Sold: 31 Inches</span><span class="gallery-tag-tr">Active Rate</span></div>
+          <div class="gallery-body"><span class="tag-black">Viking Undercut</span><h4 class="font-display" style="font-weight:900;color:var(--stone-900);font-size:1rem;margin-top:6px;letter-spacing:-0.01em">Viking Undercut</h4><p style="color:var(--stone-500);font-size:0.7rem;line-height:1.5;margin-top:4px">Both sides shaved clean with a thick, powerful, highly-textured braid-ready top deck.</p><div style="padding-top:8px;border-top:1px solid rgba(255,255,255,0.4);display:flex;align-items:center;justify-content:space-between;margin-top:8px;font-size:0.7rem;font-weight:700"><span style="color:var(--stone-400)">Client Payout:</span><span style="color:#059669;font-family:var(--font-mono)">₹48,000 - ₹75,000</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUE FACTORS -->
+  <section id="value-factors">
+    <div class="container">
+      <div class="section-heading">
+        <span class="badge">✨ The Appraisal Criteria</span>
+        <h2 style="margin-top:16px">Primary Value Drivers</h2>
+        <p>Wig manufacturing is an exquisite global trade. We appraise each bundle scientifically according to these five fundamental criteria.</p>
+      </div>
+      <div class="factors-grid">
+        <div class="pays-card">
+          <div><div style="font-size:1.5rem;margin-bottom:16px">📏</div><h4 style="font-weight:700;color:var(--stone-900);font-size:0.875rem;margin-bottom:8px">Length</h4><p style="color:var(--stone-500);font-size:0.75rem;line-height:1.5">The ultimate value multiplier. Minimum size accepted is 15". Rates scale exponentially beyond 30".</p></div>
+          <div style="margin-top:16px;font-size:0.55rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--stone-400)">Multiplier Active</div>
+        </div>
+        <div class="pays-card">
+          <div><div style="font-size:1.5rem;margin-bottom:16px">💎</div><h4 style="font-weight:700;color:var(--stone-900);font-size:0.875rem;margin-bottom:8px">Thickness</h4><p style="color:var(--stone-500);font-size:0.75rem;line-height:1.5">Measured as dry ponytail circumference. Thick bundles yield 1.25x to 1.5x more wig material.</p></div>
+          <div style="margin-top:16px;font-size:0.55rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--stone-400)">Multiplier Active</div>
+        </div>
+        <div class="pays-card">
+          <div><div style="font-size:1.5rem;margin-bottom:16px">🌿</div><h4 style="font-weight:700;color:var(--stone-900);font-size:0.875rem;margin-bottom:8px">Virgin Status</h4><p style="color:var(--stone-500);font-size:0.75rem;line-height:1.5">Completely natural, untreated, uncolored, and unbleached hair commands a massive premium rate.</p></div>
+          <div style="margin-top:16px;font-size:0.55rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--stone-400)">Multiplier Active</div>
+        </div>
+        <div class="pays-card">
+          <div><div style="font-size:1.5rem;margin-bottom:16px">🎨</div><h4 style="font-weight:700;color:var(--stone-900);font-size:0.875rem;margin-bottom:8px">Rich Color</h4><p style="color:var(--stone-500);font-size:0.75rem;line-height:1.5">Naturally dark black, rich deep mahogany, and chestnut tones are in extreme global demand.</p></div>
+          <div style="margin-top:16px;font-size:0.55rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--stone-400)">Multiplier Active</div>
+        </div>
+        <div class="pays-card">
+          <div><div style="font-size:1.5rem;margin-bottom:16px">✨</div><h4 style="font-weight:700;color:var(--stone-900);font-size:0.875rem;margin-bottom:8px">End Density</h4><p style="color:var(--stone-500);font-size:0.75rem;line-height:1.5">Symmetrical strand volume from roots to ends without split ends, preventing material loss during sorting.</p></div>
+          <div style="margin-top:16px;font-size:0.55rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--stone-400)">Multiplier Active</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS INSIGHTS -->
+  <section id="stats-insights" style="padding:96px 0">
+    <div class="container">
+      <div class="section-heading">
+        <span class="badge">📈 Empirical Insights</span>
+        <h2 style="margin-top:16px">Transformation Statistics</h2>
+        <p>We monitor feedback surveys and hair selection patterns of over 3,000 completed home visits to maintain high satisfaction.</p>
+      </div>
+      <div class="insights-grid">
+        <div class="pays-card" style="text-align:center;position:relative">
+          <span style="position:absolute;top:16px;right:16px;font-size:0.65rem;font-weight:700;color:var(--gold);background:rgba(197,160,89,0.1);border:1px solid rgba(197,160,89,0.2);padding:2px 8px;border-radius:9999px;text-transform:uppercase">Trending</span>
+          <div class="font-display" style="font-weight:900;font-size:clamp(3rem,7vw,4rem);color:var(--stone-900);line-height:1;margin-bottom:16px">78%</div>
+          <h4 style="font-weight:700;color:var(--stone-900);font-size:0.875rem;margin-bottom:8px">Choose Undercuts</h4>
+          <p style="color:var(--stone-500);font-size:0.75rem;line-height:1.6;max-width:280px;margin:0 auto">Clients overwhelmingly choose to preserve their length on top, opting for beautiful, hidden nape undercuts or side-shave designs.</p>
+        </div>
+        <div class="pays-card" style="text-align:center;position:relative">
+          <span style="position:absolute;top:16px;right:16px;font-size:0.65rem;font-weight:700;color:#6366f1;background:rgba(99,102,241,0.08);border:1px solid rgba(99,102,241,0.2);padding:2px 8px;border-radius:9999px;text-transform:uppercase">Bold Move</span>
+          <div class="font-display" style="font-weight:900;font-size:clamp(3rem,7vw,4rem);color:var(--stone-900);line-height:1;margin-bottom:16px">64%</div>
+          <h4 style="font-weight:700;color:var(--stone-900);font-size:0.875rem;margin-bottom:8px">Try First Bold Cut</h4>
+          <p style="color:var(--stone-500);font-size:0.75rem;line-height:1.6;max-width:280px;margin:0 auto">Nearly two-thirds of clients execute their first ever highly expressive, edgy haircut powered by their high cash valuation reward.</p>
+        </div>
+        <div class="pays-card" style="text-align:center;position:relative">
+          <span style="position:absolute;top:16px;right:16px;font-size:0.65rem;font-weight:700;color:#10b981;background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);padding:2px 8px;border-radius:9999px;text-transform:uppercase">Superb Loyalty</span>
+          <div class="font-display" style="font-weight:900;font-size:clamp(3rem,7vw,4rem);color:var(--stone-900);line-height:1;margin-bottom:16px">91%</div>
+          <h4 style="font-weight:700;color:var(--stone-900);font-size:0.875rem;margin-bottom:8px">Would Do It Again</h4>
+          <p style="color:var(--stone-500);font-size:0.75rem;line-height:1.6;max-width:280px;margin:0 auto">An overwhelming majority of survey respondents report feeling completely liberated, loving their new short hair, and prioritizing same-day UPI.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICE COVERAGE -->
+  <section id="service-coverage">
+    <div style="position:absolute;top:25%;left:0;width:384px;height:384px;background:radial-gradient(circle,rgba(197,160,89,0.1),transparent);border-radius:50%;filter:blur(48px);pointer-events:none"></div>
+    <div style="position:absolute;bottom:25%;right:0;width:384px;height:384px;background:radial-gradient(circle,rgba(223,192,133,0.1),transparent);border-radius:50%;filter:blur(48px);pointer-events:none"></div>
+    <div class="container" style="position:relative;z-index:1">
+      <div class="section-heading" style="color:white">
+        <span style="display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:9999px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.05);font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--gold);margin-bottom:16px">🏠 India's First Doorstep Hair Exchange</span>
+        <h2 style="color:white;font-size:clamp(2.5rem,6vw,4rem)">We Come To You.</h2>
+        <p style="color:var(--stone-400)">Sell your hair from the absolute comfort and privacy of your home. Our certified female hair specialists travel directly to your location at no additional cost.</p>
+      </div>
+      <div class="coverage-cards">
+        <div class="coverage-card">
+          <div class="coverage-icon" style="background:rgba(197,160,89,0.15);color:var(--gold)">🏠</div>
+          <h3 style="font-size:1rem;font-weight:700;color:white;margin-bottom:8px">Free Home Service</h3>
+          <p style="color:var(--stone-400);font-size:0.75rem;line-height:1.6">No travel required. Our professional female stylists visit your residence, apartment, or preferred private space.</p>
+          <div style="margin-top:16px;font-size:0.65rem;color:var(--gold);font-weight:700">✓ Same-day assessments</div>
+        </div>
+        <div class="coverage-card">
+          <div class="coverage-icon" style="background:rgba(52,211,153,0.1);color:#34d399">💰</div>
+          <h3 style="font-size:1rem;font-weight:700;color:white;margin-bottom:8px">No Hidden Charges</h3>
+          <p style="color:var(--stone-400);font-size:0.75rem;line-height:1.6">Zero assessment fees. Zero booking fees. Zero travel charges. The valuation we quote is the exact payout you receive.</p>
+          <div style="margin-top:16px;font-size:0.65rem;color:#34d399;font-weight:700">✓ 100% free consultation</div>
+        </div>
+        <div class="coverage-card">
+          <div class="coverage-icon" style="background:rgba(125,211,252,0.1);color:#7dd3fc">⚡</div>
+          <h3 style="font-size:1rem;font-weight:700;color:white;margin-bottom:8px">Same-Day Payout</h3>
+          <p style="color:var(--stone-400);font-size:0.75rem;line-height:1.6">Get paid immediately before a single hair strand is cut. UPI, bank transfer, or GPay cleared in 3 minutes on the spot.</p>
+          <div style="margin-top:16px;font-size:0.65rem;color:#7dd3fc;font-weight:700">✓ Verified instant transfers</div>
+        </div>
+        <div class="coverage-card">
+          <div class="coverage-icon" style="background:rgba(251,113,133,0.1);color:#fb7185">✂️</div>
+          <h3 style="font-size:1rem;font-weight:700;color:white;margin-bottom:8px">Professional Haircut</h3>
+          <p style="color:var(--stone-400);font-size:0.75rem;line-height:1.6">Receive any high-end transformational haircut of your choice for free. Styled by leading experts with premium hygiene standards.</p>
+          <div style="margin-top:16px;font-size:0.65rem;color:#fb7185;font-weight:700">✓ Premium styling included</div>
+        </div>
+      </div>
+      <div style="margin-top:64px;padding-top:32px;border-top:1px solid rgba(255,255,255,0.05);display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:16px 48px;font-size:0.65rem;color:var(--stone-500)">
+        <span>✓ Free Home Hair Assessment</span>
+        <span>✓ Available Across Major Indian Cities</span>
+        <span>✓ Professional Female Stylists Available</span>
+        <span>✓ Instant UPI Payments</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CITY SEARCH -->
+  <section id="city-coverage" style="padding:96px 0;background:transparent">
+    <div class="container">
+      <div class="section-heading">
+        <span class="badge">📍 Doorstep Coverage</span>
+        <h2 style="margin-top:16px">Serving Major Cities Across India</h2>
+        <p>We are actively expanding our network. Home visits are fully operational across all metro areas and tier-1 regions across India.</p>
+      </div>
+      <!-- Search Widget -->
+      <div class="search-widget">
+        <div class="search-badge">✦ Live Checker</div>
+        <h4 style="font-size:0.65rem;font-weight:700;color:var(--stone-500);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px">Check Home Service Availability</h4>
+        <div class="search-input-wrap">
+          <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" class="search-input" id="city-search-input" placeholder="Type your city (e.g. Mumbai, Kolkata, Pune...)" oninput="handleCitySearch(this.value)">
+        </div>
+        <div class="search-result" id="search-result">
+          <div class="search-result-inner">
+            <p style="font-weight:600;color:var(--stone-900);font-size:0.9375rem;margin-bottom:8px">✅ Great News! Doorstep Hair Collection Service Is Available In Your Area.</p>
+            <p style="font-size:0.75rem;color:var(--stone-500);margin-bottom:12px">Our team operates across major cities, towns, and surrounding regions throughout India. Submit your details and our team will confirm your appointment.</p>
+            <button onclick="openBooking()" style="padding:8px 20px;background:#000;color:white;border:none;border-radius:12px;font-size:0.75rem;font-weight:700;cursor:pointer;transition:all 0.2s" onmouseover="this.style.background='#222'" onmouseout="this.style.background='#000'">Check Availability</button>
+          </div>
+        </div>
+      </div>
+      <!-- Expanding Banner -->
+      <div class="expanding-banner">
+        <div style="flex:1">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+            <span class="tag-gold">Expanding Rapidly</span>
+            <span style="font-size:0.7rem;font-weight:700;color:var(--gold);display:flex;align-items:center;gap:4px">🔥 Active in 60+ Cities</span>
+          </div>
+          <p style="color:var(--stone-700);font-size:0.8125rem;line-height:1.6;font-weight:500">🏠 <strong style="color:var(--stone-900)">FREE HOME SERVICE AVAILABLE</strong> — Our team currently provides premium doorstep hair assessment, ponytail purchasing, and style transformation services with zero travel, consultation, or home visit fees. Instant payment credited directly to your bank prior to cutting!</p>
+        </div>
+        <button onclick="openBooking()" class="btn-black" style="border-radius:12px;padding:12px 24px;font-size:0.7rem;flex-shrink:0">Check Doorstep Date</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section id="reviews">
+    <div class="container">
+      <div class="section-heading">
+        <span class="badge">💬 100% Verified Clients</span>
+        <h2 style="margin-top:16px">Hear It From Them</h2>
+        <p>Real Indian women. Real doorstep payout values. Absolute self-reinvention.</p>
+      </div>
+      <div class="reviews-grid" id="reviews-grid">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- WALL OF COURAGE -->
+  <section id="wall">
+    <div style="position:absolute;top:50%;right:0;width:288px;height:288px;background:radial-gradient(circle,rgba(223,192,133,0.1),transparent);border-radius:50%;filter:blur(48px);pointer-events:none"></div>
+    <div class="container" style="position:relative;z-index:1">
+      <div class="section-heading">
+        <span class="badge">⚔️ Daring Sisterhood</span>
+        <h2 style="margin-top:16px">Find Your Club</h2>
+        <p>Every completed hair exchange unlocks your official badge. Join a prestigious network of modern women who went for it.</p>
+      </div>
+      <div class="clubs-grid">
+        <div class="club-card"><div><div style="font-size:2rem;margin-bottom:12px">✂️</div><h4 style="font-weight:800;color:var(--stone-900);font-size:0.65rem;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px">Undercut Club</h4><p style="font-size:0.6rem;color:var(--stone-400);line-height:1.4;margin-bottom:16px">Nape-shave enthusiasts</p></div><div><div class="font-mono" style="font-weight:900;color:var(--stone-900);font-size:1.25rem">1,240</div><span style="font-size:0.55rem;color:var(--stone-400);font-weight:700;text-transform:uppercase;letter-spacing:0.1em;display:block;margin-top:4px">Members</span></div></div>
+        <div class="club-card"><div><div style="font-size:2rem;margin-bottom:12px">🪒</div><h4 style="font-weight:800;color:var(--stone-900);font-size:0.65rem;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px">Side Shave Club</h4><p style="font-size:0.6rem;color:var(--stone-400);line-height:1.4;margin-bottom:16px">Asymmetrical pioneers</p></div><div><div class="font-mono" style="font-weight:900;color:var(--stone-900);font-size:1.25rem">641</div><span style="font-size:0.55rem;color:var(--stone-400);font-weight:700;text-transform:uppercase;letter-spacing:0.1em;display:block;margin-top:4px">Members</span></div></div>
+        <div class="club-card"><div><div style="font-size:2rem;margin-bottom:12px">💇</div><h4 style="font-weight:800;color:var(--stone-900);font-size:0.65rem;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px">Micro Bob Club</h4><p style="font-size:0.6rem;color:var(--stone-400);line-height:1.4;margin-bottom:16px">Short high-fashion styles</p></div><div><div class="font-mono" style="font-weight:900;color:var(--stone-900);font-size:1.25rem">897</div><span style="font-size:0.55rem;color:var(--stone-400);font-weight:700;text-transform:uppercase;letter-spacing:0.1em;display:block;margin-top:4px">Members</span></div></div>
+        <div class="club-card"><div><div style="font-size:2rem;margin-bottom:12px">⚡</div><h4 style="font-weight:800;color:var(--stone-900);font-size:0.65rem;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px">Buzzcut Club</h4><p style="font-size:0.6rem;color:var(--stone-400);line-height:1.4;margin-bottom:16px">Minimalist cuts</p></div><div><div class="font-mono" style="font-weight:900;color:var(--stone-900);font-size:1.25rem">318</div><span style="font-size:0.55rem;color:var(--stone-400);font-weight:700;text-transform:uppercase;letter-spacing:0.1em;display:block;margin-top:4px">Members</span></div></div>
+        <div class="club-card"><div><div style="font-size:2rem;margin-bottom:12px">🔥</div><h4 style="font-weight:800;color:var(--stone-900);font-size:0.65rem;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px">Mohawk Club</h4><p style="font-size:0.6rem;color:var(--stone-400);line-height:1.4;margin-bottom:16px">Avant-garde legends</p></div><div><div class="font-mono" style="font-weight:900;color:var(--stone-900);font-size:1.25rem">194</div><span style="font-size:0.55rem;color:var(--stone-400);font-weight:700;text-transform:uppercase;letter-spacing:0.1em;display:block;margin-top:4px">Members</span></div></div>
+        <div class="club-card"><div><div style="font-size:2rem;margin-bottom:12px">👑</div><h4 style="font-weight:800;color:var(--stone-900);font-size:0.65rem;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px">Headshave Club</h4><p style="font-size:0.6rem;color:var(--stone-400);line-height:1.4;margin-bottom:16px">Ultimate bald resets</p></div><div><div class="font-mono" style="font-weight:900;color:var(--stone-900);font-size:1.25rem">114</div><span style="font-size:0.55rem;color:var(--stone-400);font-weight:700;text-transform:uppercase;letter-spacing:0.1em;display:block;margin-top:4px">Members</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HALL OF FAME -->
+  <section id="halloffame" style="padding:96px 0;border-bottom:1px solid rgba(255,255,255,0.4)">
+    <div class="container-md">
+      <div class="section-heading">
+        <span class="badge">🏆 Historic Records</span>
+        <h2 style="margin-top:16px">All-Time Records</h2>
+        <p>We appreciate true, long-term hair care. Here are some of our most legendary doorstep exchanges.</p>
+      </div>
+      <div class="hof-grid">
+        <div class="pays-card" style="flex-direction:row;align-items:center;justify-content:space-between"><div><span style="font-size:0.6rem;color:var(--stone-400);text-transform:uppercase;font-weight:800;letter-spacing:0.1em">Longest Ponytail Purchased</span><h4 class="font-display" style="font-weight:900;font-size:1.5rem;color:var(--stone-900);margin-top:4px">52 Inches</h4><p style="font-size:0.75rem;color:var(--stone-500);margin-top:2px">Sourced from Siliguri, West Bengal</p></div><span style="font-size:2rem">📏</span></div>
+        <div class="pays-card" style="flex-direction:row;align-items:center;justify-content:space-between"><div><span style="font-size:0.6rem;color:var(--stone-400);text-transform:uppercase;font-weight:800;letter-spacing:0.1em">Highest Single Payout</span><h4 class="font-display font-mono" style="font-weight:900;font-size:1.5rem;color:#059669;margin-top:4px">₹1,15,000</h4><p style="font-size:0.75rem;color:var(--stone-500);margin-top:2px">Extra-Thick 36" Virgin Curly Hair</p></div><span style="font-size:2rem">💰</span></div>
+        <div class="pays-card" style="flex-direction:row;align-items:center;justify-content:space-between"><div><span style="font-size:0.6rem;color:var(--stone-400);text-transform:uppercase;font-weight:800;letter-spacing:0.1em">Most Extreme Transformation</span><h4 class="font-display" style="font-weight:900;font-size:1.125rem;color:var(--stone-900);margin-top:4px;line-height:1.2">Waist Length → Full Buzzcut</h4><p style="font-size:0.75rem;color:var(--stone-500);margin-top:2px">Completed successfully in Lucknow</p></div><span style="font-size:2rem">🪒</span></div>
+        <div class="pays-card" style="flex-direction:row;align-items:center;justify-content:space-between"><div><span style="font-size:0.6rem;color:var(--stone-400);text-transform:uppercase;font-weight:800;letter-spacing:0.1em">Most Requested Nape Design</span><h4 class="font-display" style="font-weight:900;font-size:1.5rem;color:var(--stone-900);margin-top:4px">Hidden Undercut</h4><p style="font-size:0.75rem;color:var(--stone-500);margin-top:2px">Chosen by over 45% of clients in metros</p></div><span style="font-size:2rem">✂️</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- JOURNEY / PROCESS -->
+  <section id="journey" style="padding:96px 0">
+    <div class="container">
+      <div class="section-heading">
+        <span class="badge">📌 Operational Steps</span>
+        <h2 style="margin-top:16px">The Doorstep Process</h2>
+        <p>Five transparent steps. Safe, professional, and completed entirely inside your home.</p>
+      </div>
+      <div class="journey-grid">
+        <div class="pays-card" style="position:relative">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px"><span class="font-mono" style="font-size:1.5rem;font-weight:900;color:var(--stone-300)">01</span><span style="font-size:1.5rem">📅</span></div>
+          <h4 style="font-weight:700;color:var(--stone-900);font-size:0.875rem;margin-bottom:8px">Book Visit</h4>
+          <p style="color:var(--stone-500);font-size:0.7rem;line-height:1.5">Request an appointment. No consultation or home visit fees.</p>
+          <div style="margin-top:16px;font-size:0.55rem;font-weight:700;color:#059669;text-transform:uppercase;letter-spacing:0.1em">✓ Standard Protocol</div>
+        </div>
+        <div class="pays-card">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px"><span class="font-mono" style="font-size:1.5rem;font-weight:900;color:var(--stone-300)">02</span><span style="font-size:1.5rem">📏</span></div>
+          <h4 style="font-weight:700;color:var(--stone-900);font-size:0.875rem;margin-bottom:8px">Digital Appraisal</h4>
+          <p style="color:var(--stone-500);font-size:0.7rem;line-height:1.5">Our certified female stylist measures length, thickness, and condition.</p>
+          <div style="margin-top:16px;font-size:0.55rem;font-weight:700;color:#059669;text-transform:uppercase;letter-spacing:0.1em">✓ Standard Protocol</div>
+        </div>
+        <div class="pays-card">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px"><span class="font-mono" style="font-size:1.5rem;font-weight:900;color:var(--stone-300)">03</span><span style="font-size:1.5rem">✅</span></div>
+          <h4 style="font-weight:700;color:var(--stone-900);font-size:0.875rem;margin-bottom:8px">Price Confirmed</h4>
+          <p style="color:var(--stone-500);font-size:0.7rem;line-height:1.5">Get a clear contract and immediate valuation agreement.</p>
+          <div style="margin-top:16px;font-size:0.55rem;font-weight:700;color:#059669;text-transform:uppercase;letter-spacing:0.1em">✓ Standard Protocol</div>
+        </div>
+        <div class="pays-card">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px"><span class="font-mono" style="font-size:1.5rem;font-weight:900;color:var(--stone-300)">04</span><span style="font-size:1.5rem">💸</span></div>
+          <h4 style="font-weight:700;color:var(--stone-900);font-size:0.875rem;margin-bottom:8px">Instant UPI Payout</h4>
+          <p style="color:var(--stone-500);font-size:0.7rem;line-height:1.5">Verify full funds in your bank account before a single hair strand is cut.</p>
+          <div style="margin-top:16px;font-size:0.55rem;font-weight:700;color:#059669;text-transform:uppercase;letter-spacing:0.1em">✓ Standard Protocol</div>
+        </div>
+        <div class="pays-card">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px"><span class="font-mono" style="font-size:1.5rem;font-weight:900;color:var(--stone-300)">05</span><span style="font-size:1.5rem">✂️</span></div>
+          <h4 style="font-weight:700;color:var(--stone-900);font-size:0.875rem;margin-bottom:8px">Elite Haircut</h4>
+          <p style="color:var(--stone-500);font-size:0.7rem;line-height:1.5">Receive the high-end designer transformation you chose, styled perfectly.</p>
+          <div style="margin-top:16px;font-size:0.55rem;font-weight:700;color:#059669;text-transform:uppercase;letter-spacing:0.1em">✓ Standard Protocol</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="container-sm">
+      <div class="section-heading">
+        <span class="badge">📋 Knowledge Base</span>
+        <h2 style="margin-top:16px">Common Questions</h2>
+      </div>
+      <div style="background:rgba(255,255,255,0.4);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.6);border-radius:24px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.08)" id="faq-accordion">
+        <!-- FAQs rendered by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section id="final-cta">
+    <div class="glow"></div>
+    <div class="container-sm" style="position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:20px">
+      <span style="display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:9999px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.05);font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--gold)">🔒 Fully Operational &amp; Guaranteed</span>
+      <h2 class="final-title">Your Hair Has Value.<br>Let Us Come To You.</h2>
+      <p style="color:var(--stone-400);font-size:0.875rem;max-width:480px;margin:0 auto;line-height:1.7;text-align:center">Submit an appraisal request, get paid instant UPI funds directly to your bank account, and experience a breathtaking salon transformation in your own home.</p>
+      <div style="padding-top:16px;text-align:center">
+        <button onclick="openBooking()" style="padding:20px 40px;background:white;color:#000;border:1px solid rgba(255,255,255,0.4);font-weight:900;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.06em;border-radius:12px;cursor:pointer;transition:all 0.2s;box-shadow:0 8px 32px rgba(255,255,255,0.1)" onmouseover="this.style.background='#f5f5f5'" onmouseout="this.style.background='white'">Book Doorstep Appointment</button>
+        <div style="font-size:0.6rem;color:var(--stone-500);margin-top:10px;text-transform:uppercase;font-weight:700;letter-spacing:0.1em;display:flex;align-items:center;justify-content:center;gap:6px">
+          <span>🏠 FREE HOME SERVICE AVAILABLE</span><span>•</span><span>NO HOME VISIT FEES</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <h3 class="font-display" style="font-weight:900;font-size:1.5rem;color:white">SellHair<span style="color:var(--gold)">.in</span></h3>
+          <p style="font-size:0.75rem;color:var(--stone-500);line-height:1.6">India's first professional doorstep hair exchange service. We pair the global premium wig trade with beautiful, liberating client transformations right at home.</p>
+          <div style="display:flex;align-items:center;gap:8px;font-size:0.75rem;color:var(--stone-500)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Safe, Secure &amp; Fully Insured
+          </div>
+        </div>
+        <div class="footer-links-grid">
+          <div>
+            <h5 style="font-weight:800;color:var(--stone-300);font-size:0.65rem;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:12px">Service</h5>
+            <ul style="list-style:none;display:flex;flex-direction:column;gap:8px">
+              <li><a href="#service-coverage" class="footer-link">How It Works</a></li>
+              <li><a href="#calculator" class="footer-link">Hair Appraiser</a></li>
+              <li><a href="#market-rates" class="footer-link">Buying Rates</a></li>
+              <li><a href="#gallery" class="footer-link">Transformations</a></li>
+            </ul>
+          </div>
+          <div>
+            <h5 style="font-weight:800;color:var(--stone-300);font-size:0.65rem;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:12px">Company</h5>
+            <ul style="list-style:none;display:flex;flex-direction:column;gap:8px">
+              <li><a href="#reviews" class="footer-link">Client Stories</a></li>
+              <li><a href="#wall" class="footer-link">Sisterhood Clubs</a></li>
+              <li><a href="#halloffame" class="footer-link">Hall of Fame</a></li>
+              <li><a href="#faq" class="footer-link">Knowledge Center</a></li>
+            </ul>
+          </div>
+          <div style="grid-column:span 2">
+            <h5 style="font-weight:800;color:var(--stone-300);font-size:0.65rem;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:12px">Trust Protocol</h5>
+            <p style="font-size:0.75rem;color:var(--stone-500);line-height:1.6;margin-bottom:12px">Appointments are executed by certified female hair specialists. Same-day GPay/UPI.</p>
+            <div style="padding:12px;background:#000;border:1px solid rgba(255,255,255,0.1);border-radius:12px;font-size:0.65rem;color:var(--stone-400)">📍 Headquartered in Mumbai, Maharashtra. Active in 60+ Indian Cities.</div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:48px;padding-top:32px;border-top:1px solid rgba(255,255,255,0.1);display:flex;flex-direction:column;gap:16px;align-items:center;justify-content:space-between;font-size:0.75rem;color:var(--stone-500)">
+        <div>© 2026 SellHair.in — India's First Doorstep Hair Exchange Service. All rights reserved.</div>
+        <div style="display:flex;gap:16px">
+          <a href="#" class="footer-link">Privacy Guard</a>
+          <a href="#" class="footer-link">Service Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- BOOKING MODAL -->
+  <div class="modal-overlay" id="modal-overlay" onclick="closeBooking()">
+    <div class="modal-box" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeBooking()" aria-label="Close">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <!-- Sidebar -->
+      <div class="modal-sidebar">
+        <div style="position:relative;z-index:1">
+          <span style="display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:9999px;background:rgba(255,255,255,0.1);font-size:0.55rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--gold);margin-bottom:24px">✦ Step-by-Step Luxury</span>
+          <h3 class="font-display" style="font-size:1.25rem;font-weight:700;letter-spacing:-0.02em;line-height:1.2;color:white">India's #1 Doorstep Hair Service</h3>
+          <p style="color:var(--stone-400);font-size:0.7rem;margin-top:12px;line-height:1.6">Experience a stress-free transformation handled entirely at your home by elite, certified female specialists.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:16px;position:relative;z-index:1;margin-top:32px">
+          <div style="display:flex;align-items:flex-start;gap:12px"><div style="padding:6px;background:rgba(255,255,255,0.05);border-radius:8px;color:#34d399;flex-shrink:0"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></div><div><h4 style="font-size:0.75rem;font-weight:600;color:var(--stone-100)">Free Doorstep Assessment</h4><p style="font-size:0.65rem;color:var(--stone-400)">No home visit or booking fees, ever.</p></div></div>
+          <div style="display:flex;align-items:flex-start;gap:12px"><div style="padding:6px;background:rgba(255,255,255,0.05);border-radius:8px;color:#34d399;flex-shrink:0"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div><h4 style="font-size:0.75rem;font-weight:600;color:var(--stone-100)">Instant UPI Payments</h4><p style="font-size:0.65rem;color:var(--stone-400)">Funds credited to your account before we cut.</p></div></div>
+          <div style="display:flex;align-items:flex-start;gap:12px"><div style="padding:6px;background:rgba(255,255,255,0.05);border-radius:8px;color:var(--gold);flex-shrink:0"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></div><div><h4 style="font-size:0.75rem;font-weight:600;color:var(--stone-100)">Top Rated Female Stylists</h4><p style="font-size:0.65rem;color:var(--stone-400)">Safe, respectful, high-precision haircuts.</p></div></div>
+        </div>
+        <div style="padding-top:24px;border-top:1px solid rgba(255,255,255,0.1);position:relative;z-index:1;font-size:0.6rem;color:var(--stone-500)">Active in 60+ cities including Mumbai, Kolkata, Delhi, Bangalore &amp; Hyderabad.</div>
+      </div>
+      <!-- Form -->
+      <div class="modal-body">
+        <div id="form-container">
+          <div style="margin-bottom:24px">
+            <h2 class="font-display" style="font-size:1.5rem;font-weight:900;letter-spacing:-0.02em;color:var(--stone-900)">Book Free Home Visit</h2>
+            <p style="font-size:0.75rem;color:var(--stone-500);margin-top:8px">No travel required. Get estimated <span id="modal-estimate" style="font-weight:600;color:var(--stone-900)">₹18,000 – ₹28,000</span> for your <span id="modal-length" style="font-weight:600;color:var(--stone-900)">18–24 Inches</span> ponytail.</p>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:16px">
+            <div>
+              <label class="form-label">👤 Full Name <span style="color:red">*</span></label>
+              <input type="text" class="form-input" id="f-name" placeholder="Enter your full name" required>
+            </div>
+            <div>
+              <label class="form-label">📱 WhatsApp Number <span style="color:red">*</span></label>
+              <input type="tel" class="form-input" id="f-phone" placeholder="Enter 10-digit mobile number" pattern="[0-9]{10}" required>
+              <p style="font-size:0.6rem;color:var(--stone-400);margin-top:4px">We will send appointment updates via WhatsApp.</p>
+            </div>
+            <div class="form-grid">
+              <div>
+                <label class="form-label">📍 State <span style="color:red">*</span></label>
+                <select class="form-select" id="f-state" onchange="populateCities()" required>
+                  <option value="">Select State</option>
+                  <option>West Bengal</option><option>Maharashtra</option><option>Delhi NCR</option><option>Karnataka</option><option>Gujarat</option><option>Tamil Nadu</option><option>Telangana</option><option>Kerala</option><option>Rajasthan</option><option>Madhya Pradesh</option><option>Uttar Pradesh</option><option>Punjab</option><option>Odisha</option><option>Bihar</option><option>Assam</option><option>Jharkhand</option><option>Andhra Pradesh</option><option>Haryana</option><option>Chhattisgarh</option><option>Other</option>
+                </select>
+              </div>
+              <div>
+                <label class="form-label">📍 City <span style="color:red">*</span></label>
+                <select class="form-select" id="f-city" required>
+                  <option value="">Select City</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-grid">
+              <div>
+                <label class="form-label">📏 Hair Length</label>
+                <select class="form-select" id="f-length">
+                  <option value="15–18 Inches">15–18 Inches</option>
+                  <option value="18–24 Inches" selected>18–24 Inches</option>
+                  <option value="24–30 Inches">24–30 Inches</option>
+                  <option value="30+ Inches">30+ Inches</option>
+                </select>
+              </div>
+              <div>
+                <label class="form-label">✂️ Desired Style</label>
+                <select class="form-select" id="f-style">
+                  <option>Undercut</option><option>Side Shave</option><option>Half Shave</option><option>Buzz Cut</option><option>Mohawk</option><option>Pixie</option><option>Hidden Undercut</option><option>Full Head Shave</option><option>Micro Bob + Shaved Nape</option><option>Viking Undercut</option><option>Asymmetrical Shave</option>
+                </select>
+              </div>
+            </div>
+            <button onclick="submitBooking()" id="submit-btn" style="width:100%;margin-top:8px;background:#000;color:white;font-weight:700;padding:14px 24px;border-radius:12px;border:1px solid rgba(255,255,255,0.1);font-size:0.875rem;cursor:pointer;transition:all 0.2s;box-shadow:0 4px 16px rgba(0,0,0,0.2);display:flex;align-items:center;justify-content:center;gap:8px" onmouseover="this.style.background='#222'" onmouseout="this.style.background='#000'">
+              Confirm Free Doorstep Booking
+            </button>
+            <div style="text-align:center"><span style="font-size:0.6rem;color:var(--stone-400)">🔒 Protected by SellHair.in Privacy Guard. We never share your phone number.</span></div>
+          </div>
+        </div>
+        <!-- Success State -->
+        <div class="success-state" id="success-state">
+          <div style="width:64px;height:64px;background:#d1fae5;color:#059669;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:24px" class="bounce-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <h2 class="font-display" style="font-size:1.5rem;font-weight:900;color:var(--stone-900)">Booking Confirmed!</h2>
+          <p style="color:var(--stone-600);font-size:0.875rem;margin-top:12px;max-width:360px;line-height:1.6">Thank you <strong id="s-name" style="color:var(--stone-900)"></strong>. Our expert female stylist supervisor in <strong id="s-city" style="color:var(--stone-900)"></strong> will contact you within 2 hours to coordinate the free doorstep assessment.</p>
+          <div style="margin-top:32px;padding:16px;background:rgba(255,255,255,0.4);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.6);border-radius:16px;width:100%;max-width:340px;display:flex;flex-direction:column;gap:8px;box-shadow:0 4px 16px rgba(0,0,0,0.06)">
+            <div style="display:flex;justify-content:space-between;font-size:0.75rem"><span style="color:var(--stone-500)">Assigned Location:</span><span id="s-loc" style="font-weight:600;color:var(--stone-900)"></span></div>
+            <div style="display:flex;justify-content:space-between;font-size:0.75rem"><span style="color:var(--stone-500)">Target length:</span><span id="s-length" style="font-weight:600;color:var(--stone-900)"></span></div>
+            <div style="display:flex;justify-content:space-between;font-size:0.75rem"><span style="color:var(--stone-500)">Desired style:</span><span id="s-style" style="font-weight:600;color:var(--stone-900)"></span></div>
+            <div style="display:flex;justify-content:space-between;font-size:0.75rem"><span style="color:var(--stone-500)">Est. Payout Value:</span><span id="s-payout" style="font-weight:700;color:#059669;font-family:var(--font-mono)"></span></div>
+          </div>
+          <button onclick="closeBooking()" style="margin-top:32px;padding:10px 24px;background:#000;color:white;font-size:0.75rem;font-weight:700;border-radius:9999px;border:1px solid rgba(255,255,255,0.1);cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.2)" onmouseover="this.style.background='#222'" onmouseout="this.style.background='#000'">Close Window</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  // ─── STATE ───────────────────────────────────────────────────────────────────
+  let calcState = { length: 24, thickness: 'thick', quality: 'virgin', texture: 'straight' };
+  let bookingInitLength = '18–24 Inches';
+  let bookingInitEstimate = '₹18,000 – ₹28,000';
+  let animMin = 35000, animMax = 56250;
+  let rateVbh = 12200, rateCurly = 14500, rateGrey = 8800, rateColored = 5500;
+
+  // ─── PRICING ─────────────────────────────────────────────────────────────────
+  const BASE = { 15:[12000,18000], 18:[18000,28000], 24:[28000,45000], 30:[45000,80000], 36:[80000,120000] };
+  const THICK = { thin:0.75, medium:1.0, thick:1.25, extra:1.55 };
+  const QUAL = { virgin:1.35, healthy:1.0, colored:0.65 };
+  const TEX = { straight:1.0, wavy:1.1, curly:1.25 };
+
+  function calcPrice() {
+    const [bMin, bMax] = BASE[calcState.length] || [12000,18000];
+    const m = THICK[calcState.thickness] * QUAL[calcState.quality] * TEX[calcState.texture];
+    return [Math.round(bMin*m/500)*500, Math.round(bMax*m/500)*500];
+  }
+
+  function getRarity() {
+    let score = 0;
+    if (calcState.length >= 30) score += 40; else if (calcState.length >= 24) score += 25; else score += 10;
+    if (calcState.thickness === 'extra') score += 30; else if (calcState.thickness === 'thick') score += 20; else score += 10;
+    if (calcState.quality === 'virgin') score += 30; else if (calcState.quality === 'healthy') score += 15; else score += 5;
+    let level = 'Common', color = 'color:var(--stone-400);background:var(--stone-900);border:1px solid var(--stone-800)', width = '20%';
+    if (score >= 90) { level='Collector Grade'; color='color:var(--gold);background:#000;border:1px solid rgba(197,160,89,0.4)'; width='100%'; }
+    else if (score >= 70) { level='Very Rare'; color='color:#fb7185;background:#000;border:1px solid rgba(251,113,133,0.3)'; width='80%'; }
+    else if (score >= 50) { level='Rare'; color='color:#a5b4fc;background:#000;border:1px solid rgba(165,180,252,0.3)'; width='60%'; }
+    else if (score >= 30) { level='Uncommon'; color='color:#7dd3fc;background:#000;border:1px solid rgba(125,211,252,0.3)'; width='40%'; }
+    return { level, color, width, score };
+  }
+
+  function updateCalculator() {
+    const [min, max] = calcPrice();
+    const rarity = getRarity();
+    // Animate price
+    animatePrice(min, max);
+    // Rarity
+    document.getElementById('rarity-badge').textContent = rarity.level;
+    document.getElementById('rarity-badge').style.cssText = 'font-size:0.6rem;font-weight:700;text-transform:uppercase;padding:2px 8px;border-radius:9999px;' + rarity.color;
+    document.getElementById('rarity-fill').style.width = rarity.width;
+    // Details
+    document.getElementById('premium-bonus').textContent = '+₹' + (Math.round(max*0.12/100)*100).toLocaleString('en-IN');
+    // VIP
+    const s = rarity.score;
+    document.getElementById('vip-percentile').textContent = s>=90?'Top 1.5% of Submissions':s>=75?'Top 6.2% of Submissions':s>=55?'Top 12% of Submissions':s>=35?'Top 28% of Submissions':'Top 45% of Submissions';
+    // Demand
+    const l = calcState.length, q = calcState.quality, t = calcState.thickness;
+    document.getElementById('demand-level').textContent = l>=30?'Extreme Demand':(l>=24&&q==='virgin')?'Exceptionally High':(t==='extra'||t==='thick')?'Very High':'Balanced Demand';
+    // Suitable
+    document.getElementById('suitable-for').textContent = (q==='virgin'&&l>=30)?'Luxury Parisian Wigmaking':(q==='virgin'&&l>=24)?'Haute Couture Hair Extensions':(t==='extra'||t==='thick')?'Premium Volume Wefts':'General Medical Wigs & Toppers';
+    // Insight
+    let insight = 'Your hair profile matches criteria for elite wig and hairpiece fabrication. You qualify for fully-funded free home service and top-tier rates.';
+    if (l>=30&&q==='virgin') insight = 'Long virgin black hair above 30 inches is currently in exceptionally high global demand. Your profile qualifies for maximum premium pricing.';
+    else if (t==='extra'||t==='thick') insight = 'Excellent thickness multiplier detected. High-volume ponytails allow for premium weft processing, resulting in an automatic cash bonus.';
+    else if (q==='colored') insight = 'Chemically treated hair is accepted! However, natural, unprocessed (virgin) hair receives an automatic +50% baseline valuation boost.';
+    document.getElementById('market-insight').textContent = '"' + insight + '"';
+    // Book button
+    document.getElementById('calc-book-btn').onclick = () => openBooking(`${calcState.length} Inches (${calcState.thickness})`, `₹${min.toLocaleString('en-IN')} – ₹${max.toLocaleString('en-IN')}`);
+  }
+
+  let priceAnimFrame;
+  function animatePrice(targetMin, targetMax) {
+    if (priceAnimFrame) cancelAnimationFrame(priceAnimFrame);
+    const startMin = animMin, startMax = animMax;
+    const duration = 400, startTime = performance.now();
+    function step(now) {
+      const t = Math.min((now - startTime)/duration, 1);
+      const e = 1 - Math.pow(1-t, 3);
+      animMin = Math.round(startMin + (targetMin-startMin)*e);
+      animMax = Math.round(startMax + (targetMax-startMax)*e);
+      document.getElementById('result-price').textContent = '₹' + animMin.toLocaleString('en-IN') + ' – ₹' + animMax.toLocaleString('en-IN');
+      if (t < 1) priceAnimFrame = requestAnimationFrame(step);
+    }
+    priceAnimFrame = requestAnimationFrame(step);
+  }
+
+  function setLength(val) {
+    calcState.length = val;
+    document.querySelectorAll('.length-btn').forEach(b => {
+      const isActive = parseInt(b.dataset.length) === val;
+      b.classList.toggle('active', isActive);
+      const dot = b.querySelector('.length-hint-dot');
+      if (dot) dot.style.background = isActive ? 'var(--gold)' : 'var(--stone-300)';
+      const range = b.querySelector('.length-range');
+      if (range) range.style.color = isActive ? 'rgba(255,255,255,0.6)' : 'var(--stone-400)';
+    });
+    document.getElementById('length-display').textContent = val + '" Ponytail Length';
+    // Update silhouette
+    const offsets = { 15:55, 18:43, 24:25, 30:10, 36:0 };
+    document.getElementById('pony-ext').style.strokeDashoffset = offsets[val] || 25;
+    const dotY = { 15:115, 18:128, 24:145, 30:160, 36:175 };
+    document.getElementById('pony-dot').setAttribute('cy', dotY[val] || 145);
+    [15,18,24,30,36].forEach(l => {
+      const g = document.getElementById('guide-'+l);
+      if (g) g.setAttribute('stroke', l===val ? '#a8a29e' : '#e7e5e4');
+    });
+    updateCalculator();
+  }
+
+  function setThickness(val) {
+    calcState.thickness = val;
+    document.querySelectorAll('.thickness-btn').forEach(b => b.classList.toggle('active', b.dataset.thick === val));
+    updateCalculator();
+  }
+
+  function setQuality(val) {
+    calcState.quality = val;
+    document.querySelectorAll('.quality-btn').forEach(b => b.classList.toggle('active', b.dataset.quality === val));
+    updateCalculator();
+  }
+
+  function setTexture(val) {
+    calcState.texture = val;
+    document.querySelectorAll('.texture-btn').forEach(b => b.classList.toggle('active', b.dataset.texture === val));
+    updateCalculator();
+  }
+
+  // ─── LIVE RATES ───────────────────────────────────────────────────────────────
+  setInterval(() => {
+    rateVbh += Math.floor(Math.random()*80-40);
+    rateCurly += Math.floor(Math.random()*100-50);
+    rateGrey += Math.floor(Math.random()*60-30);
+    rateColored += Math.floor(Math.random()*40-20);
+    document.getElementById('rate-vbh').textContent = '₹' + rateVbh.toLocaleString('en-IN');
+    document.getElementById('rate-curly').textContent = '₹' + rateCurly.toLocaleString('en-IN');
+    document.getElementById('rate-grey').textContent = '₹' + rateGrey.toLocaleString('en-IN');
+    document.getElementById('rate-colored').textContent = '₹' + rateColored.toLocaleString('en-IN');
+  }, 5000);
+
+  // ─── MOBILE MENU ─────────────────────────────────────────────────────────────
+  let menuOpen = false;
+  function toggleMobileMenu() {
+    menuOpen = !menuOpen;
+    document.getElementById('mobile-overlay').classList.toggle('open', menuOpen);
+    document.getElementById('icon-menu').style.display = menuOpen ? 'none' : 'block';
+    document.getElementById('icon-x').style.display = menuOpen ? 'block' : 'none';
+  }
+  function closeMobileMenu() {
+    menuOpen = false;
+    document.getElementById('mobile-overlay').classList.remove('open');
+    document.getElementById('icon-menu').style.display = 'block';
+    document.getElementById('icon-x').style.display = 'none';
+  }
+
+  // ─── CITY SEARCH ─────────────────────────────────────────────────────────────
+  function handleCitySearch(val) {
+    const result = document.getElementById('search-result');
+    result.classList.toggle('visible', val.trim().length > 0);
+  }
+
+  // ─── BOOKING MODAL ───────────────────────────────────────────────────────────
+  function openBooking(length, estimate) {
+    bookingInitLength = length || '18–24 Inches';
+    bookingInitEstimate = estimate || '₹18,000 – ₹28,000';
+    document.getElementById('modal-length').textContent = bookingInitLength;
+    document.getElementById('modal-estimate').textContent = bookingInitEstimate;
+    document.getElementById('f-length').value = bookingInitLength.includes('15') ? '15–18 Inches' : bookingInitLength.includes('24') && bookingInitLength.includes('30') ? '24–30 Inches' : bookingInitLength.includes('30') ? '30+ Inches' : '18–24 Inches';
+    document.getElementById('form-container').style.display = 'block';
+    document.getElementById('success-state').classList.remove('visible');
+    document.getElementById('modal-overlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeBooking() {
+    document.getElementById('modal-overlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // ─── CITY DATA ───────────────────────────────────────────────────────────────
+  const CITIES = {
+    'West Bengal': ['Kolkata','Howrah','Durgapur','Asansol','Siliguri','Barrackpore','Kalyani','Kharagpur','Haldia','Burdwan'],
+    'Maharashtra': ['Mumbai','Pune','Nagpur','Thane','Nashik','Aurangabad','Solapur','Navi Mumbai'],
+    'Delhi NCR': ['New Delhi','Gurugram','Noida','Faridabad','Ghaziabad','Greater Noida'],
+    'Karnataka': ['Bengaluru','Mysuru','Mangaluru','Hubli','Belagavi'],
+    'Gujarat': ['Ahmedabad','Surat','Vadodara','Rajkot','Gandhinagar'],
+    'Tamil Nadu': ['Chennai','Coimbatore','Madurai','Trichy','Salem','Vellore'],
+    'Telangana': ['Hyderabad','Warangal','Nizamabad','Karimnagar'],
+    'Kerala': ['Kochi','Trivandrum','Kozhikode','Thrissur','Kannur'],
+    'Rajasthan': ['Jaipur','Jodhpur','Udaipur','Kota','Ajmer'],
+    'Madhya Pradesh': ['Indore','Bhopal','Gwalior','Jabalpur','Ujjain'],
+    'Uttar Pradesh': ['Lucknow','Kanpur','Varanasi','Agra','Allahabad','Meerut','Bareilly'],
+    'Punjab': ['Ludhiana','Amritsar','Chandigarh','Jalandhar','Patiala'],
+    'Odisha': ['Bhubaneswar','Cuttack','Rourkela','Puri'],
+    'Bihar': ['Patna','Gaya','Bhagalpur','Muzaffarpur'],
+    'Assam': ['Guwahati','Silchar','Dibrugarh'],
+    'Jharkhand': ['Ranchi','Jamshedpur','Dhanbad'],
+    'Andhra Pradesh': ['Visakhapatnam','Vijayawada','Guntur','Tirupati'],
+    'Haryana': ['Gurgaon','Faridabad','Rohtak','Ambala'],
+    'Chhattisgarh': ['Raipur','Bhilai','Bilaspur'],
+    'Other': ['My City (Confirm with team)'],
+  };
+
+  function populateCities() {
+    const state = document.getElementById('f-state').value;
+    const citySelect = document.getElementById('f-city');
+    citySelect.innerHTML = '<option value="">Select City</option>';
+    (CITIES[state] || []).forEach(c => {
+      const opt = document.createElement('option');
+      opt.value = c; opt.textContent = c;
+      citySelect.appendChild(opt);
+    });
+  }
+
+  function submitBooking() {
+    const name = document.getElementById('f-name').value.trim();
+    const phone = document.getElementById('f-phone').value.trim();
+    const state = document.getElementById('f-state').value;
+    const city = document.getElementById('f-city').value;
+    if (!name || !phone || !state || !city) {
+      alert('Please fill in all required fields.');
+      return;
+    }
+    if (!/^\d{10}$/.test(phone)) {
+      alert('Please enter a valid 10-digit mobile number.');
+      return;
+    }
+    const btn = document.getElementById('submit-btn');
+    btn.innerHTML = '<div class="spinner"></div>';
+    btn.disabled = true;
+    setTimeout(() => {
+      document.getElementById('s-name').textContent = name;
+      document.getElementById('s-city').textContent = city;
+      document.getElementById('s-loc').textContent = city + ', ' + state;
+      document.getElementById('s-length').textContent = document.getElementById('f-length').value;
+      document.getElementById('s-style').textContent = document.getElementById('f-style').value;
+      document.getElementById('s-payout').textContent = bookingInitEstimate;
+      document.getElementById('form-container').style.display = 'none';
+      document.getElementById('success-state').classList.add('visible');
+      btn.innerHTML = 'Confirm Free Doorstep Booking';
+      btn.disabled = false;
+    }, 1200);
+  }
+
+  // ─── FAQ ──────────────────────────────────────────────────────────────────────
+  const FAQS = [
+    { q: "Do I need to visit a salon?", a: "No. In most cities we offer free home visits. Our certified female specialists come directly to your location with all the sterile assessment tools and professional hair scissors. Your entire hair transformation can happen in the safety and privacy of your home." },
+    { q: "Is there a home service charge?", a: "No. Home assessments, home visits, and the expert haircuts are completely free. There are absolutely no hidden charges, assessment fees, or service booking fees. The final valuation quoted is the exact money transferred to you." },
+    { q: "Which cities do you serve?", a: "We currently serve major cities and metropolitan areas across West Bengal, Gujarat, Maharashtra, Delhi NCR, Karnataka, Telangana, Tamil Nadu, Kerala, Rajasthan, Madhya Pradesh, Uttar Pradesh, Punjab, Odisha, Bihar, Assam, and Jharkhand. We are expanding continuously to tier-2 and tier-3 towns." },
+    { q: "How is pricing determined?", a: "Pricing is calculated using four key elements: Length (minimum 15 inches), Thickness (measured by ponytail diameter), Quality (virgin unprocessed vs healthy vs colored), and Texture Pattern (curly and wavy hair command rarity premiums). Natural dark black virgin hair above 30 inches receives peak valuations, often exceeding ₹80,000 to ₹1,20,000." },
+    { q: "How do I receive the payout?", a: "Payment is made instantly on-the-spot prior to cutting a single strand of hair. Our stylist supervisor will execute a digital transfer via UPI, GPay, Paytm, or direct IMPS Bank Transfer. You only sit down for the haircut after verifying the funds are cleared in your bank account." },
+    { q: "Can I choose any haircut?", a: "Absolutely. You can choose any transformational hair style you want — from a stylish French micro bob to a daring undercut, side shave, pixie, or full head shave. Our partner female stylists are certified from top academies and will sculpt the precise look you desire." },
+  ];
+
+  function buildFAQ() {
+    const acc = document.getElementById('faq-accordion');
+    FAQS.forEach((faq, i) => {
+      const div = document.createElement('div');
+      div.className = 'faq-item';
+      div.style.cssText = 'border-bottom:1px solid rgba(255,255,255,0.4)';
+      if (i === FAQS.length-1) div.style.borderBottom = 'none';
+      div.innerHTML = `
+        <button class="faq-trigger" onclick="toggleFaq(${i})">
+          <span style="padding-right:16px">${faq.q}</span>
+          <div class="faq-chevron${i===0?' open':''}" id="chev-${i}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+        </button>
+        <div class="faq-answer${i===0?' visible':''}" id="faq-${i}">${faq.a}</div>
+      `;
+      acc.appendChild(div);
+    });
+  }
+
+  function toggleFaq(idx) {
+    const answer = document.getElementById('faq-' + idx);
+    const chev = document.getElementById('chev-' + idx);
+    answer.classList.toggle('visible');
+    chev.classList.toggle('open');
+  }
+
+  // ─── REVIEWS ─────────────────────────────────────────────────────────────────
+  const REVIEWS = [
+    { name:"Priya Sharma", city:"Mumbai", lengthSold:"29 inches", payout:"₹58,000", style:"Side Shave", rating:5, quote:"I got a side shave after selling 29 inches. The payout completely covered my new high-end laptop! The professional female stylist came to my apartment, handled the entire assessment, paid me instantly via UPI, and gave me an absolute masterpiece of a style. Highly recommend!" },
+    { name:"Nisha Kapoor", city:"Delhi", lengthSold:"34 inches", payout:"₹72,000", style:"Full Head Shave", rating:5, quote:"I had hair below my waist my entire life. I decided to walk out with a buzzcut and ₹72,000 in my account. The home service was seamless — no home visit fees, complete privacy, and the most professional haircut. I feel lighter and so empowered!" },
+    { name:"Ankita Das", city:"Kolkata", lengthSold:"31 inches", payout:"₹63,000", style:"Pixie Cut", rating:5, quote:"Sold 31 inches of my thick black virgin hair right from my living room. The payout funded my solo Goa dream trip! Going from waist-length hair to an asymmetrical pixie was a bit scary, but the stylist was incredible and made me feel like a queen." },
+    { name:"Shreya Sen", city:"Kolkata", lengthSold:"22 inches", payout:"₹24,500", style:"Micro Bob + Shaved Nape", rating:5, quote:"My micro bob with shaved nape completely changed how I look! The team was super respectful, did a detailed length assessment on my couch, and I received the UPI transfer right before the haircut even began." },
+    { name:"Meera Deshmukh", city:"Pune", lengthSold:"35 inches", payout:"₹84,000", style:"Buzz Cut", rating:5, quote:"Sold 35 inches of virgin hair. Walked out with a sleek buzz cut and ₹84,000. No travel required, no hidden charges. It's truly India's first genuine doorstep hair exchange service." },
+    { name:"Deepika Patel", city:"Ahmedabad", lengthSold:"20 inches", payout:"₹19,000", style:"Hidden Undercut", rating:5, quote:"I finally got the hidden undercut I wanted since my college days. My hair still looks long when loose, but I have this awesome shaved layout underneath and got ₹19,000 for it! Completely free home service." },
+    { name:"Divya Iyer", city:"Chennai", lengthSold:"28 inches", payout:"₹45,000", style:"Viking Undercut", rating:5, quote:"I went from traditional long hair to a viking undercut and absolutely love it. The payout was huge (₹45,000!) and the female stylist was incredibly skilled with the clippers." },
+    { name:"Harshita Nair", city:"Kochi", lengthSold:"25 inches", payout:"₹34,000", style:"Mohawk", rating:5, quote:"Decided to try a daring mohawk and sell my 25-inch ponytail. The team arrived on time, was extremely polite, and paid me the agreed price of ₹34,000 instantly. Phenomenal service!" },
+    { name:"Kriti Jaiswal", city:"Lucknow", lengthSold:"21 inches", payout:"₹21,000", style:"Asymmetrical Shave", rating:5, quote:"Highly professional service. I sold 21 inches of colored hair and received ₹21,000. The asymmetrical shave is super stylish and perfect for summers." },
+    { name:"Tanvi Joshi", city:"Jaipur", lengthSold:"30 inches", payout:"₹48,000", style:"Micro Bob", rating:5, quote:"I was hesitant at first, but their professional team made it so comfortable. They assessed my hair quality, offered ₹48,000, and gave me an amazing micro bob. No travel, no stress!" },
+    { name:"Rimi Banerjee", city:"Howrah", lengthSold:"23 inches", payout:"₹26,000", style:"Hidden Undercut", rating:5, quote:"The hidden undercut is perfect because I can choose when to show it off. Sold 23 inches of hair and got ₹26,000 instantly. Unmatched convenience!" },
+    { name:"Shalini Saxena", city:"Noida", lengthSold:"32 inches", payout:"₹65,000", style:"Buzz Cut", rating:5, quote:"A perfect 10/10 experience! Sold 32 inches for ₹65,000. The haircut is crisp and sharp, and they cleaned up the workspace completely before leaving." },
+  ];
+
+  function buildReviews() {
+    const grid = document.getElementById('reviews-grid');
+    REVIEWS.forEach(r => {
+      const initials = r.name.split(' ').map(w=>w[0]).join('');
+      const stars = Array(r.rating).fill('<svg class="star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>').join('');
+      const card = document.createElement('div');
+      card.className = 'review-card';
+      card.innerHTML = `
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <div style="display:flex;align-items:center;gap:12px">
+              <div class="review-avatar">${initials}</div>
+              <div><h4 style="font-weight:700;color:var(--stone-900);font-size:0.875rem">${r.name}</h4><span style="font-size:0.6rem;color:var(--stone-400)">📍 ${r.city}</span></div>
+            </div>
+            <div class="stars">${stars}</div>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;padding-top:4px">
+            <span style="padding:2px 8px;background:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.8);color:var(--stone-600);font-family:var(--font-mono);font-size:0.6rem;font-weight:700;border-radius:4px">Sold ${r.lengthSold}</span>
+            <span class="tag-black">${r.style}</span>
+          </div>
+          <p style="color:var(--stone-600);font-size:0.75rem;line-height:1.6;font-style:italic;padding-top:4px">"${r.quote}"</p>
+        </div>
+        <div style="margin-top:24px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.4);display:flex;align-items:center;justify-content:space-between">
+          <div><span style="font-size:0.6rem;color:var(--stone-400);font-weight:700;text-transform:uppercase;letter-spacing:0.1em;display:block">Payout Earned</span><span style="font-family:var(--font-mono);font-weight:900;color:#059669;font-size:0.875rem">${r.payout}</span></div>
+          <span style="font-size:0.65rem;color:var(--stone-400);font-weight:600">⚡ Paid Instantly via UPI</span>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  }
+
+  // ─── INIT ────────────────────────────────────────────────────────────────────
+  document.addEventListener('DOMContentLoaded', () => {
+    updateCalculator();
+    buildFAQ();
+    buildReviews();
+  });
+  </script>
+</body>
+</html>
