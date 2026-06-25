@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Data Analyst Assessment | SellHair.in</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ─── RESET & BASE ─────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --gold: #c5a059;
+  --gold-hover: #b08d4b;
+  --gold-light: #dfc085;
+  --stone-50: #fafaf9;
+  --stone-100: #f5f5f4;
+  --stone-200: #e7e5e4;
+  --stone-300: #d6d3d1;
+  --stone-400: #a8a29e;
+  --stone-500: #78716c;
+  --stone-600: #57534e;
+  --stone-700: #44403c;
+  --stone-800: #292524;
+  --stone-900: #1c1917;
+  --stone-950: #0c0a09;
+  --emerald-400: #34d399;
+  --emerald-500: #10b981;
+  --emerald-600: #059669;
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-sans);
+  background: #f8f9fa;
+  color: var(--stone-900);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+::selection { background: var(--stone-900); color: white; }
+
+/* ─── AMBIENT BLOBS ────────────────────────────────────────────────────────── */
+.blob { position: fixed; border-radius: 50%; filter: blur(80px); pointer-events: none; z-index: -1; }
+.blob-1 { top: 0; right: 0; width: 600px; height: 600px; background: radial-gradient(circle, rgba(223,192,133,0.15), transparent); }
+.blob-2 { top: 50%; left: -200px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(197,160,89,0.1), transparent); }
+
+/* ─── NAVBAR ───────────────────────────────────────────────────────────────── */
+.navbar {
+  position: fixed; top: 16px; left: 50%; transform: translateX(-50%);
+  z-index: 40; width: 94%; max-width: 1100px;
+  background: rgba(255,255,255,0.6); backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.6); border-radius: 9999px;
+  padding: 12px 20px; display: flex; align-items: center; justify-content: space-between;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+}
+.nav-logo { font-family: var(--font-display); font-weight: 900; font-size: 1.25rem; letter-spacing: -0.025em; color: var(--stone-900); text-decoration: none; }
+.nav-logo span { color: var(--gold); }
+.nav-badge { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; padding: 4px 12px; border-radius: 9999px; background: rgba(255,255,255,0.4); border: 1px solid rgba(255,255,255,0.6); color: var(--stone-600); }
+
+/* ─── PAGES ────────────────────────────────────────────────────────────────── */
+.page { display: none; }
+.page.active { display: block; }
+
+/* ─── LOGIN PAGE ────────────────────────────────────────────────────────────── */
+/* FIX: Removed display:flex from the ID rule. ID specificity (0,1,0) beats .page{display:none}
+   (0,0,1), which caused the login page to stay visible even after removing .active.
+   Now display is controlled exclusively by .page / .page.active with the flex override below. */
+#login-page {
+  min-height: 100vh; align-items: center; justify-content: center;
+  padding: 100px 24px 48px;
+}
+#login-page.active { display: flex; }
+
+.login-card {
+  width: 100%; max-width: 460px;
+  background: rgba(255,255,255,0.5); backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255,255,255,0.7); border-radius: 28px;
+  padding: 40px 36px; box-shadow: 0 32px 80px rgba(0,0,0,0.12);
+  position: relative; overflow: hidden;
+}
+.login-card::before { content: ''; position: absolute; top: 0; right: 0; width: 200px; height: 200px; background: radial-gradient(circle, rgba(223,192,133,0.12), transparent); border-radius: 50%; pointer-events: none; }
+.login-emblem {
+  width: 56px; height: 56px; background: #000; border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 24px; box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+}
+.login-title { font-family: var(--font-display); font-weight: 900; font-size: 1.75rem; letter-spacing: -0.02em; color: var(--stone-900); line-height: 1.1; }
+.login-sub { color: var(--stone-500); font-size: 0.8125rem; margin-top: 8px; line-height: 1.6; }
+.form-label { display: block; font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; color: var(--stone-500); margin-bottom: 8px; margin-top: 20px; }
+.form-input {
+  width: 100%; padding: 12px 16px;
+  background: rgba(255,255,255,0.5); border: 1px solid rgba(255,255,255,0.8);
+  color: var(--stone-900); border-radius: 12px; outline: none;
+  font-size: 0.875rem; font-family: var(--font-sans); transition: all 0.2s;
+}
+.form-input:focus { border-color: #000; background: white; box-shadow: 0 0 0 3px rgba(0,0,0,0.06); }
+.form-input.error { border-color: #ef4444; background: rgba(254,226,226,0.4); }
+.login-error {
+  margin-top: 14px; padding: 10px 14px;
+  background: rgba(254,226,226,0.6); border: 1px solid rgba(239,68,68,0.3);
+  border-radius: 10px; font-size: 0.75rem; color: #b91c1c; font-weight: 600;
+  display: none;
+}
+.btn-primary {
+  width: 100%; margin-top: 24px; padding: 14px 24px;
+  background: #000; color: white; font-weight: 800; font-size: 0.8125rem;
+  text-transform: uppercase; letter-spacing: 0.06em;
+  border-radius: 12px; border: none; cursor: pointer; transition: all 0.2s;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+}
+.btn-primary:hover { background: #222; box-shadow: 0 12px 32px rgba(0,0,0,0.25); }
+.login-info { margin-top: 24px; padding: 14px; background: rgba(255,255,255,0.4); border: 1px solid rgba(255,255,255,0.6); border-radius: 12px; font-size: 0.7rem; color: var(--stone-500); line-height: 1.6; }
+
+/* ─── ASSESSMENT WRAPPER ───────────────────────────────────────────────────── */
+#assessment-page { min-height: 100vh; padding: 100px 24px 60px; }
+.assessment-shell { max-width: 860px; margin: 0 auto; }
+
+/* Header strip */
+.assess-header {
+  background: rgba(255,255,255,0.45); backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.7); border-radius: 20px;
+  padding: 20px 28px; margin-bottom: 24px;
+  display: flex; flex-wrap: wrap; gap: 16px;
+  align-items: center; justify-content: space-between;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.07);
+}
+.assess-title { font-family: var(--font-display); font-weight: 900; font-size: 1.25rem; letter-spacing: -0.02em; color: var(--stone-900); }
+.assess-title span { color: var(--gold); }
+.timer-box {
+  display: flex; align-items: center; gap: 8px;
+  background: #000; color: white; padding: 8px 18px; border-radius: 9999px;
+  font-family: var(--font-mono); font-weight: 700; font-size: 0.9375rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: background 0.3s;
+}
+.timer-box.warning { background: #b91c1c; animation: timerPulse 1s infinite; }
+@keyframes timerPulse { 0%,100%{opacity:1} 50%{opacity:0.8} }
+.pulse-dot { width: 8px; height: 8px; border-radius: 50%; background: #10b981; display: inline-block; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.7;transform:scale(1.3)} }
+
+/* Progress */
+.progress-wrap { margin-bottom: 24px; }
+.progress-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--stone-500); }
+.progress-track { height: 8px; background: rgba(255,255,255,0.4); border: 1px solid rgba(255,255,255,0.6); border-radius: 9999px; overflow: hidden; box-shadow: inset 0 2px 4px rgba(0,0,0,0.04); }
+.progress-fill { height: 100%; border-radius: 9999px; background: linear-gradient(to right, #000, #44403c); transition: width 0.4s ease; }
+
+/* Question card */
+.q-card {
+  background: rgba(255,255,255,0.45); backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.7); border-radius: 24px;
+  padding: 32px 32px; box-shadow: 0 16px 48px rgba(0,0,0,0.09);
+  position: relative; overflow: hidden;
+  animation: slideIn 0.25s ease;
+}
+@keyframes slideIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+.q-card::before { content:''; position:absolute; top:0; right:0; width:180px; height:180px; background:radial-gradient(circle,rgba(223,192,133,0.08),transparent); border-radius:50%; pointer-events:none; }
+
+.q-eyebrow { display:flex; align-items:center; gap:8px; margin-bottom:20px; }
+.q-number { font-family:var(--font-mono); font-weight:900; font-size:0.75rem; padding:4px 12px; background:#000; color:var(--gold); border-radius:6px; }
+.q-category { font-size:0.6rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; padding:4px 10px; border-radius:9999px; background:rgba(255,255,255,0.5); border:1px solid rgba(255,255,255,0.7); color:var(--stone-500); }
+.q-type-badge { font-size:0.55rem; font-weight:800; text-transform:uppercase; letter-spacing:0.12em; padding:3px 8px; border-radius:4px; }
+.badge-mcq { background:#000; color:white; }
+.badge-multi { background:#1d4ed8; color:white; }
+.badge-tf { background:#065f46; color:white; }
+.badge-scenario { background:#7c3aed; color:white; }
+.badge-short { background:#9d174d; color:white; }
+
+.q-text { font-size:1rem; font-weight:600; color:var(--stone-900); line-height:1.65; margin-bottom:24px; position:relative; z-index:1; }
+
+/* Options */
+.options-list { display:flex; flex-direction:column; gap:10px; }
+.option-btn {
+  width:100%; padding:14px 18px; border-radius:14px; border:1.5px solid rgba(255,255,255,0.7);
+  background:rgba(255,255,255,0.4); text-align:left; font-size:0.8125rem; font-weight:500;
+  color:var(--stone-800); cursor:pointer; transition:all 0.15s;
+  display:flex; align-items:center; gap:12px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.04); font-family:var(--font-sans);
+}
+.option-btn:hover { background:rgba(255,255,255,0.65); border-color:rgba(255,255,255,0.9); transform:translateX(2px); }
+.option-btn.selected { border-color:#000; background:rgba(0,0,0,0.05); font-weight:700; color:var(--stone-900); box-shadow:0 0 0 2px rgba(0,0,0,0.1),0 4px 12px rgba(0,0,0,0.06); }
+.option-btn.correct { border-color:#059669; background:rgba(167,243,208,0.3); color:#065f46; font-weight:700; }
+.option-btn.incorrect { border-color:#ef4444; background:rgba(254,202,202,0.3); color:#991b1b; font-weight:700; }
+.option-index { width:28px; height:28px; border-radius:8px; background:rgba(255,255,255,0.6); border:1px solid rgba(255,255,255,0.8); display:flex; align-items:center; justify-content:center; font-family:var(--font-mono); font-size:0.65rem; font-weight:800; color:var(--stone-500); flex-shrink:0; transition:all 0.15s; }
+.option-btn.selected .option-index { background:#000; color:white; border-color:#000; }
+.option-btn.correct .option-index { background:#059669; color:white; border-color:#059669; }
+.option-btn.incorrect .option-index { background:#ef4444; color:white; border-color:#ef4444; }
+
+/* Short answer */
+.short-input {
+  width:100%; padding:14px 18px;
+  background:rgba(255,255,255,0.5); border:1.5px solid rgba(255,255,255,0.7);
+  color:var(--stone-900); border-radius:14px; outline:none;
+  font-size:0.875rem; font-family:var(--font-sans); resize:vertical; min-height:100px;
+  transition:all 0.2s;
+}
+.short-input:focus { border-color:#000; background:white; box-shadow:0 0 0 3px rgba(0,0,0,0.06); }
+.short-hint { font-size:0.65rem; color:var(--stone-400); margin-top:8px; font-style:italic; }
+
+/* Multi-select note */
+.multi-note { font-size:0.65rem; font-weight:700; color:#1d4ed8; margin-bottom:12px; display:flex; align-items:center; gap:6px; }
+
+/* Nav buttons */
+.q-nav { display:flex; align-items:center; justify-content:space-between; margin-top:28px; flex-wrap:wrap; gap:12px; }
+.btn-nav {
+  padding:11px 24px; border-radius:12px; font-weight:800; font-size:0.75rem;
+  text-transform:uppercase; letter-spacing:0.06em; border:none; cursor:pointer;
+  transition:all 0.2s; display:inline-flex; align-items:center; gap:6px;
+}
+.btn-prev { background:rgba(255,255,255,0.4); backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,0.7); color:var(--stone-700); box-shadow:0 4px 12px rgba(0,0,0,0.06); }
+.btn-prev:hover { background:rgba(255,255,255,0.65); }
+.btn-next { background:#000; color:white; box-shadow:0 6px 20px rgba(0,0,0,0.2); }
+.btn-next:hover { background:#222; box-shadow:0 8px 24px rgba(0,0,0,0.25); }
+.btn-submit { background: linear-gradient(135deg,#059669,#047857); color:white; box-shadow:0 6px 20px rgba(5,150,105,0.3); }
+.btn-submit:hover { box-shadow:0 8px 24px rgba(5,150,105,0.4); }
+.btn-prev:disabled, .btn-next:disabled { opacity:0.4; cursor:not-allowed; }
+
+/* Question dots grid */
+.dots-panel {
+  background:rgba(255,255,255,0.4); backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,0.7); border-radius:20px;
+  padding:20px 24px; margin-top:24px;
+  box-shadow:0 8px 32px rgba(0,0,0,0.06);
+}
+.dots-title { font-size:0.6rem; font-weight:800; text-transform:uppercase; letter-spacing:0.12em; color:var(--stone-400); margin-bottom:14px; }
+.dots-grid { display:flex; flex-wrap:wrap; gap:6px; }
+.q-dot {
+  width:30px; height:30px; border-radius:8px; border:1.5px solid rgba(255,255,255,0.7);
+  background:rgba(255,255,255,0.4); display:flex; align-items:center; justify-content:center;
+  font-family:var(--font-mono); font-size:0.55rem; font-weight:800; color:var(--stone-400);
+  cursor:pointer; transition:all 0.15s;
+}
+.q-dot:hover { background:rgba(255,255,255,0.7); }
+.q-dot.current { background:#000; color:white; border-color:#000; }
+.q-dot.answered { background:rgba(0,0,0,0.07); border-color:#000; color:var(--stone-900); }
+.dots-legend { display:flex; gap:16px; margin-top:12px; flex-wrap:wrap; }
+.legend-item { display:flex; align-items:center; gap:6px; font-size:0.6rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--stone-500); }
+.legend-dot { width:10px; height:10px; border-radius:3px; }
+
+/* ─── RESULTS PAGE ─────────────────────────────────────────────────────────── */
+#results-page { min-height:100vh; padding:100px 24px 60px; display:none; }
+.results-shell { max-width:760px; margin:0 auto; }
+.result-hero {
+  background:#111; color:white; border-radius:28px; padding:40px 36px;
+  text-align:center; position:relative; overflow:hidden;
+  box-shadow:0 24px 64px rgba(0,0,0,0.25); margin-bottom:24px;
+}
+.result-hero::before { content:''; position:absolute; top:0; left:50%; transform:translateX(-50%); width:400px; height:300px; background:radial-gradient(circle,rgba(197,160,89,0.18),transparent); border-radius:50%; pointer-events:none; }
+.result-status {
+  display:inline-flex; align-items:center; gap:8px; padding:6px 18px;
+  border-radius:9999px; font-size:0.65rem; font-weight:800;
+  text-transform:uppercase; letter-spacing:0.1em; margin-bottom:20px;
+}
+.status-pass { background:rgba(16,185,129,0.15); border:1px solid rgba(16,185,129,0.3); color:#34d399; }
+.status-fail { background:rgba(239,68,68,0.15); border:1px solid rgba(239,68,68,0.3); color:#f87171; }
+.result-score { font-family:var(--font-mono); font-weight:900; font-size:clamp(3.5rem,10vw,5.5rem); color:var(--gold); line-height:1; }
+.result-pct { font-size:1.25rem; color:rgba(255,255,255,0.6); font-weight:300; margin-top:4px; }
+.result-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; margin-top:28px; position:relative; z-index:1; }
+@media(min-width:540px){ .result-grid { grid-template-columns:repeat(4,1fr); } }
+.result-cell { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius:14px; padding:16px 12px; text-align:center; }
+.result-cell-label { font-size:0.55rem; text-transform:uppercase; letter-spacing:0.1em; font-weight:700; color:var(--stone-500); display:block; margin-bottom:6px; }
+.result-cell-val { font-family:var(--font-mono); font-weight:900; font-size:1.25rem; color:white; }
+.review-section { background:rgba(255,255,255,0.4); backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.7); border-radius:24px; padding:28px 28px; margin-bottom:16px; box-shadow:0 8px 32px rgba(0,0,0,0.07); }
+.review-q { margin-bottom:20px; padding-bottom:20px; border-bottom:1px solid rgba(255,255,255,0.5); }
+.review-q:last-child { border-bottom:none; margin-bottom:0; padding-bottom:0; }
+.review-q-text { font-size:0.875rem; font-weight:600; color:var(--stone-900); margin-bottom:10px; line-height:1.6; }
+.review-correct { color:#059669; font-size:0.75rem; font-weight:700; display:flex; align-items:center; gap:6px; }
+.review-user { color:#b91c1c; font-size:0.75rem; font-weight:600; display:flex; align-items:center; gap:6px; margin-top:4px; }
+.review-short { font-size:0.75rem; color:var(--stone-500); font-style:italic; }
+.btn-retry { display:inline-flex; align-items:center; gap:8px; margin-top:24px; padding:14px 32px; background:#000; color:white; font-weight:800; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.06em; border-radius:12px; border:none; cursor:pointer; transition:all 0.2s; box-shadow:0 8px 24px rgba(0,0,0,0.2); }
+.btn-retry:hover { background:#222; }
+
+/* ─── CONFIRM DIALOG ───────────────────────────────────────────────────────── */
+.confirm-overlay {
+  position:fixed; inset:0; z-index:60;
+  background:rgba(0,0,0,0.5); backdrop-filter:blur(12px);
+  display:none; align-items:center; justify-content:center; padding:24px;
+}
+.confirm-overlay.open { display:flex; }
+.confirm-box {
+  background:rgba(255,255,255,0.7); backdrop-filter:blur(24px);
+  border:1px solid rgba(255,255,255,0.7); border-radius:24px;
+  padding:36px 32px; max-width:420px; width:100%;
+  box-shadow:0 32px 80px rgba(0,0,0,0.2); text-align:center;
+}
+.confirm-box h3 { font-family:var(--font-display); font-weight:900; font-size:1.25rem; color:var(--stone-900); margin-bottom:10px; }
+.confirm-box p { font-size:0.8125rem; color:var(--stone-500); line-height:1.6; margin-bottom:24px; }
+.confirm-btns { display:flex; gap:12px; justify-content:center; }
+.btn-cancel-submit { padding:11px 22px; border-radius:12px; font-weight:700; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.06em; background:rgba(255,255,255,0.4); border:1px solid rgba(255,255,255,0.7); color:var(--stone-700); cursor:pointer; transition:all 0.15s; }
+.btn-cancel-submit:hover { background:rgba(255,255,255,0.65); }
+.btn-confirm-submit { padding:11px 22px; border-radius:12px; font-weight:800; font-size:0.75rem; text-transform:uppercase; letter-spacing:0.06em; background:#000; color:white; border:none; cursor:pointer; transition:all 0.15s; box-shadow:0 4px 12px rgba(0,0,0,0.2); }
+.btn-confirm-submit:hover { background:#222; }
+
+/* ─── FOOTER ───────────────────────────────────────────────────────────────── */
+.assess-footer { margin-top:40px; text-align:center; font-size:0.65rem; color:var(--stone-400); font-weight:600; text-transform:uppercase; letter-spacing:0.1em; }
+
+/* ─── RESPONSIVE ───────────────────────────────────────────────────────────── */
+@media(max-width:640px){
+  .q-card { padding:24px 20px; }
+  .assess-header { flex-direction:column; align-items:flex-start; gap:12px; }
+  .result-hero { padding:28px 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Ambient blobs -->
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <a href="index.html" class="nav-logo">SellHair<span>.in</span></a>
+  <span class="nav-badge">Data Analyst Assessment</span>
+</nav>
+
+<!-- ─── LOGIN PAGE ──────────────────────────────────────────────────────────── -->
+<div id="login-page" class="page active">
+  <div class="login-card">
+    <div style="position:relative;z-index:1">
+      <div class="login-emblem">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      </div>
+      <div style="margin-bottom:6px">
+        <span style="font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold)">SellHair.in Internal Portal</span>
+      </div>
+      <h1 class="login-title">Data Analyst<br>Assessment</h1>
+      <p class="login-sub">Enter your assigned credentials to access the timed assessment. This test is monitored and results are logged.</p>
+
+      <label class="form-label" for="username">Employee ID / Username</label>
+      <input type="text" class="form-input" id="username" placeholder="Enter username" autocomplete="username" onkeydown="if(event.key==='Enter')attemptLogin()">
+
+      <label class="form-label" for="password">Password</label>
+      <input type="password" class="form-input" id="password" placeholder="Enter password" autocomplete="current-password" onkeydown="if(event.key==='Enter')attemptLogin()">
+
+      <div class="login-error" id="login-error">⚠ Incorrect credentials. Please check your username and password.</div>
+
+      <button class="btn-primary" onclick="attemptLogin()">
+        Access Assessment →
+      </button>
+
+      <div class="login-info">
+        🔒 This assessment is confidential and time-limited. Ensure a stable connection before proceeding. All answers are recorded automatically.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── ASSESSMENT PAGE ─────────────────────────────────────────────────────── -->
+<div id="assessment-page" class="page">
+  <div class="assessment-shell">
+
+    <!-- Header -->
+    <div class="assess-header">
+      <div>
+        <div class="assess-title">Data Analyst Assessment <span>· SellHair.in</span></div>
+        <div style="font-size:0.65rem;color:var(--stone-400);margin-top:4px">100 Questions · 90 Minutes · Pass at 70%</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+        <div style="font-size:0.65rem;font-weight:700;color:var(--stone-500);text-transform:uppercase;letter-spacing:0.08em">
+          <span class="pulse-dot"></span> Live Session
+        </div>
+        <div class="timer-box" id="timer-display">⏱ 90:00</div>
+      </div>
+    </div>
+
+    <!-- Progress -->
+    <div class="progress-wrap">
+      <div class="progress-meta">
+        <span id="progress-label">Question 1 of 100</span>
+        <span id="progress-pct">0% Complete</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+      </div>
+    </div>
+
+    <!-- Question Card -->
+    <div class="q-card" id="q-card">
+      <div class="q-eyebrow">
+        <span class="q-number" id="q-num">Q 01</span>
+        <span class="q-category" id="q-cat">Hair Business</span>
+        <span class="q-type-badge badge-mcq" id="q-type">MCQ</span>
+      </div>
+      <p class="q-text" id="q-text">Loading question...</p>
+      <div id="q-options-wrap"></div>
+      <div class="q-nav">
+        <button class="btn-nav btn-prev" id="btn-prev" onclick="navigate(-1)">← Previous</button>
+        <div style="font-size:0.65rem;color:var(--stone-400);font-weight:700;text-transform:uppercase;letter-spacing:0.08em" id="nav-center-label"></div>
+        <button class="btn-nav btn-next" id="btn-next" onclick="navigateNext()">Next →</button>
+      </div>
+    </div>
+
+    <!-- Question Dots -->
+    <div class="dots-panel">
+      <div class="dots-title">Question Navigator</div>
+      <div class="dots-grid" id="dots-grid"></div>
+      <div class="dots-legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#000"></div>Current</div>
+        <div class="legend-item"><div class="legend-dot" style="background:rgba(0,0,0,0.12);border:1.5px solid #000"></div>Answered</div>
+        <div class="legend-item"><div class="legend-dot" style="background:rgba(255,255,255,0.4);border:1.5px solid rgba(255,255,255,0.7)"></div>Not Answered</div>
+      </div>
+    </div>
+
+    <div class="assess-footer">SellHair.in · Confidential Assessment · Do Not Share</div>
+  </div>
+</div>
+
+<!-- ─── RESULTS PAGE ────────────────────────────────────────────────────────── -->
+<div id="results-page">
+  <div class="results-shell">
+    <div class="result-hero">
+      <div class="result-status" id="result-status-badge"></div>
+      <div class="result-score" id="result-score-val"></div>
+      <div class="result-pct" id="result-pct-val"></div>
+      <div class="result-grid">
+        <div class="result-cell"><span class="result-cell-label">Correct</span><div class="result-cell-val" id="rc-correct" style="color:#34d399"></div></div>
+        <div class="result-cell"><span class="result-cell-label">Wrong</span><div class="result-cell-val" id="rc-wrong" style="color:#f87171"></div></div>
+        <div class="result-cell"><span class="result-cell-label">Unanswered</span><div class="result-cell-val" id="rc-skip" style="color:var(--stone-400)"></div></div>
+        <div class="result-cell"><span class="result-cell-label">Time Taken</span><div class="result-cell-val" id="rc-time" style="font-size:0.9rem"></div></div>
+      </div>
+    </div>
+
+    <div class="review-section">
+      <div style="font-size:0.65rem;font-weight:800;text-transform:uppercase;letter-spacing:0.12em;color:var(--stone-400);margin-bottom:20px">Answer Review (Wrong / Skipped)</div>
+      <div id="answer-review"></div>
+    </div>
+
+    <div style="text-align:center">
+      <button class="btn-retry" onclick="resetAssessment()">↺ Retake Assessment</button>
+    </div>
+
+    <div class="assess-footer" style="margin-top:32px">SellHair.in · Assessment Results · Confidential</div>
+  </div>
+</div>
+
+<!-- ─── SUBMIT CONFIRM DIALOG ───────────────────────────────────────────────── -->
+<div class="confirm-overlay" id="confirm-overlay">
+  <div class="confirm-box">
+    <div style="font-size:2rem;margin-bottom:12px">📋</div>
+    <h3>Submit Assessment?</h3>
+    <p id="confirm-msg">You still have unanswered questions. Are you sure you want to submit now?</p>
+    <div class="confirm-btns">
+      <button class="btn-cancel-submit" onclick="closeConfirm()">Review Answers</button>
+      <button class="btn-confirm-submit" onclick="finalSubmit()">Submit Now</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════════════════
+   CREDENTIALS
+══════════════════════════════════════════════════════════════════════════════ */
+const VALID_USER = 'SH554144';
+const VALID_PASS = 'Laharika@2026';
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   QUESTION BANK — 100 Questions
+══════════════════════════════════════════════════════════════════════════════ */
+const QUESTION_BANK = [
+
+/* ─── HAIR BUSINESS (60 questions) ─────────────────────────────────────────── */
+{cat:'Hair Business',type:'mcq',q:'What is the minimum hair length required by SellHair.in to purchase a ponytail?',opts:['10 inches','12 inches','15 inches','18 inches'],ans:2},
+{cat:'Hair Business',type:'mcq',q:'Where is the measurement for ponytail length taken from?',opts:['The top of the head','The ear level','The nape tie level','The shoulder'],ans:2},
+{cat:'Hair Business',type:'mcq',q:'Which type of hair commands the highest premium rate at SellHair.in?',opts:['Colored hair','Chemically treated hair','Virgin black hair','Grey hair'],ans:2},
+{cat:'Hair Business',type:'mcq',q:'What does "virgin hair" mean in the context of SellHair.in\'s assessment?',opts:['Hair that has never been washed','Hair that has never been colored, bleached, or chemically processed','Hair shorter than 15 inches','Hair that is completely grey'],ans:1},
+{cat:'Hair Business',type:'mcq',q:'How much more does extra-thick hair earn compared to medium thickness (approximate multiplier)?',opts:['1.10x','1.25x','1.55x','2.00x'],ans:2},
+{cat:'Hair Business',type:'mcq',q:'Which texture type commands the highest rarity premium at SellHair.in?',opts:['Straight','Wavy','Curly','Dry'],ans:2},
+{cat:'Hair Business',type:'mcq',q:'What is the current per-100g buying rate for virgin black hair?',opts:['₹5,500','₹8,800','₹12,200','₹14,500'],ans:2},
+{cat:'Hair Business',type:'mcq',q:'Which hair type has the highest per-100g rate due to extreme international deficit?',opts:['Virgin Black Hair','Grey Natural Hair','Curly / Wavy Premium Hair','Colored Hair'],ans:2},
+{cat:'Hair Business',type:'mcq',q:'What payment method does SellHair.in use to pay clients on the spot?',opts:['Cash only','Cheque','UPI / GPay / IMPS Bank Transfer','Post-dated bank draft'],ans:2},
+{cat:'Hair Business',type:'mcq',q:'When does SellHair.in transfer the payment to the client?',opts:['After the haircut is completed','Before a single hair strand is cut','Within 24 hours of the visit','After quality verification at the warehouse'],ans:1},
+{cat:'Hair Business',type:'mcq',q:'Which haircut removes hair from the entire head?',opts:['Hidden Undercut','Micro Bob + Shaved Nape','Full Head Shave','Asymmetrical Shave'],ans:2},
+{cat:'Hair Business',type:'mcq',q:'Which SellHair.in haircut keeps most of the top hair intact while only the nape area is shaved?',opts:['Buzz Cut','Full Head Shave','Hidden Undercut','Mohawk'],ans:2},
+{cat:'Hair Business',type:'mcq',q:'A client wants an edgy look with shaved temples but wants to keep a dramatic long ridge down the center. Which haircut should you recommend?',opts:['Side Shave','Avant-Garde Mohawk','Viking Undercut','360 Clean Shave Undercut'],ans:1},
+{cat:'Hair Business',type:'mcq',q:'Which haircut features both sides shaved clean with a thick, braid-ready top section?',opts:['Asymmetrical Shave','Pixie Cut','Viking Undercut','Micro Bob + Shaved Nape'],ans:2},
+{cat:'Hair Business',type:'mcq',q:'Which haircut results in an ultra-short, minimalist look that accentuates cheekbones and facial structure?',opts:['Side Shave','Buzz Cut','Hidden Undercut','Micro Bob + Shaved Nape'],ans:1},
+{cat:'Hair Business',type:'mcq',q:'SellHair.in describes itself as India\'s __ doorstep hair exchange service.',opts:['Largest','Fastest','First','Oldest'],ans:2},
+{cat:'Hair Business',type:'mcq',q:'What is the highest single payout ever recorded by SellHair.in?',opts:['₹84,000','₹1,10,000','₹2,15,000','₹1,00,000'],ans:2},
+{cat:'Hair Business',type:'mcq',q:'The highest single payout of ₹2,15,000 was for what type of hair?',opts:['30-inch straight virgin hair','Extra-thick 45-inch virgin curly hair','40-inch wavy colored hair','36-inch thick grey hair'],ans:1},
+{cat:'Hair Business',type:'mcq',q:'What is the longest ponytail ever purchased by SellHair.in?',opts:['45 inches','48 inches','50 inches','52 inches'],ans:3},
+{cat:'Hair Business',type:'mcq',q:'Which city is SellHair.in headquartered in?',opts:['Kolkata','Bangalore','Mumbai','Delhi'],ans:2},
+{cat:'Hair Business',type:'tf',q:'SellHair.in charges a home visit fee for doorstep assessments.',opts:['True','False'],ans:1},
+{cat:'Hair Business',type:'tf',q:'Virgin hair that has never been chemically treated earns a higher payout than colored hair.',opts:['True','False'],ans:0},
+{cat:'Hair Business',type:'tf',q:'A ponytail of only 12 inches qualifies for purchase under SellHair.in\'s standard policy.',opts:['True','False'],ans:1},
+{cat:'Hair Business',type:'tf',q:'SellHair.in uses certified female hair specialists for all home visits.',opts:['True','False'],ans:0},
+{cat:'Hair Business',type:'tf',q:'Hair rates at SellHair.in are updated hourly based on export demand.',opts:['True','False'],ans:0},
+{cat:'Hair Business',type:'multi',q:'Which of the following are valid haircut options offered by SellHair.in? (Select all that apply)',opts:['360 Clean Shave Undercut','Dreadlocks','Avant-Garde Mohawk','Viking Undercut','Perm'],ans:[0,2,3]},
+{cat:'Hair Business',type:'multi',q:'Which factors affect the payout valuation of a ponytail at SellHair.in? (Select all that apply)',opts:['Hair length','Hair color saturation','Ponytail thickness','Hair texture (straight/wavy/curly)','Hair quality (virgin/healthy/colored)'],ans:[0,2,3,4]},
+{cat:'Hair Business',type:'multi',q:'Which of the following are steps in the SellHair.in doorstep process? (Select all that apply)',opts:['Book visit','Sign a 3-year contract','Digital appraisal','Instant UPI payout before cutting','Email confirmation only'],ans:[0,2,3]},
+{cat:'Hair Business',type:'scenario',q:'A customer with 45-inch long, thick, virgin curly hair is interested but unsure about selling. She asks, "Is my hair really worth that much?" How should you respond most professionally?',opts:['Tell her to check competitor prices and come back later','Explain that curly virgin hair above 30 inches is among the highest-valued categories due to global manufacturing scarcity, and share the estimated payout range transparently','Promise her the maximum payout to close the deal immediately','Avoid discussing numbers and redirect to the haircut options'],ans:1},
+{cat:'Hair Business',type:'scenario',q:'A customer is emotionally attached to her 36-inch hair she has grown for 8 years. She says, "I\'m just not sure I can let it go." What is the most appropriate response?',opts:['Tell her it\'s just hair and it grows back','Acknowledge her emotional connection, assure her that the decision is entirely hers, explain the transformation and financial benefit factually, and offer to give her time to decide','Use urgency tactics saying the rate will drop tomorrow','Offer her a discount on the haircut if she decides now'],ans:1},
+{cat:'Hair Business',type:'scenario',q:'A customer says she wants to sell only 10 inches of her hair. How do you handle this situation?',opts:['Accept it as an exception','Explain politely that the company\'s minimum requirement is 15 inches, measured from the nape tie, and offer to reschedule once her hair reaches that length','Tell her to come back when she grows more hair without explanation','Refuse her booking entirely and end the conversation'],ans:1},
+{cat:'Hair Business',type:'scenario',q:'A customer asks, "Why does longer, thicker hair get more money?" What is the best explanation?',opts:['Because longer hair is more fashionable right now','Longer, thicker ponytails yield greater usable hair material for wig and extension manufacturing, reducing sourcing effort for factories and increasing the price they pay per bundle','Because it takes longer to cut','There is no specific reason; it is just our policy'],ans:1},
+{cat:'Hair Business',type:'scenario',q:'A customer is nervous about getting an undercut and says, "What if it looks terrible on me?" How do you respond?',opts:['Tell her she will definitely look great','Acknowledge her concern, explain that the stylist will consult with her before cutting, describe how the style works visually, and remind her that the hidden undercut option keeps hair fully visible when worn down','Promise her a refund if she doesn\'t like it','Tell her everyone looks good with an undercut'],ans:1},
+{cat:'Hair Business',type:'scenario',q:'A customer with waist-length hair wants to sell but insists on keeping some length. Which SellHair.in haircut would best preserve her top length while allowing a significant ponytail sale?',opts:['Full Head Shave','Buzz Cut','Hidden Undercut','Asymmetrical Shave'],ans:2},
+{cat:'Hair Business',type:'scenario',q:'A customer calls to cancel her booking 30 minutes before the appointment. How do you professionally try to retain the booking?',opts:['Threaten to charge a cancellation fee','Politely ask the reason for cancellation, address any concern she has, reaffirm that the service is free with no home visit charges, and offer to reschedule at her convenience','Tell her she has forfeited her payout','Ignore the call and visit anyway'],ans:1},
+{cat:'Hair Business',type:'scenario',q:'A customer says a competitor offered her ₹5,000 more for her ponytail. How do you handle this?',opts:['Immediately match the price without verification','Acknowledge her information, calmly explain SellHair.in\'s transparent pricing, quality-based appraisal, instant UPI payment guarantee, and professional free haircut included — and invite her to compare the complete value package','Dismiss the competitor\'s offer as fake','Promise to beat any price'],ans:1},
+{cat:'Hair Business',type:'scenario',q:'A customer is nervous about shaving part of her head and says, "I have never done anything like this." How do you reassure her without being misleading?',opts:['Tell her shaving is not scary at all and she should not worry','Validate her feelings, explain that many clients feel similarly initially, describe the specific haircut process calmly, and assure her that the stylist will proceed only with her full consent at each step','Show her before/after photos and tell her she will look exactly like those clients','Minimize her concern and focus only on the payout'],ans:1},
+{cat:'Hair Business',type:'scenario',q:'A customer asks, "What happens to my hair after you buy it?" How do you explain accurately?',opts:['Tell her it is used to make dolls','Explain that the hair is graded, sorted, and exported to premium wig manufacturers in Europe and East Asia where it is used to produce luxury hairpieces, medical wigs, and high-end hair extensions','Tell her the hair is kept in a warehouse locally','Say you are not sure and will get back to her'],ans:1},
+{cat:'Hair Business',type:'scenario',q:'A customer has extremely thick hair but hesitates saying, "My hair is my identity — I don\'t think I can cut it." How do you approach her?',opts:['Remind her it is just hair and money is more important','Genuinely respect her feeling, acknowledge that her hair is a significant part of who she is, briefly mention the financial value available whenever she feels ready, and leave the door open without pressure','Tell her she will regret not selling later','Push harder with urgency'],ans:1},
+{cat:'Hair Business',type:'scenario',q:'A customer says, "I will only do this if I can choose my own haircut." How do you respond?',opts:['Tell her the company only offers one style','Enthusiastically confirm that she can choose from any of the company\'s premium available styles, then walk her through the full list of haircut options clearly','Tell her haircut choice is not possible','Offer her only two options'],ans:1},
+{cat:'Hair Business',type:'scenario',q:'A customer asks why SellHair.in only offers specific haircut styles. How do you best explain this?',opts:['Say it is because those styles are cheapest to do','Explain that the available styles are specifically designed to maximize the length and quality of hair collected for the ponytail sale, while still providing the client with a fashionable, expert result','Tell her it is company policy without explanation','Say that other cuts would damage her remaining hair'],ans:1},
+{cat:'Hair Business',type:'scenario',q:'A customer wants proof that the payment is genuine before booking. What is the best response?',opts:['Tell her to just trust you','Offer to share verified customer testimonials, explain the instant UPI transfer process where she confirms funds in her own bank account before any cutting begins, and describe the transparent in-person appraisal process','Show her a screenshot of a payment that may or may not be genuine','Tell her only that your rates are published online'],ans:1},
+{cat:'Hair Business',type:'scenario',q:'A customer has hair longer than 50 inches. What key factors would you discuss before making an offer?',opts:['Only mention the length and end the conversation','Discuss the hair\'s condition (virgin or treated), thickness, texture, overall health, and the fact that collector-grade hair above 36 inches receives special appraisals — and explain that a specialist would need to evaluate in person for accurate pricing','Ask her to send a photo and make a decision immediately','Tell her it is too long for purchase'],ans:1},
+{cat:'Hair Business',type:'scenario',q:'A customer asks, "Will the haircut look professional or like something done at home?" How should you answer?',opts:['Tell her it is done at home so it is less formal','Assure her that all haircuts are performed by certified, professionally trained female stylists using salon-grade tools under strict hygiene standards, identical to a premium salon experience','Tell her you can not guarantee the quality','Ask her what her standards are'],ans:1},
+{cat:'Hair Business',type:'scenario',q:'A customer from a tier-2 city asks if SellHair.in serves her area. How do you respond?',opts:['Tell her only metro cities are covered','Explain that SellHair.in actively serves 60+ cities across India including tier-2 regions, and invite her to submit her location for a confirmation from the team','Deny service without checking','Ask her to travel to the nearest metro office'],ans:1},
+{cat:'Hair Business',type:'scenario',q:'A first-time customer seems very anxious and says she has read negative things about hair buying online. How do you build her confidence?',opts:['Tell her not to read things online','Acknowledge her concern, explain SellHair.in\'s transparent process step by step — especially that payment is confirmed before cutting — and offer to share the company\'s track record and verified client reviews','Tell her negative reviews are from competitors','Avoid the topic and talk about haircut styles only'],ans:1},
+{cat:'Hair Business',type:'scenario',q:'A customer says, "I am scared the stylist will cut more hair than agreed." How do you address this?',opts:['Tell her to just trust the process','Explain that the client approves the exact haircut style before the stylist begins, the ponytail tie point is agreed upon before cutting, and payment is made first — so she is protected throughout','Offer her a verbal promise only','Tell her she should not have these worries'],ans:1},
+{cat:'Hair Business',type:'scenario',q:'A customer is interested but says her husband disapproves. How do you professionally navigate this?',opts:['Tell her she does not need her husband\'s approval','Respect her family dynamic, provide her with factual information about the process, value, and professionalism of the service so she can make an informed decision, and offer to let her revisit once she is comfortable','Try to speak directly to the husband','Push her to book without involving her husband'],ans:1},
+{cat:'Hair Business',type:'scenario',q:'During an appointment, after payment is made, the customer changes her mind about the haircut style. What do you do?',opts:['Proceed with the original style anyway since payment is done','Pause the process and calmly discuss the change with the client, work with the stylist to see if the new preference can be accommodated, and prioritize client comfort and satisfaction','Insist on the original choice and not adjust','Reverse the payment and cancel the visit'],ans:1},
+{cat:'Hair Business',type:'scenario',q:'A customer says, "My friend sold her hair for ₹90,000 last month. Can you match that?" How do you respond?',opts:['Immediately offer ₹90,000 without verification','Acknowledge her reference, explain that payout varies by length, thickness, quality, and texture of each individual ponytail, and commit to an honest in-person appraisal that may well reach that range if her hair profile matches','Dismiss her friend\'s claim as impossible','Promise to exceed ₹90,000 without verification'],ans:1},
+{cat:'Hair Business',type:'scenario',q:'A young customer says she is 17 years old and wants to sell her hair independently. How do you handle this?',opts:['Process her booking normally since she seems mature','Politely explain that parental consent is required for clients below 18, and request that she involve a parent or guardian before proceeding','Refuse to engage with her at all','Accept the booking and note the age later'],ans:1},
+{cat:'Hair Business',type:'mcq',q:'Which SellHair.in club is specifically for clients who chose full head shaves?',opts:['Buzz Cut Club','Side Shave Club','Headshave Club','Undercut Club'],ans:2},
+{cat:'Hair Business',type:'mcq',q:'According to SellHair.in\'s transformation statistics, what percentage of clients choose undercut styles?',opts:['55%','64%','78%','91%'],ans:2},
+{cat:'Hair Business',type:'mcq',q:'According to the website, what percentage of surveyed SellHair.in clients said they would do it again?',opts:['78%','81%','87%','91%'],ans:3},
+{cat:'Hair Business',type:'mcq',q:'Which of the following is NOT one of SellHair.in\'s listed primary value drivers for hair?',opts:['Length','End Density','Hair Washing Frequency','Virgin Status'],ans:2},
+{cat:'Hair Business',type:'mcq',q:'The Micro Bob + Shaved Nape style is best described as which of the following?',opts:['A very short buzz cut with clippers','An ultra-chic French-style bob featuring a clean shaved nape for geometric elegance','A dramatic mohawk with shaved temples','A hidden undercut under long flowing hair'],ans:1},
+{cat:'Hair Business',type:'short',q:'A customer with 32 inches of thick, virgin, straight black hair asks you to explain why her payout would be higher than a customer with 20 inches of colored, thin, straight hair. Write a professional and accurate explanation in 3–4 sentences.',sampleAnswer:'Your hair is significantly more valuable because it combines three premium factors: length (32 inches versus 20 inches means far more usable material for wig manufacturers), virginity (never chemically processed hair retains full structural integrity and commands a premium rate per 100g), and thickness (a thicker ponytail yields greater weight and higher-volume bundles). Colored or chemically treated hair requires additional processing by factories and fetches a lower per-gram rate as a result. Together, these three factors create a substantial multiplier on your final payout compared to shorter, thinner, treated hair.'},
+
+/* ─── SQL (20 questions) ────────────────────────────────────────────────────── */
+{cat:'SQL',type:'mcq',q:'Which SQL clause is used to filter rows returned by a SELECT query?',opts:['GROUP BY','ORDER BY','WHERE','HAVING'],ans:2},
+{cat:'SQL',type:'mcq',q:'Which SQL keyword removes duplicate rows from a SELECT result?',opts:['UNIQUE','DISTINCT','FILTER','EXCEPT'],ans:1},
+{cat:'SQL',type:'mcq',q:'What does the SQL aggregate function COUNT(*) return?',opts:['Sum of all values in a column','Total number of rows including NULLs','Average of a column','Maximum value in a column'],ans:1},
+{cat:'SQL',type:'mcq',q:'Which JOIN type returns only rows where there is a match in BOTH tables?',opts:['LEFT JOIN','RIGHT JOIN','INNER JOIN','FULL OUTER JOIN'],ans:2},
+{cat:'SQL',type:'mcq',q:'A LEFT JOIN returns:',opts:['Only matching rows from both tables','All rows from the left table and matching rows from the right table (NULLs where no match)','All rows from the right table only','All rows from both tables regardless of match'],ans:1},
+{cat:'SQL',type:'mcq',q:'Which clause is used to filter groups produced by GROUP BY?',opts:['WHERE','FILTER','HAVING','CASE'],ans:2},
+{cat:'SQL',type:'mcq',q:'What is the correct SQL to count bookings per city from a "bookings" table?',opts:['SELECT city, SUM(*) FROM bookings','SELECT city, COUNT(*) FROM bookings GROUP BY city','SELECT city FROM bookings COUNT(*)','SELECT COUNT(city) FROM bookings ORDER BY city'],ans:1},
+{cat:'SQL',type:'mcq',q:'Which SQL function returns the average of a numeric column?',opts:['SUM()','MAX()','AVG()','MEAN()'],ans:2},
+{cat:'SQL',type:'mcq',q:'What constraint ensures a column\'s value uniquely identifies each row in a table?',opts:['FOREIGN KEY','INDEX','PRIMARY KEY','UNIQUE INDEX'],ans:2},
+{cat:'SQL',type:'mcq',q:'A FOREIGN KEY in a database table:',opts:['Uniquely identifies each row in the same table','References the PRIMARY KEY of another table to maintain referential integrity','Speeds up query execution','Prevents NULL values in a column'],ans:1},
+{cat:'SQL',type:'mcq',q:'Which SQL keyword is used to sort query results in descending order?',opts:['ORDER BY col ASC','ORDER BY col DESC','SORT BY col','GROUP BY col DESC'],ans:1},
+{cat:'SQL',type:'mcq',q:'What does the following query return? SELECT MAX(payout) FROM bookings;',opts:['Average payout','Total sum of all payouts','The single highest payout value recorded','Number of payouts above average'],ans:2},
+{cat:'SQL',type:'mcq',q:'Which of the following correctly uses a CASE expression?',opts:['CASE WHEN length > 30 THEN "Long" ELSE "Short" END','IF length > 30 THEN "Long" ELSE "Short"','SWITCH(length, 30, "Long", "Short")','WHEN length > 30 CASE "Long"'],ans:0},
+{cat:'SQL',type:'mcq',q:'What is a subquery in SQL?',opts:['A stored procedure with parameters','A query nested inside another query','A view that updates automatically','An index on a JOIN column'],ans:1},
+{cat:'SQL',type:'tf',q:'NULL in SQL means zero.',opts:['True','False'],ans:1},
+{cat:'SQL',type:'tf',q:'An INDEX on a column generally speeds up SELECT queries on that column.',opts:['True','False'],ans:0},
+{cat:'SQL',type:'short',q:'Write a SQL query to find the top 3 cities by total payout amount from a table called "bookings" which has columns: city (VARCHAR) and payout_amount (INT).',sampleAnswer:'SELECT city, SUM(payout_amount) AS total_payout FROM bookings GROUP BY city ORDER BY total_payout DESC LIMIT 3;'},
+{cat:'SQL',type:'mcq',q:'Which SQL statement is used to retrieve data from a database?',opts:['INSERT','UPDATE','SELECT','DELETE'],ans:2},
+{cat:'SQL',type:'mcq',q:'The HAVING clause differs from WHERE in that HAVING:',opts:['Filters individual rows before grouping','Filters groups after the GROUP BY clause is applied','Cannot be used with aggregate functions','Is used only with ORDER BY'],ans:1},
+{cat:'SQL',type:'scenario',q:'A data analyst needs to find all customers who booked an appointment but whose payout_amount is NULL (meaning no payout was recorded yet). Which query is correct?',opts:['SELECT * FROM bookings WHERE payout_amount = NULL','SELECT * FROM bookings WHERE payout_amount IS NULL','SELECT * FROM bookings WHERE payout_amount NOT EXISTS','SELECT * FROM bookings HAVING payout_amount = NULL'],ans:1},
+
+/* ─── SSRS (10 questions) ───────────────────────────────────────────────────── */
+{cat:'SSRS',type:'mcq',q:'What does SSRS stand for?',opts:['SQL Server Reporting Services','Structured Standard Report System','SQL Structured Report Suite','Server-Side Reporting System'],ans:0},
+{cat:'SSRS',type:'mcq',q:'In SSRS, a Dataset is:',opts:['A visual chart component','A query or stored procedure that retrieves data for the report','A parameter that filters the report','A deployed report file on the report server'],ans:1},
+{cat:'SSRS',type:'mcq',q:'Which SSRS feature allows users to click a row to expand and see additional detail within the same report?',opts:['Drill-Through','Drill-Down','Sub-Report','Linked Report'],ans:1},
+{cat:'SSRS',type:'mcq',q:'Drill-Through in SSRS refers to:',opts:['Expanding rows within the same report','Clicking a link in a report that opens a separate, related report','Exporting a report to Excel','Applying a filter to a matrix'],ans:1},
+{cat:'SSRS',type:'mcq',q:'Which SSRS report item is best suited for displaying data in rows and columns with dynamic groupings on both axes?',opts:['Table','List','Matrix','Chart'],ans:2},
+{cat:'SSRS',type:'mcq',q:'Which of the following is a valid export format supported by SSRS?',opts:['PDF, Excel, Word, CSV','PDF, PNG, MP4, HTML','JPEG, DOC, XML, MOV','HTML only'],ans:0},
+{cat:'SSRS',type:'mcq',q:'In SSRS, a Report Parameter is used to:',opts:['Store calculated values','Allow users to filter or customize report data at run time','Define the data source connection string','Publish the report to the server'],ans:1},
+{cat:'SSRS',type:'tf',q:'In SSRS, expressions are written using VB.NET syntax and are enclosed in = signs.',opts:['True','False'],ans:0},
+{cat:'SSRS',type:'mcq',q:'What is the role of the SSRS Report Server?',opts:['It stores raw source data for the company','It hosts, manages, and delivers reports to end users and schedules subscriptions','It acts as the SQL Server database engine','It is a tool to design report layouts only'],ans:1},
+{cat:'SSRS',type:'short',q:'Briefly describe how you would use an SSRS parameter to allow a manager to filter a monthly hair collection report by city.',sampleAnswer:'You would create a report parameter called @City of type Text, populate its available values from a dataset querying the distinct cities from the bookings table, and then reference @City in the main dataset\'s WHERE clause (e.g., WHERE city = @City). When the report is rendered, the manager selects a city from the dropdown and the report re-queries and displays only data for that city.'},
+
+/* ─── DATA ANALYTICS (10 questions) ────────────────────────────────────────── */
+{cat:'Data Analytics',type:'mcq',q:'Which Microsoft tool is most commonly used for interactive BI dashboards with drag-and-drop visualizations?',opts:['Microsoft Word','Microsoft Excel (Pivot Tables only)','Power BI','Microsoft Access'],ans:2},
+{cat:'Data Analytics',type:'mcq',q:'What does KPI stand for in business analytics?',opts:['Key Process Indicator','Key Performance Indicator','Known Performance Index','Key Predictive Insight'],ans:1},
+{cat:'Data Analytics',type:'mcq',q:'In data cleaning, which of the following is a common practice when handling missing values?',opts:['Delete the entire dataset','Impute with mean/median, use a placeholder, or remove the row depending on context','Ignore them as they do not matter','Always replace with zero'],ans:1},
+{cat:'Data Analytics',type:'mcq',q:'A bar chart is most appropriate for comparing:',opts:['Trends over continuous time periods','Proportions of a whole that sum to 100%','Categorical data across different groups','Correlation between two continuous variables'],ans:2},
+{cat:'Data Analytics',type:'mcq',q:'What is the difference between mean and median in descriptive statistics?',opts:['They are always equal','Mean is the middle value; median is the average','Mean is the sum divided by count; median is the middle value in a sorted dataset','Median is used only with categorical data'],ans:2},
+{cat:'Data Analytics',type:'mcq',q:'In Power BI, a "measure" is best described as:',opts:['A static column of data imported from Excel','A DAX calculation that aggregates data dynamically based on filter context','A pre-set color theme for dashboards','A data source connection string'],ans:1},
+{cat:'Data Analytics',type:'mcq',q:'Which Excel feature allows you to summarize and analyze large datasets by grouping and aggregating data?',opts:['VLOOKUP','Conditional Formatting','Pivot Table','Flash Fill'],ans:2},
+{cat:'Data Analytics',type:'tf',q:'A dashboard should always include as many charts as possible to give the most comprehensive view.',opts:['True','False'],ans:1},
+{cat:'Data Analytics',type:'scenario',q:'A manager asks why monthly hair collection revenue dropped by 20% in one city last month. As a data analyst, what is your most appropriate first step?',opts:['Immediately publish a report showing the drop','Investigate by segmenting the data — check if the drop is due to fewer bookings, lower average payout per booking, or a change in hair quality mix — before drawing conclusions','Send an email to the city team saying revenue is down','Assume it is a seasonal trend and do nothing'],ans:1},
+{cat:'Data Analytics',type:'short',q:'Describe what a data analyst should consider when designing a dashboard for the SellHair.in operations team to track weekly hair collection performance across cities.',sampleAnswer:'The dashboard should include: (1) Key KPIs such as total bookings, total payout, average payout per booking, and revenue by city for the selected week. (2) A trend line comparing current week vs prior weeks to identify patterns. (3) A map or bar chart breaking down collection volume by city for geographic insight. (4) A filter/slicer by city, hair type, or date range so managers can drill into specifics. (5) Clean, uncluttered design — one insight per visual — with clear labels so non-technical stakeholders can interpret results without analyst support.'},
+
+]; // end QUESTION_BANK
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   STATE
+══════════════════════════════════════════════════════════════════════════════ */
+let shuffledQuestions = [];
+let currentIndex = 0;
+let userAnswers = [];
+let timerInterval = null;
+let secondsLeft = 90 * 60;
+let startEpoch = null;
+let assessmentActive = false;
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function shuffleQuestion(q) {
+  if (q.type === 'short') return { ...q, shuffledOpts: null, shuffledAns: null };
+  if (q.type === 'tf') return { ...q, shuffledOpts: q.opts, shuffledAns: q.ans };
+  if (q.type === 'multi') {
+    const indexed = q.opts.map((o, i) => ({ o, i }));
+    const shuffled = shuffle(indexed);
+    const newAns = q.ans.map(ai => shuffled.findIndex(x => x.i === ai));
+    return { ...q, shuffledOpts: shuffled.map(x => x.o), shuffledAns: newAns };
+  }
+  const indexed = q.opts.map((o, i) => ({ o, i }));
+  const shuffled = shuffle(indexed);
+  const newAns = shuffled.findIndex(x => x.i === q.ans);
+  return { ...q, shuffledOpts: shuffled.map(x => x.o), shuffledAns: newAns };
+}
+
+/* ─── Login ──────────────────────────────────────────────────────────────── */
+function attemptLogin() {
+  const u = document.getElementById('username').value.trim();
+  const p = document.getElementById('password').value;
+  const err = document.getElementById('login-error');
+  if (u === VALID_USER && p === VALID_PASS) {
+    document.getElementById('login-page').classList.remove('active');
+    document.getElementById('assessment-page').classList.add('active');
+    initAssessment();
+  } else {
+    err.style.display = 'block';
+    document.getElementById('username').classList.add('error');
+    document.getElementById('password').classList.add('error');
+    setTimeout(() => {
+      document.getElementById('username').classList.remove('error');
+      document.getElementById('password').classList.remove('error');
+    }, 2000);
+  }
+}
+
+function initAssessment() {
+  shuffledQuestions = shuffle(QUESTION_BANK).map(shuffleQuestion);
+  userAnswers = new Array(shuffledQuestions.length).fill(null);
+  currentIndex = 0;
+  secondsLeft = 90 * 60;
+  startEpoch = Date.now();
+  assessmentActive = true;
+  buildDots();
+  renderQuestion();
+  startTimer();
+}
+
+function startTimer() {
+  timerInterval = setInterval(() => {
+    secondsLeft--;
+    const m = Math.floor(secondsLeft / 60);
+    const s = secondsLeft % 60;
+    const display = `⏱ ${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+    const box = document.getElementById('timer-display');
+    box.textContent = display;
+    if (secondsLeft <= 300) box.classList.add('warning');
+    if (secondsLeft <= 0) {
+      clearInterval(timerInterval);
+      assessmentActive = false;
+      showResults();
+    }
+  }, 1000);
+}
+
+function renderQuestion() {
+  const q = shuffledQuestions[currentIndex];
+  const total = shuffledQuestions.length;
+
+  document.getElementById('q-num').textContent = `Q ${String(currentIndex + 1).padStart(2,'0')}`;
+  document.getElementById('q-cat').textContent = q.cat;
+
+  const typeMap = { mcq:'MCQ', multi:'Multi-Select', tf:'True / False', scenario:'Scenario', short:'Short Answer' };
+  const badgeMap = { mcq:'badge-mcq', multi:'badge-multi', tf:'badge-tf', scenario:'badge-scenario', short:'badge-short' };
+  const typeEl = document.getElementById('q-type');
+  typeEl.textContent = typeMap[q.type];
+  typeEl.className = 'q-type-badge ' + badgeMap[q.type];
+
+  document.getElementById('q-text').textContent = q.q;
+
+  const answered = userAnswers.filter(a => a !== null).length;
+  const pct = Math.round((answered / total) * 100);
+  document.getElementById('progress-label').textContent = `Question ${currentIndex+1} of ${total}`;
+  document.getElementById('progress-pct').textContent = `${pct}% Complete`;
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('nav-center-label').textContent = `${answered} of ${total} answered`;
+
+  const wrap = document.getElementById('q-options-wrap');
+  wrap.innerHTML = '';
+
+  if (q.type === 'short') {
+    const ta = document.createElement('textarea');
+    ta.className = 'short-input';
+    ta.placeholder = 'Type your answer here...';
+    ta.value = userAnswers[currentIndex] || '';
+    ta.oninput = () => { userAnswers[currentIndex] = ta.value; updateDots(); updateProgressUI(); };
+    wrap.appendChild(ta);
+    const hint = document.createElement('div');
+    hint.className = 'short-hint';
+    hint.textContent = 'ℹ Provide a concise, professional answer. Your response is recorded as-is.';
+    wrap.appendChild(hint);
+  } else {
+    if (q.type === 'multi') {
+      const note = document.createElement('div');
+      note.className = 'multi-note';
+      note.innerHTML = '☑ Select ALL correct answers that apply';
+      wrap.appendChild(note);
+    }
+    const list = document.createElement('div');
+    list.className = 'options-list';
+    const LABELS = ['A','B','C','D','E'];
+    (q.shuffledOpts || q.opts).forEach((opt, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'option-btn';
+      btn.onclick = () => selectOption(i);
+
+      const idx = document.createElement('span');
+      idx.className = 'option-index';
+      idx.textContent = LABELS[i];
+      btn.appendChild(idx);
+
+      const txt = document.createElement('span');
+      txt.textContent = opt;
+      btn.appendChild(txt);
+
+      const cur = userAnswers[currentIndex];
+      if (q.type === 'multi') {
+        if (Array.isArray(cur) && cur.includes(i)) btn.classList.add('selected');
+      } else {
+        if (cur === i) btn.classList.add('selected');
+      }
+      list.appendChild(btn);
+    });
+    wrap.appendChild(list);
+  }
+
+  document.getElementById('btn-prev').disabled = currentIndex === 0;
+  const nextBtn = document.getElementById('btn-next');
+  if (currentIndex === total - 1) {
+    nextBtn.textContent = 'Submit Assessment';
+    nextBtn.className = 'btn-nav btn-submit';
+  } else {
+    nextBtn.textContent = 'Next →';
+    nextBtn.className = 'btn-nav btn-next';
+  }
+
+  const card = document.getElementById('q-card');
+  card.style.animation = 'none';
+  card.offsetHeight;
+  card.style.animation = '';
+
+  updateDots();
+}
+
+function selectOption(i) {
+  const q = shuffledQuestions[currentIndex];
+  if (q.type === 'multi') {
+    let cur = userAnswers[currentIndex];
+    if (!Array.isArray(cur)) cur = [];
+    const idx = cur.indexOf(i);
+    if (idx === -1) cur.push(i); else cur.splice(idx, 1);
+    userAnswers[currentIndex] = cur.length ? [...cur] : null;
+  } else {
+    userAnswers[currentIndex] = i;
+  }
+  updateDots();
+  updateProgressUI();
+  const list = document.querySelector('.options-list');
+  if (!list) return;
+  list.querySelectorAll('.option-btn').forEach((btn, idx) => {
+    btn.classList.remove('selected');
+    const cur = userAnswers[currentIndex];
+    if (q.type === 'multi') {
+      if (Array.isArray(cur) && cur.includes(idx)) btn.classList.add('selected');
+    } else {
+      if (cur === idx) btn.classList.add('selected');
+    }
+  });
+}
+
+function navigate(dir) {
+  const newIdx = currentIndex + dir;
+  if (newIdx < 0 || newIdx >= shuffledQuestions.length) return;
+  currentIndex = newIdx;
+  renderQuestion();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function navigateNext() {
+  if (currentIndex === shuffledQuestions.length - 1) {
+    promptSubmit();
+  } else {
+    navigate(1);
+  }
+}
+
+function updateProgressUI() {
+  const answered = userAnswers.filter(a => a !== null).length;
+  const total = shuffledQuestions.length;
+  const pct = Math.round((answered / total) * 100);
+  document.getElementById('progress-pct').textContent = `${pct}% Complete`;
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('nav-center-label').textContent = `${answered} of ${total} answered`;
+}
+
+function buildDots() {
+  const grid = document.getElementById('dots-grid');
+  grid.innerHTML = '';
+  shuffledQuestions.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'q-dot';
+    d.id = 'dot-' + i;
+    d.textContent = i + 1;
+    d.onclick = () => { currentIndex = i; renderQuestion(); window.scrollTo({top:0,behavior:'smooth'}); };
+    grid.appendChild(d);
+  });
+  updateDots();
+}
+
+function updateDots() {
+  shuffledQuestions.forEach((_, i) => {
+    const d = document.getElementById('dot-' + i);
+    if (!d) return;
+    d.className = 'q-dot';
+    if (i === currentIndex) d.classList.add('current');
+    else if (userAnswers[i] !== null) d.classList.add('answered');
+  });
+}
+
+function promptSubmit() {
+  const unanswered = userAnswers.filter(a => a === null).length;
+  const msg = unanswered > 0
+    ? `You have ${unanswered} unanswered question${unanswered>1?'s':''}. Once submitted, you cannot change your answers.`
+    : 'All questions answered. Ready to submit your assessment?';
+  document.getElementById('confirm-msg').textContent = msg;
+  document.getElementById('confirm-overlay').classList.add('open');
+}
+
+function closeConfirm() {
+  document.getElementById('confirm-overlay').classList.remove('open');
+}
+
+function finalSubmit() {
+  clearInterval(timerInterval);
+  assessmentActive = false;
+  closeConfirm();
+  showResults();
+}
+
+function isCorrect(q, userAns) {
+  if (q.type === 'short') return 'manual';
+  const correctAns = q.shuffledAns !== null ? q.shuffledAns : q.ans;
+  if (q.type === 'multi') {
+    if (!Array.isArray(userAns) || !Array.isArray(correctAns)) return false;
+    const ua = [...userAns].sort().join(',');
+    const ca = [...correctAns].sort().join(',');
+    return ua === ca;
+  }
+  return userAns === correctAns;
+}
+
+function showResults() {
+  document.getElementById('assessment-page').classList.remove('active');
+  document.getElementById('results-page').style.display = 'block';
+
+  let correct = 0, wrong = 0, skipped = 0, shortCount = 0;
+  shuffledQuestions.forEach((q, i) => {
+    const ua = userAnswers[i];
+    if (q.type === 'short') { shortCount++; return; }
+    if (ua === null) { skipped++; return; }
+    if (isCorrect(q, ua)) correct++; else wrong++;
+  });
+
+  const autoTotal = shuffledQuestions.length - shortCount;
+  const pct = Math.round((correct / autoTotal) * 100);
+  const pass = pct >= 70;
+
+  const elapsed = Math.floor((Date.now() - startEpoch) / 1000);
+  const em = Math.floor(elapsed / 60), es = elapsed % 60;
+  const timeTaken = `${em}m ${String(es).padStart(2,'0')}s`;
+
+  document.getElementById('result-score-val').textContent = `${correct} / ${autoTotal}`;
+  document.getElementById('result-pct-val').textContent = `${pct}% Score`;
+  document.getElementById('rc-correct').textContent = correct;
+  document.getElementById('rc-wrong').textContent = wrong;
+  document.getElementById('rc-skip').textContent = skipped + shortCount;
+  document.getElementById('rc-time').textContent = timeTaken;
+
+  const badge = document.getElementById('result-status-badge');
+  if (pass) {
+    badge.className = 'result-status status-pass';
+    badge.innerHTML = '✓ Assessment Passed';
+  } else {
+    badge.className = 'result-status status-fail';
+    badge.innerHTML = '✗ Assessment Not Passed';
+  }
+
+  const rev = document.getElementById('answer-review');
+  rev.innerHTML = '';
+  let hasReview = false;
+  shuffledQuestions.forEach((q, i) => {
+    const ua = userAnswers[i];
+    const result = isCorrect(q, ua);
+    if (result === true) return;
+    hasReview = true;
+    const correctAns = q.shuffledAns !== null ? q.shuffledAns : q.ans;
+    const opts = q.shuffledOpts || q.opts;
+
+    const d = document.createElement('div');
+    d.className = 'review-q';
+
+    const qtext = document.createElement('div');
+    qtext.className = 'review-q-text';
+    qtext.textContent = `Q${i+1}. ${q.q}`;
+    d.appendChild(qtext);
+
+    if (q.type === 'short') {
+      const note = document.createElement('div');
+      note.className = 'review-short';
+      note.textContent = `Your answer: "${ua || '(No answer provided)'}"`;
+      d.appendChild(note);
+      const sample = document.createElement('div');
+      sample.className = 'review-correct';
+      sample.innerHTML = `✦ Sample Answer: ${q.sampleAnswer}`;
+      d.appendChild(sample);
+    } else {
+      if (ua !== null) {
+        const userDiv = document.createElement('div');
+        userDiv.className = 'review-user';
+        if (q.type === 'multi') {
+          userDiv.innerHTML = `✗ Your answer: ${ua.map(j=>opts[j]).join(', ')}`;
+        } else {
+          userDiv.innerHTML = `✗ Your answer: ${opts[ua]}`;
+        }
+        d.appendChild(userDiv);
+      } else {
+        const skipDiv = document.createElement('div');
+        skipDiv.className = 'review-user';
+        skipDiv.textContent = '— Not answered';
+        d.appendChild(skipDiv);
+      }
+      const corrDiv = document.createElement('div');
+      corrDiv.className = 'review-correct';
+      if (q.type === 'multi') {
+        corrDiv.innerHTML = `✓ Correct: ${correctAns.map(j=>opts[j]).join(', ')}`;
+      } else {
+        corrDiv.innerHTML = `✓ Correct: ${opts[correctAns]}`;
+      }
+      d.appendChild(corrDiv);
+    }
+    rev.appendChild(d);
+  });
+
+  if (!hasReview) {
+    rev.innerHTML = '<p style="color:var(--stone-500);font-size:0.875rem">🎉 All auto-scored questions answered correctly!</p>';
+  }
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function resetAssessment() {
+  document.getElementById('results-page').style.display = 'none';
+  document.getElementById('assessment-page').classList.add('active');
+  clearInterval(timerInterval);
+  initAssessment();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+window.addEventListener('beforeunload', (e) => {
+  if (assessmentActive) {
+    e.preventDefault();
+    e.returnValue = 'The assessment is in progress. Are you sure you want to leave? Your progress will be lost.';
+  }
+});
+</script>
+</body>
+</html>
