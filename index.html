@@ -1592,6 +1592,12 @@
           <div class="office-slide">
             <img src="office2.jpg" alt="SellHair.in Office - Team Area">
           </div>
+          <div class="office-slide">
+            <img src="office3.jpg" alt="SellHair.in Employee - Chilling in Office with Signature 360 Shaved Mohawk">
+          </div>
+          <div class="office-slide">
+            <img src="office4.jpg" alt="SellHair.in Employees - Team Discussion with Signature 360 Shaved Mohawks">
+          </div>
         </div>
         <!-- Prev / Next Buttons -->
         <button class="office-arrow office-arrow-left" onclick="officeSlide(-1)" aria-label="Previous">
@@ -1604,6 +1610,8 @@
         <div class="office-dots">
           <button class="office-dot active" onclick="officeGoTo(0)" aria-label="Slide 1"></button>
           <button class="office-dot" onclick="officeGoTo(1)" aria-label="Slide 2"></button>
+          <button class="office-dot" onclick="officeGoTo(2)" aria-label="Slide 3"></button>
+          <button class="office-dot" onclick="officeGoTo(3)" aria-label="Slide 4"></button>
         </div>
         <!-- Label -->
         <div class="office-slide-label" id="officeLabel">Our Main Operations Floor</div>
@@ -2214,8 +2222,8 @@
     }
     // ─── OFFICE SLIDER ────────────────────────────────────────────────────────
     var officeIndex = 0;
-    var officeSlides = 2;
-    var officeLabels = ['Our Main Operations Floor', 'Where Our Team Works For You'];
+    var officeSlides = 4;
+    var officeLabels = ['Our Main Operations Floor', 'Where Our Team Works For You', 'Our Employee Chilling in Office — Rocking the Signature 360 Shaved Mohawk', 'Our Team in Discussion — United by the Signature 360 Shaved Mohawk'];
 
     function officeGoTo(n) {
       officeIndex = n;
