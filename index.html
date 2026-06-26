@@ -584,7 +584,96 @@
     .success-state.visible { display: flex; }
     .bounce-icon { animation: bounce 1s infinite; }
     @keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-
+   #office-gallery { padding: 96px 0; border-top: 1px solid rgba(255,255,255,0.4); }
+    .office-slider-wrap {
+      position: relative;
+      max-width: 860px;
+      margin: 0 auto;
+      background: rgba(255,255,255,0.4);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.6);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.10);
+    }
+    .office-slider-track {
+      display: flex;
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform;
+    }
+    .office-slide {
+      min-width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+    }
+    .office-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .office-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.55);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.7);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--stone-700);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+      transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+      z-index: 2;
+    }
+    .office-arrow:hover {
+      background: rgba(255,255,255,0.85);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.14);
+      transform: translateY(-50%) scale(1.08);
+    }
+    .office-arrow-left { left: 14px; }
+    .office-arrow-right { right: 14px; }
+    .office-dots {
+      position: absolute;
+      bottom: 48px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      z-index: 2;
+    }
+    .office-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(255,255,255,0.5);
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      padding: 0;
+    }
+    .office-dot.active {
+      background: white;
+      transform: scale(1.3);
+    }
+    .office-slide-label {
+      text-align: center;
+      padding: 14px 20px;
+      font-size: 0.65rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--stone-500);
+      background: rgba(255,255,255,0.3);
+      border-top: 1px solid rgba(255,255,255,0.5);
+    }
     .text-gold { color: var(--gold); }
     .text-emerald { color: #059669; }
     .bg-gold { background: var(--gold); }
@@ -615,6 +704,7 @@
       <a href="/careers/">Careers</a>
       <a href="/employee-benefits/">Employee Benefits</a>
       <a href="#faq">FAQs</a>
+      <a href="#office-gallery">Our Workplace</a>
     </div>
     <div class="nav-cta">
       <button class="btn-black" onclick="openBooking()">Check Hair Value</button>
@@ -637,6 +727,7 @@
       <a href="/careers/" style="color:#c5a059;font-weight:800;">Careers</a>
       <a href="/employee-benefits/" onclick="closeMobileMenu()">Employee Benefits</a>
       <a href="#faq" onclick="closeMobileMenu()">FAQs</a>
+      <a href="#office-gallery" onclick="closeMobileMenu()">Our Workplace</a>
       <button class="mobile-cta" onclick="closeMobileMenu(); openBooking()">Check My Hair Value</button>
       <div class="mobile-cta-sub">🏠 Free Doorstep Visit Available</div>
     </div>
@@ -1485,7 +1576,40 @@
       </div>
     </div>
   </section>
-
+ <!-- OFFICE GALLERY -->
+  <section id="office-gallery">
+    <div class="container">
+      <div class="section-heading">
+        <span class="badge">🏢 Our Workplace</span>
+        <h2 style="margin-top:16px">Office Gallery</h2>
+        <p>Take a look inside our professional workspace where our team manages consultations, customer support, employee training, and operations.</p>
+      </div>
+      <div class="office-slider-wrap">
+        <div class="office-slider-track" id="officeTrack">
+          <div class="office-slide">
+            <img src="office1.jpg" alt="SellHair.in Office - Workspace">
+          </div>
+          <div class="office-slide">
+            <img src="office2.jpg" alt="SellHair.in Office - Team Area">
+          </div>
+        </div>
+        <!-- Prev / Next Buttons -->
+        <button class="office-arrow office-arrow-left" onclick="officeSlide(-1)" aria-label="Previous">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button class="office-arrow office-arrow-right" onclick="officeSlide(1)" aria-label="Next">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+        <!-- Dots -->
+        <div class="office-dots">
+          <button class="office-dot active" onclick="officeGoTo(0)" aria-label="Slide 1"></button>
+          <button class="office-dot" onclick="officeGoTo(1)" aria-label="Slide 2"></button>
+        </div>
+        <!-- Label -->
+        <div class="office-slide-label" id="officeLabel">Our Main Operations Floor</div>
+      </div>
+    </div>
+  </section>
   <!-- FINAL CTA -->
   <section id="final-cta">
     <div class="glow"></div>
@@ -2088,7 +2212,24 @@
         grid.appendChild(card);
       });
     }
+    // ─── OFFICE SLIDER ────────────────────────────────────────────────────────
+    var officeIndex = 0;
+    var officeSlides = 2;
+    var officeLabels = ['Our Main Operations Floor', 'Where Our Team Works For You'];
 
+    function officeGoTo(n) {
+      officeIndex = n;
+      document.getElementById('officeTrack').style.transform = 'translateX(-' + (officeIndex * 100) + '%)';
+      document.querySelectorAll('.office-dot').forEach(function(dot, i) {
+        dot.classList.toggle('active', i === officeIndex);
+      });
+      document.getElementById('officeLabel').textContent = officeLabels[officeIndex];
+    }
+
+    function officeSlide(dir) {
+      officeIndex = (officeIndex + dir + officeSlides) % officeSlides;
+      officeGoTo(officeIndex);
+    }
     // ─── INIT ─────────────────────────────────────────────────────────────────
     document.addEventListener('DOMContentLoaded', function() {
       updateCalculator();
