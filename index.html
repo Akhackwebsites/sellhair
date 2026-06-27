@@ -1607,6 +1607,15 @@
           <div class="office-slide">
             <img src="office4.jpg" alt="SellHair.in Employees - Team Discussion with Signature 360 Shaved Mohawks">
           </div>
+          <div class="office-slide">
+            <img src="office5.jpg" alt="SellHair.in Employee with Mandatory 360 Shaved Undercut Working at Her Desk">
+          </div>
+          <div class="office-slide">
+            <img src="office6.jpg" alt="SellHair.in Employees - Colleague with 360 Shaved Undercut Holding Another Employee's Ponytail with Matching Haircut">
+          </div>
+          <div class="office-slide">
+            <img src="office7.jpg" alt="SellHair.in Employee with 360 Shaved Undercut Making Photocopies">
+          </div>
         </div>
         <!-- Prev / Next Buttons -->
         <button class="office-arrow office-arrow-left" onclick="officeSlide(-1)" aria-label="Previous">
@@ -1621,6 +1630,10 @@
           <button class="office-dot" onclick="officeGoTo(1)" aria-label="Slide 2"></button>
           <button class="office-dot" onclick="officeGoTo(2)" aria-label="Slide 3"></button>
           <button class="office-dot" onclick="officeGoTo(3)" aria-label="Slide 4"></button>
+          <button class="office-dot" onclick="officeGoTo(4)" aria-label="Slide 5"></button>
+          <button class="office-dot" onclick="officeGoTo(5)" aria-label="Slide 6"></button>
+          <button class="office-dot" onclick="officeGoTo(6)" aria-label="Slide 7"></button>
+    
         </div>
         <!-- Label -->
         <div class="office-slide-label" id="officeLabel">Our Main Operations Floor</div>
@@ -2233,11 +2246,18 @@
         grid.appendChild(card);
       });
     }
-    // ─── OFFICE SLIDER ────────────────────────────────────────────────────────
+// ─── OFFICE SLIDER ────────────────────────────────────────────────────────
     var officeIndex = 0;
-    var officeSlides = 4;
-    var officeLabels = ['Our Main Operations Floor', 'Where Our Team Works For You', 'Our Employee Chilling in Office — Rocking the Signature 360 Shaved Mohawk', 'Our Team in Discussion — United by the Signature 360 Shaved Mohawk'];
-
+    var officeSlides = 7;
+    var officeLabels = [
+      'Our Main Operations Floor',
+      'Where Our Team Works For You',
+      'Our Employee Chilling in Office — Rocking the Signature 360 Shaved Mohawk',
+      'Our Team in Discussion — United by the Signature 360 Shaved Mohawk',
+      'Focused and Ready — Another Day, Another Signature Undercut',
+      "Camaraderie at the Cut — Our Team's Matching Look in Action",
+      'Even Photocopying Looks Sharper with the SellHair.in Signature Cut'
+    ];
     function officeGoTo(n) {
       officeIndex = n;
       document.getElementById('officeTrack').style.transform = 'translateX(-' + (officeIndex * 100) + '%)';
