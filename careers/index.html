@@ -1047,16 +1047,17 @@ function renderJobs() {
         '<div class="job-skills">' + skillsHtml + '</div>' +
         getFemaleCard() +
       '</div>' +
-      '<div class="job-footer">' +
-        '<div style="display:flex;align-items:center;gap:12px">' +
-          '<div style="display:flex;flex-direction:column;align-items:center;gap:5px">' +
+      '<div class="job-footer" style="padding-bottom:10px; margin-top:24px; border-top:1px solid rgba(197,160,89,0.25);">' +
+        '<div style="display:flex;align-items:center;gap:16px">' +
+          '<div style="position:relative; width:114px; display:flex; justify-content:center; flex-shrink:0;">' +
             '<img src="https://sellhair.in/mohawk.jpg" alt="" class="hairstyle-preview" loading="lazy">' +
-            '<span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold);white-space:nowrap;">Mandatory Hairstyle</span>' +
+            '<span style="position:absolute; bottom:-18px; font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:0.12em; color:var(--gold); white-space:nowrap;">Mandatory Hairstyle</span>' +
           '</div>' +
-          '<div>' +
-            '<span class="job-salary-label">Salary Range</span>' +
-            '<div class="job-salary">' + j.salary + '</div>' +
-            '<div class="job-openings">' + j.openings + (j.openings === 1 ? ' Opening' : ' Openings') + '</div>' +
+          '<div style="width:1px; height:46px; background:linear-gradient(to bottom, transparent, rgba(197,160,89,0.4), transparent); flex-shrink:0;"></div>' +
+          '<div style="display:flex; flex-direction:column; justify-content:center; gap:3px;">' +
+            '<span class="job-salary-label" style="margin:0;">Salary Range</span>' +
+            '<div class="job-salary" style="line-height:1;">' + j.salary + '</div>' +
+            '<div class="job-openings" style="margin:0;">' + j.openings + (j.openings === 1 ? ' Opening' : ' Openings') + '</div>' +
           '</div>' +
         '</div>' +
         '<button class="btn-apply" onclick="openApply(' + j.id + ')">Apply Now</button>' +
