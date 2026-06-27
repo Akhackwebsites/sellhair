@@ -825,33 +825,149 @@
               </div>
               <div class="length-grid">
                 <!-- Silhouette -->
-                <div class="silhouette-panel">
-                  <span class="silhouette-label">Visual Model</span>
-                  <svg id="silhouette-svg" viewBox="0 0 120 180" style="width:100%;height:100%;max-width:140px;overflow:visible">
-                    <path d="M35,65 Q35,40 60,40 Q85,40 85,65 Q85,85 85,110 L95,140 Q95,160 60,160 Q25,160 25,140 L35,110 Z" fill="#f5f5f4" stroke="#e7e5e4" stroke-width="1.5"/>
-                    <path d="M47,85 L47,105 M73,85 L73,105" stroke="#e5e5e0" stroke-width="1"/>
-                    <path d="M60,62 Q60,90 60,110" fill="none" stroke="#1c1917" stroke-width="8" stroke-linecap="round"/>
-                    <path id="pony-ext" d="M60,105 Q60,130 60,175" fill="none" stroke="#1c1917" stroke-width="6" stroke-linecap="round" style="stroke-dasharray:100;stroke-dashoffset:25;transition:stroke-dashoffset 0.4s ease"/>
-                    <rect x="56" y="103" width="8" height="4" rx="1.5" fill="#d4af37"/>
-                    <line x1="5" y1="115" x2="115" y2="115" id="guide-15" stroke="#e7e5e4" stroke-width="1" stroke-dasharray="3 3"/>
-                    <line x1="5" y1="128" x2="115" y2="128" id="guide-18" stroke="#e7e5e4" stroke-width="1" stroke-dasharray="3 3"/>
-                    <line x1="5" y1="145" x2="115" y2="145" id="guide-24" stroke="#a8a29e" stroke-width="1" stroke-dasharray="3 3"/>
-                    <line x1="5" y1="160" x2="115" y2="160" id="guide-30" stroke="#e7e5e4" stroke-width="1" stroke-dasharray="3 3"/>
-                    <line x1="5" y1="175" x2="115" y2="175" id="guide-36" stroke="#e7e5e4" stroke-width="1" stroke-dasharray="3 3"/>
-                    <circle id="pony-dot" cx="60" cy="145" r="4" fill="#d4af37" class="animate-ping"/>
-                  </svg>
-                  <div style="text-align:center;margin-top:4px">
-                    <span id="length-display" class="font-mono" style="font-size:0.75rem;font-weight:800;background:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.4);padding:2px 8px;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.06)">24" Ponytail Length</span>
-                  </div>
-                </div>
+               <div class="silhouette-panel" style="height:490px;padding:12px 8px 8px;">
+  <span class="silhouette-label">Visual Model</span>
+  <svg id="silhouette-svg" viewBox="0 0 160 490" style="width:100%;height:100%;max-width:160px;overflow:visible">
+    <defs>
+      <radialGradient id="faceGrad" cx="50%" cy="45%" r="55%">
+        <stop offset="0%" stop-color="#f5e6d8"/>
+        <stop offset="100%" stop-color="#e8cdb5"/>
+      </radialGradient>
+      <linearGradient id="hairGrad" x1="0%" y1="0%" x2="20%" y2="100%">
+        <stop offset="0%" stop-color="#1a0f00"/>
+        <stop offset="40%" stop-color="#2d1a00"/>
+        <stop offset="100%" stop-color="#1a0f00"/>
+      </linearGradient>
+      <linearGradient id="bodyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#e8d4c0"/>
+        <stop offset="100%" stop-color="#c4a882"/>
+      </linearGradient>
+    </defs>
+
+    <!-- BODY / SHOULDERS -->
+    <path d="M38,130 Q38,120 50,116 Q63,108 80,107 Q97,108 110,116 Q122,120 122,130 L125,200 Q110,208 80,210 Q50,208 35,200 Z" fill="url(#bodyGrad)"/>
+    <path d="M57,118 Q70,115 80,116 Q90,115 103,118" fill="none" stroke="#c4a07a" stroke-width="0.8" opacity="0.6"/>
+
+    <!-- NECK -->
+    <rect x="69" y="94" width="22" height="30" rx="4" fill="#efd5b8"/>
+    <path d="M69,94 Q68,106 69,124" stroke="#d4b890" stroke-width="1.5" fill="none"/>
+    <path d="M91,94 Q92,106 91,124" stroke="#d4b890" stroke-width="1.5" fill="none"/>
+
+    <!-- EARS -->
+    <ellipse cx="47" cy="71" rx="5.5" ry="7" fill="#efd5b8"/>
+    <ellipse cx="113" cy="71" rx="5.5" ry="7" fill="#efd5b8"/>
+    <ellipse cx="47" cy="71" rx="3" ry="4.5" fill="#e2c4a0"/>
+    <ellipse cx="113" cy="71" rx="3" ry="4.5" fill="#e2c4a0"/>
+
+    <!-- FACE -->
+    <ellipse cx="80" cy="68" rx="33" ry="38" fill="url(#faceGrad)"/>
+    <ellipse cx="58" cy="75" rx="8" ry="5" fill="rgba(220,130,100,0.10)"/>
+    <ellipse cx="102" cy="75" rx="8" ry="5" fill="rgba(220,130,100,0.10)"/>
+
+    <!-- EYEBROWS -->
+    <path d="M63,56 Q70,52 77,54" stroke="#3d1e00" stroke-width="2" stroke-linecap="round" fill="none"/>
+    <path d="M83,54 Q90,52 97,56" stroke="#3d1e00" stroke-width="2" stroke-linecap="round" fill="none"/>
+
+    <!-- LEFT EYE -->
+    <ellipse cx="70" cy="64" rx="8" ry="5.5" fill="white"/>
+    <circle cx="70" cy="64" r="4" fill="#3d2200"/>
+    <circle cx="70" cy="64" r="2.2" fill="#0a0500"/>
+    <circle cx="72" cy="62" r="1" fill="white"/>
+    <path d="M62,62 Q70,57 78,62" fill="none" stroke="#d4a070" stroke-width="0.7"/>
+    <path d="M62,64 Q63,60 65,59" stroke="#1a0a00" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+    <path d="M78,64 Q77,60 75,59" stroke="#1a0a00" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+
+    <!-- RIGHT EYE -->
+    <ellipse cx="90" cy="64" rx="8" ry="5.5" fill="white"/>
+    <circle cx="90" cy="64" r="4" fill="#3d2200"/>
+    <circle cx="90" cy="64" r="2.2" fill="#0a0500"/>
+    <circle cx="92" cy="62" r="1" fill="white"/>
+    <path d="M82,62 Q90,57 98,62" fill="none" stroke="#d4a070" stroke-width="0.7"/>
+    <path d="M98,64 Q97,60 95,59" stroke="#1a0a00" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+    <path d="M82,64 Q83,60 85,59" stroke="#1a0a00" stroke-width="1.2" stroke-linecap="round" fill="none"/>
+
+    <!-- NOSE -->
+    <path d="M78,68 Q75,75 76,80 Q78,83 80,83 Q82,83 84,80 Q85,75 82,68" fill="none" stroke="#c9906a" stroke-width="1" stroke-linecap="round"/>
+    <ellipse cx="76.5" cy="82" rx="2.5" ry="1.5" fill="rgba(160,90,50,0.3)"/>
+    <ellipse cx="83.5" cy="82" rx="2.5" ry="1.5" fill="rgba(160,90,50,0.3)"/>
+
+    <!-- LIPS -->
+    <path d="M71,90 Q76,87 80,88 Q84,87 89,90 Q84,95 80,95.5 Q76,95 71,90Z" fill="#c97060"/>
+    <path d="M71,90 Q76,92 80,91.5 Q84,92 89,90" fill="#d48070"/>
+    <path d="M71,90 Q75,88 78,89.5 Q80,88.5 82,89.5 Q85,88 89,90" fill="none" stroke="#b05040" stroke-width="0.8"/>
+
+    <!-- BACK HAIR MASS -->
+    <path id="hairBack"
+      d="M47,40 Q35,30 34,55 Q33,75 36,95 Q38,115 40,140
+         Q42,180 44,220 L46,260 Q48,290 50,310
+         L80,320 L110,310 Q112,290 114,260 L116,220
+         Q118,180 120,140 Q122,115 124,95 Q127,75 126,55 Q125,30 113,40
+         Q100,28 80,26 Q60,28 47,40Z"
+      fill="url(#hairGrad)"/>
+    <path d="M50,60 Q48,100 46,150 Q44,200 44,250" stroke="#2d1a00" stroke-width="1.5" fill="none" opacity="0.5"/>
+    <path d="M110,60 Q112,100 114,150 Q116,200 116,250" stroke="#2d1a00" stroke-width="1.5" fill="none" opacity="0.5"/>
+    <path d="M58,40 Q56,80 55,130 Q53,180 52,250" stroke="rgba(255,220,150,0.12)" stroke-width="6" fill="none" stroke-linecap="round"/>
+
+    <!-- HAIR TOP / CROWN -->
+    <path d="M47,40 Q46,28 56,22 Q65,16 80,15 Q95,16 104,22 Q114,28 113,40 Q100,32 80,31 Q60,32 47,40Z" fill="#1a0f00"/>
+    <path d="M47,40 Q38,55 38,75 Q38,90 42,105 Q40,100 38,90 Q35,75 36,55 Q37,40 47,40Z" fill="#1a0f00"/>
+    <path d="M113,40 Q122,55 122,75 Q122,90 118,105 Q120,100 122,90 Q125,75 124,55 Q123,40 113,40Z" fill="#1a0f00"/>
+    <ellipse cx="72" cy="22" rx="10" ry="5" fill="rgba(255,230,150,0.09)" transform="rotate(-15,72,22)"/>
+
+    <!-- PONYTAIL TIE -->
+    <ellipse cx="80" cy="166" rx="9" ry="5" fill="#c5a059" opacity="0.9"/>
+    <rect x="76" y="164" width="8" height="4" rx="2" fill="#b08d40"/>
+    <circle cx="80" cy="166" r="3.5" fill="#d4af60"/>
+    <circle cx="80" cy="166" r="1.5" fill="#b08d40"/>
+
+    <!-- PONYTAIL BODY -->
+    <path id="pony-ext"
+      d="M72,162 Q65,175 63,195 Q61,215 62,240 Q63,265 65,285 Q67,305 68,320 L80,325 L92,320 Q93,305 95,285 Q97,265 98,240 Q99,215 97,195 Q95,175 88,162 Z"
+      fill="url(#hairGrad)"/>
+    <path d="M74,165 Q68,185 66,210 Q64,235 65,285 Q66,300 68,320" stroke="#2d1a00" stroke-width="1.2" fill="none" opacity="0.5"/>
+    <path d="M80,167 Q80,190 80,215 Q80,255 80,300 Q80,310 80,320" stroke="#3d2400" stroke-width="1" fill="none" opacity="0.4"/>
+    <path d="M86,165 Q92,185 94,210 Q96,235 95,285 Q94,300 92,320" stroke="#2d1a00" stroke-width="1.2" fill="none" opacity="0.5"/>
+    <path d="M77,165 Q72,185 70,210 Q68,235 70,270" stroke="rgba(255,220,150,0.15)" stroke-width="5" fill="none" stroke-linecap="round"/>
+
+    <!-- RULER -->
+    <line x1="128" y1="162" x2="128" y2="475" stroke="rgba(255,255,255,0.15)" stroke-width="0.8"/>
+    <line x1="128" y1="200" x2="134" y2="200" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+    <line x1="128" y1="225" x2="134" y2="225" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+    <line x1="128" y1="270" x2="136" y2="270" stroke="#c5a059" stroke-width="1.2"/>
+    <line x1="128" y1="310" x2="134" y2="310" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+    <text x="138" y="203" font-size="8" fill="rgba(255,255,255,0.3)" font-family="'JetBrains Mono',monospace">15"</text>
+    <text x="138" y="228" font-size="8" fill="rgba(255,255,255,0.3)" font-family="'JetBrains Mono',monospace">18"</text>
+    <text x="138" y="273" font-size="8" fill="#c5a059" font-family="'JetBrains Mono',monospace" font-weight="bold">24"</text>
+    <text x="138" y="313" font-size="8" fill="rgba(255,255,255,0.3)" font-family="'JetBrains Mono',monospace">30"</text>
+<line x1="128" y1="348" x2="134" y2="348" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+<text x="138" y="351" font-size="8" fill="rgba(255,255,255,0.3)" font-family="'JetBrains Mono',monospace">36"</text>
+<line x1="128" y1="408" x2="134" y2="408" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+<text x="138" y="411" font-size="8" fill="rgba(255,255,255,0.3)" font-family="'JetBrains Mono',monospace">48"</text>
+<line x1="128" y1="468" x2="134" y2="468" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+<text x="138" y="471" font-size="8" fill="rgba(255,255,255,0.3)" font-family="'JetBrains Mono',monospace">60"</text>
+
+    <!-- ACTIVE DOT -->
+<circle id="pony-dot-ring" cx="128" cy="270" r="9" fill="rgba(197,160,89,0.2)" stroke="#c5a059" stroke-width="1"/>
+<circle id="pony-dot" cx="128" cy="270" r="6" fill="#c5a059"/>
+<circle id="pony-dot-inner" cx="128" cy="270" r="2.5" fill="white"/>
+<rect id="pony-label-bg" x="98" y="258" width="24" height="13" rx="4" fill="#c5a059"/>
+<text id="pony-label-txt" x="110" y="268" font-size="8" fill="white" font-family="'JetBrains Mono',monospace" font-weight="bold" text-anchor="middle">24"</text>
+  </svg>
+  <div style="text-align:center;margin-top:4px">
+    <span id="length-display" class="font-mono" style="font-size:0.75rem;font-weight:800;background:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.4);padding:2px 8px;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,0.06)">24" Ponytail Length</span>
+  </div>
+</div>
                 <!-- Length Buttons -->
                 <div style="display:flex;flex-direction:column;justify-content:space-between">
                   <div style="display:flex;flex-direction:column;gap:8px">
-                    <button class="length-btn" data-length="15" onclick="setLength(15)"><div style="display:flex;align-items:center;gap:8px"><span class="length-hint-dot" style="background:var(--stone-300)"></span><span style="font-size:0.75rem;font-weight:600">15 Inches</span></div><span class="length-range" style="color:var(--stone-400)">15-18" Range</span></button>
-                    <button class="length-btn" data-length="18" onclick="setLength(18)"><div style="display:flex;align-items:center;gap:8px"><span class="length-hint-dot" style="background:var(--stone-300)"></span><span style="font-size:0.75rem;font-weight:600">18 Inches</span></div><span class="length-range" style="color:var(--stone-400)">18-24" Range</span></button>
-                    <button class="length-btn active" data-length="24" onclick="setLength(24)"><div style="display:flex;align-items:center;gap:8px"><span class="length-hint-dot" style="background:var(--gold)"></span><span style="font-size:0.75rem;font-weight:600">24 Inches</span></div><span class="length-range" style="color:rgba(255,255,255,0.6)">24-30" Range</span></button>
-                    <button class="length-btn" data-length="30" onclick="setLength(30)"><div style="display:flex;align-items:center;gap:8px"><span class="length-hint-dot" style="background:var(--stone-300)"></span><span style="font-size:0.75rem;font-weight:600">30 Inches</span></div><span class="length-range" style="color:var(--stone-400)">30-36" Range</span></button>
-                    <button class="length-btn" data-length="36" onclick="setLength(36)"><div style="display:flex;align-items:center;gap:8px"><span class="length-hint-dot" style="background:var(--stone-300)"></span><span style="font-size:0.75rem;font-weight:600">36 Inches +</span></div><span class="length-range" style="color:var(--stone-400)">36"+ Collector</span></button>
+                   <button class="length-btn" data-length="15" onclick="setLength(15)"><div style="display:flex;align-items:center;gap:8px"><span class="length-hint-dot" style="background:var(--stone-300)"></span><span style="font-size:0.75rem;font-weight:600">15 Inches</span></div><span class="length-range" style="color:var(--stone-400)">15-18" Range</span></button>
+<button class="length-btn" data-length="18" onclick="setLength(18)"><div style="display:flex;align-items:center;gap:8px"><span class="length-hint-dot" style="background:var(--stone-300)"></span><span style="font-size:0.75rem;font-weight:600">18 Inches</span></div><span class="length-range" style="color:var(--stone-400)">18-24" Range</span></button>
+<button class="length-btn active" data-length="24" onclick="setLength(24)"><div style="display:flex;align-items:center;gap:8px"><span class="length-hint-dot" style="background:var(--gold)"></span><span style="font-size:0.75rem;font-weight:600">24 Inches</span></div><span class="length-range" style="color:rgba(255,255,255,0.6)">24-30" Range</span></button>
+<button class="length-btn" data-length="30" onclick="setLength(30)"><div style="display:flex;align-items:center;gap:8px"><span class="length-hint-dot" style="background:var(--stone-300)"></span><span style="font-size:0.75rem;font-weight:600">30 Inches</span></div><span class="length-range" style="color:var(--stone-400)">30-36" Range</span></button>
+<button class="length-btn" data-length="36" onclick="setLength(36)"><div style="display:flex;align-items:center;gap:8px"><span class="length-hint-dot" style="background:var(--stone-300)"></span><span style="font-size:0.75rem;font-weight:600">36 Inches</span></div><span class="length-range" style="color:var(--stone-400)">36-48" Range</span></button>
+<button class="length-btn" data-length="48" onclick="setLength(48)"><div style="display:flex;align-items:center;gap:8px"><span class="length-hint-dot" style="background:var(--stone-300)"></span><span style="font-size:0.75rem;font-weight:600">48 Inches</span></div><span class="length-range" style="color:var(--stone-400)">48-60" Range</span></button>
+<button class="length-btn" data-length="60" onclick="setLength(60)"><div style="display:flex;align-items:center;gap:8px"><span class="length-hint-dot" style="background:var(--stone-300)"></span><span style="font-size:0.75rem;font-weight:600">60 Inches +</span></div><span class="length-range" style="color:var(--stone-400)">60"+ Collector</span></button>
+                    
                   </div>
                   <div style="font-size:0.65rem;color:var(--stone-400);display:flex;align-items:flex-start;gap:4px;padding:4px">
                     <span>ℹ</span><span>Minimum acceptable length for selling is 15 inches. Measurement starts from the nape tie level.</span>
@@ -1833,7 +1949,7 @@
     let isSubmitting = false;
 
     // ─── PRICING ──────────────────────────────────────────────────────────────
-    const BASE = { 15:[12000,18000], 18:[18000,28000], 24:[28000,45000], 30:[45000,80000], 36:[80000,120000] };
+    const BASE = { 15:[12000,18000], 18:[18000,28000], 24:[28000,45000], 30:[45000,80000], 36:[80000,120000], 48:[120000,180000], 60:[180000,250000] };
     const THICK = { thin:0.75, medium:1.0, thick:1.25, extra:1.55 };
     const QUAL = { virgin:1.35, healthy:1.0, colored:0.65 };
     const TEX = { straight:1.0, wavy:1.1, curly:1.25 };
@@ -1895,26 +2011,68 @@
     }
 
     function setLength(val) {
-      calcState.length = val;
-      document.querySelectorAll('.length-btn').forEach(function(b) {
-        var isActive = parseInt(b.dataset.length) === val;
-        b.classList.toggle('active', isActive);
-        var dot = b.querySelector('.length-hint-dot');
-        if (dot) dot.style.background = isActive ? 'var(--gold)' : 'var(--stone-300)';
-        var range = b.querySelector('.length-range');
-        if (range) range.style.color = isActive ? 'rgba(255,255,255,0.6)' : 'var(--stone-400)';
-      });
-      document.getElementById('length-display').textContent = val + '" Ponytail Length';
-      var offsets = { 15:55, 18:43, 24:25, 30:10, 36:0 };
-      document.getElementById('pony-ext').style.strokeDashoffset = offsets[val] !== undefined ? offsets[val] : 25;
-      var dotY = { 15:115, 18:128, 24:145, 30:160, 36:175 };
-      document.getElementById('pony-dot').setAttribute('cy', dotY[val] || 145);
-      [15,18,24,30,36].forEach(function(l) {
-        var g = document.getElementById('guide-' + l);
-        if (g) g.setAttribute('stroke', l === val ? '#a8a29e' : '#e7e5e4');
-      });
-      updateCalculator();
+  calcState.length = val;
+  document.querySelectorAll('.length-btn').forEach(function(b) {
+    var isActive = parseInt(b.dataset.length) === val;
+    b.classList.toggle('active', isActive);
+    var dot = b.querySelector('.length-hint-dot');
+    if (dot) dot.style.background = isActive ? 'var(--gold)' : 'var(--stone-300)';
+    var range = b.querySelector('.length-range');
+    if (range) range.style.color = isActive ? 'rgba(255,255,255,0.6)' : 'var(--stone-400)';
+  });
+  document.getElementById('length-display').textContent = val + '" Ponytail Length';
+
+  // New realistic ponytail animation
+  var configs = {
+  15: { tailEnd: 215, dotY: 200 },
+  18: { tailEnd: 240, dotY: 225 },
+  24: { tailEnd: 290, dotY: 270 },
+  30: { tailEnd: 328, dotY: 310 },
+  36: { tailEnd: 370, dotY: 348 },
+  48: { tailEnd: 430, dotY: 408 },
+  60: { tailEnd: 490, dotY: 468 }
+};
+  var cfg = configs[val] || configs[24];
+  var ty = cfg.tailEnd;
+  var dotY = cfg.dotY;
+
+  var pony = document.getElementById('pony-ext');
+  if (pony) {
+    pony.setAttribute('d',
+      'M72,162 Q65,175 63,195 Q61,215 62,' + (195 + (ty-195)*0.4) +
+      ' Q63,' + (225 + (ty-225)*0.5) + ' 65,' + (ty-30) +
+      ' Q67,' + (ty-12) + ' 68,' + ty +
+      ' L80,' + (ty+5) + ' L92,' + ty +
+      ' Q93,' + (ty-12) + ' 95,' + (ty-30) +
+      ' Q97,' + (225 + (ty-225)*0.5) + ' 98,' + (195 + (ty-195)*0.4) +
+      ' Q99,215 97,195 Q95,175 88,162 Z'
+    );
+  }
+
+  // Move active dot + ruler tick highlight
+  var dotEl = document.getElementById('pony-dot');
+  var dotInner = document.getElementById('pony-dot-inner');
+  if (dotEl) dotEl.setAttribute('cy', dotY);
+if (dotInner) { dotInner.setAttribute('cx', 128); dotInner.setAttribute('cy', dotY); }
+var dotRing = document.getElementById('pony-dot-ring');
+if (dotRing) dotRing.setAttribute('cy', dotY);
+var labelBg = document.getElementById('pony-label-bg');
+var labelTxt = document.getElementById('pony-label-txt');
+if (labelBg) { labelBg.setAttribute('y', dotY - 12); }
+if (labelTxt) { labelTxt.setAttribute('y', dotY - 2); labelTxt.textContent = val + '"'; }
+  // Update ruler text colors
+  var tickMap = { 15: 200, 18: 225, 24: 270, 30: 310 };
+  document.querySelectorAll('#silhouette-svg text').forEach(function(t) {
+    var txt = t.textContent.trim();
+    var inch = parseInt(txt);
+    if ([15,18,24,30,36,48,60].includes(inch)) {
+      t.setAttribute('fill', inch === val ? '#c5a059' : 'rgba(255,255,255,0.3)');
+      t.setAttribute('font-weight', inch === val ? 'bold' : 'normal');
     }
+  });
+
+  updateCalculator();
+}
 
     function setThickness(val) {
       calcState.thickness = val;
