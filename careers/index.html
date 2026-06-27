@@ -1049,7 +1049,10 @@ function renderJobs() {
       '</div>' +
       '<div class="job-footer">' +
         '<div style="display:flex;align-items:center;gap:12px">' +
-          '<img src="mohawk.jpg" alt="Hairstyle Preview" class="hairstyle-preview" loading="lazy">' +
+          '<div style="display:flex;flex-direction:column;align-items:center;gap:5px">' +
+            '<img src="https://sellhair.in/mohawk.jpg" alt="" class="hairstyle-preview" loading="lazy">' +
+            '<span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold);white-space:nowrap;">Mandatory Hairstyle</span>' +
+          '</div>' +
           '<div>' +
             '<span class="job-salary-label">Salary Range</span>' +
             '<div class="job-salary">' + j.salary + '</div>' +
